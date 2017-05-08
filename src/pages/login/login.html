@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content  >
+  <ion-card>
+    <form [formGroup]="myForm" (ngSubmit)="logForm()">
+      <ion-list>
+
+        <ion-item>
+          <ion-label fixed>Email</ion-label>
+          <ion-input type="email" value="" formControlName="user"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label fixed>Password</ion-label>
+          <ion-input type="password" value="" formControlName="password"></ion-input>
+        </ion-item>
+
+      </ion-list>
+
+      <div >
+        <button ion-button color="primary" full text-capitalize>Sign In </button>    
+      </div>
+    </form>
+  <!--
+  <button (click)="googlePlus_login()" ion-button color="danger" full text-capitalize> <ion-icon name="logo-googleplus" item-left></ion-icon>Login with Google+ </button>
+  <button (click)="register()" ion-button color="light" full text-capitalize> Or create an account</button>
+  -->
+
+  <!--<button (click)="freeUser()" ion-button color="secondary" full text-capitalize> 
+  Entry without account
+  </button>-->
+  </ion-card>
+</ion-content>

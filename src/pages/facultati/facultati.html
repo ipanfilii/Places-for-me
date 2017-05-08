@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Facultati</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+  <ion-list *ngFor="let item of infoFacultati" style="max-width: 600px; align-items: center; -webkit-box-align: center; display:flex; " > 
+    <ion-card >
+      <h2 >  {{item.faculties}} </h2>
+      <ion-avatar item-left>
+        <img (click)="facultate($event, item)"  src="http://placehold.it/500x300" />
+      </ion-avatar>
+     <ion-row no-padding>
+      <ion-col > 
+        <button text-capitalize (click)="addFollow(item)" ion-button clear small color="{{item.iconActive}}" icon-left>
+          <ion-icon name='star' ></ion-icon>
+         {{item.favorite}}
+        </button>
+      </ion-col>
+      <ion-col text-right>
+        <button text-capitalize ion-button clear small color="secondary" icon-left>
+          <ion-icon name='share-alt' ></ion-icon>
+          Share
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+  </ion-list>
+</ion-content>

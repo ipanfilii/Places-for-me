@@ -1,0 +1,53 @@
+<!--
+  Generated template for the Ligaac page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+  <ion-navbar hideBackButton>
+     
+    <ion-title tappable (click)="navigateToSecondPage()" ><ion-icon  name="arrow-round-back" > </ion-icon>BACK {{facultate}}</ion-title>
+
+  </ion-navbar>
+</ion-header>-
+
+<ion-content padding>
+  <div class="profile-image-wrapper" (click)="presentActionSheet()">
+    <div class="profile-image-placeholder" >
+      <ion-icon name="add"></ion-icon>
+      <div>
+          Add image
+      </div>
+    </div>
+  </div>
+  <img *ngIf="id[0].icon" class="profile-image-wrapper" src="{{pathForImage(lastImage)}}" style="width: 100%" [hidden]="lastImage === null">
+  <img *ngIf="id[0].icon" [hidden]="lastImage != null" class="profile-image-wrapper" src="http://atestate-inf.tk/ghidtest/upload/{{id[0].icon}}" style="width: 100%" >
+  <button ion-button block icon-left (click)="uploadImage()" [disabled]="lastImage === null">
+        <ion-icon name="cloud-upload"></ion-icon>Upload
+    </button>
+<form [formGroup]="myForm" (ngSubmit)="logForm()">
+  
+  <ion-item>
+    <ion-label color="primary" floating>Titlu</ion-label>
+    <ion-input *ngIf="!id[0].title"  formControlName="title"></ion-input>
+    <ion-input *ngIf="id[0].title"  value="{{id[0].title}}"  formControlName="title"></ion-input>
+  </ion-item>
+  <ion-item  >
+  
+    <ion-label color="primary" floating>Continut</ion-label>
+   <ion-textarea *ngIf="!id[0].text"  mode="ios"  rows="6" cols="10" white-space: pre-wrap   lineHeight="22"  formControlName="text" type="text" ></ion-textarea>
+   <ion-textarea *ngIf="id[0].text"  value="{{id[0].text}}" mode="ios"  rows="6" cols="10" white-space: pre-wrap   lineHeight="22"  formControlName="text" type="text" ></ion-textarea>
+   
+   
+    
+    
+  </ion-item>
+
+  <button *ngIf="idd" ion-button block (click)="navigateToSecondPage()"  [disabled]="lastImage === null && !myForm._value.title && !myForm._value.text " >Finish</button>
+    <button *ngIf="id && !idd" ion-button block (click)="navigateToSecondPage()"   >Finish</button>
+</form>
+  
+ 
+  </ion-content>
