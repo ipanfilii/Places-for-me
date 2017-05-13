@@ -7,6 +7,8 @@ import { MyApp } from './app.component';
 import { Auth } from '../providers/auth';
 import { DataTabs } from '../providers/datatabs';
 import { Getlocation } from '../providers/getlocation';
+import { Connectivity } from '../providers/connectivity-service';
+import { GoogleMaps } from '../providers/google-maps';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -21,6 +23,7 @@ import { Transfer } from '@ionic-native/transfer';
 import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Diagnostic } from '@ionic-native/diagnostic';
+import { OneSignal } from '@ionic-native/onesignal';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,12 @@ import { Diagnostic } from '@ionic-native/diagnostic';
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      backButtonText: 'back',
+      iconMode: 'ios',
+      tabsPlacement: 'bottom',
+      pageTransition: 'wp-transition'
+    }),
     SuperTabsModule.forRoot()
   ],
   bootstrap: [IonicApp],
@@ -52,6 +60,9 @@ import { Diagnostic } from '@ionic-native/diagnostic';
     BackgroundGeolocation,
     Geolocation,
     Diagnostic,
+    OneSignal,
+    Connectivity,
+    GoogleMaps,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

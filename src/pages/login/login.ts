@@ -67,6 +67,8 @@ export class Login {
       loader.present();
       this.http.post('http://www.atestate-inf.tk/ghidtest/login.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
       this.dataUser = data;
+        alert(this.dataUser)
+      
       console.log(this.dataUser.data)
       if(this.dataUser.success){ 
         loader.dismiss();

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, ToastController} from 'ionic-angular';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { Auth } from '../../providers/auth';
+import { Http } from '@angular/http';
+import { OneSignal } from '@ionic-native/onesignal';
 
 /**
  * Generated class for the Facultati page.
@@ -15,7 +17,8 @@ import { Auth } from '../../providers/auth';
   templateUrl: 'facultati.html',
 })
 export class Facultati {
-  public user:string;
+  public user: string;
+  public id: any;
   public dataUser: any = [];
   public idFacultati: string[] =[];
   public facultati: string[] = []
@@ -24,6 +27,8 @@ export class Facultati {
   public danger: string = "danger";
   public favorite: string = "Follow";
   constructor(public navCtrl: NavController,
+              public oneSignal: OneSignal,
+              public http: Http,
               public navParams: NavParams,
               public auth: Auth,
               public platform: Platform,
@@ -105,12 +110,12 @@ export class Facultati {
 
   addFollow(itemss) {
     
-    // OneSignal.getIds().then((ids)=>{
-    //   this.id = ids.userId; // recieve de id device and send it to server 
-    //   this.http.get('http://www.atestate-inf.tk/ghidtest/notification.php?id='+ this.id+'&user='+this.user+'&facultate='+itemss.note/*+'&ids='+Device.uuid*/ ).map(res => res.json()).subscribe(data => {
-    //     this.posts = data;
-    //   });
-    // });
+    this.oneSignal.getIds().then((ids)=>{
+      this.id = ids.userId; // recieve de id device and send it to server 
+      this.http.get('http://www.atestate-inf.tk/ghidtest/notification.php?id='+ this.id+'&user='+this.user+'&facultate='+itemss.idFacultati/*+'&ids='+Device.uuid*/ ).map(res => res.json()).subscribe(data => {
+        // this.posts = data;
+      });
+    });
 
     for(let  i = 0; i < 7; i++) {
       if(this.infoFacultati[i].title == itemss.title && this.infoFacultati[i].iconActive == "danger"){

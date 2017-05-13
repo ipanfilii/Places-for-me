@@ -94,4 +94,5 @@
     <plugin name="cordova-plugin-geolocation" spec="~2.4.3" />
     <plugin name="Geolocation" value="org.apache.cordova.GeoBroker" />
     <plugin name="cordova.plugins.diagnostic" spec="~3.6.0" />
+    <plugin name="onesignal-cordova-plugin" spec="~2.0.11" />
 </widget>
