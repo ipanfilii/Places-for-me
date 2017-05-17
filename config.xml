@@ -94,5 +94,9 @@
     <plugin name="cordova-plugin-geolocation" spec="~2.4.3" />
     <plugin name="Geolocation" value="org.apache.cordova.GeoBroker" />
     <plugin name="cordova.plugins.diagnostic" spec="~3.6.0" />
+<<<<<<< HEAD
     <plugin name="cordova-plugin-inappbrowser" spec="~1.7.1" />
+=======
+    <plugin name="onesignal-cordova-plugin" spec="~2.0.11" />
+>>>>>>> b6ebcdd75d974bc6930b30677464a18edac35643
 </widget>

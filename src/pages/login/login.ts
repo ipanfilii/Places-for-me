@@ -70,7 +70,13 @@ export class Login {
       loader.present();
       this.http.post('http://192.168.43.95/login.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
       this.dataUser = data;
+<<<<<<< HEAD
       console.log(this.dataUser.username)
+=======
+        alert(this.dataUser)
+      
+      console.log(this.dataUser.data)
+>>>>>>> b6ebcdd75d974bc6930b30677464a18edac35643
       if(this.dataUser.success){ 
         loader.dismiss();
         localStorage.setItem('user',this.dataUser.username)
