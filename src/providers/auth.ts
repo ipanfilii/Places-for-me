@@ -17,14 +17,12 @@ export class Auth {
 
   login() {
     this.user = localStorage.getItem('user');
+    console.log(this.user);
     return new Promise((resolve) => {
-      this.http.get('http://www.atestate-inf.tk/ghidtest/login.php?user='+this.user).map(res => res.json()).subscribe(data => {
+    this.http.get('http://localhost/login.php?user='+this.user).map(res => res.json()).subscribe(data => {
         this.userData = data;
-        console.log(this.userData)
-        if(this.userData.data != 'user'){
-           console.log(this.userData.follow[0].counter);
-        }
-        resolve(this.userData);    
+        // localStorage.setItem('user', this.userData.username);
+       resolve(this.userData);    
       });
     });
   }

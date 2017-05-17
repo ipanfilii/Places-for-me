@@ -33,28 +33,13 @@ export class Profile {
      
     this.user = localStorage.getItem('user');
   
-    this.http.get('http://www.atestate-inf.tk/ghidtest/readxls.php').map(res => res.json()).subscribe(data => {
-      this.dataXls = data;
-    });
-
-  
-
     if( this.user ) {
-      this.http.get('http://atestate-inf.tk/ghidtest/reqData.php?user='+this.user).map(res => res.json()).subscribe(data => {
+      this.http.get('http://localhost/reqData.php?user='+this.user).map(res => res.json()).subscribe(data => {
         this.myRoute = data;
         console.log(this.myRoute)
       });
 
-      this.zi = ['luni', 'marti', 'miercuri', 'joi', 'vineri'];
-      this.grupa = 1.1;
-      this.dataUser.push({
-        user:this.user,
-        image:'200x200.jpg',
-        showDetails:false,
-        grupa:this.grupa,
-        icon: 'arrow-down',
-        zi:this.zi
-      });
+   
     } else {
       let toast = this.toastCtrl.create({
         message: 'Nu sunteti logat. Pentru a accesa aceasta sectiune este nevoie sa va logati.',
@@ -62,7 +47,7 @@ export class Profile {
         position: 'bottom'
       })
       toast.present();
-      this.navCtrl.setRoot('HomePage');
+      this.navCtrl.setRoot('WelcomeAfterLogin');
     }
   }
   public toggleDetails(data, zi) {

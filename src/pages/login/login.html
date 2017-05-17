@@ -6,11 +6,11 @@
 
 <ion-content  >
   <ion-card>
-    <form [formGroup]="myForm" (ngSubmit)="logForm()">
+    <form [formGroup]="myForm" >
       <ion-list>
 
         <ion-item>
-          <ion-label fixed>Email</ion-label>
+          <ion-label fixed>Username</ion-label>
           <ion-input type="email" value="" formControlName="user"></ion-input>
         </ion-item>
 
@@ -22,7 +22,7 @@
       </ion-list>
 
       <div >
-        <button ion-button color="primary" full text-capitalize>Sign In </button>    
+        <button ion-button color="primary"  (click)="logForm()" full text-capitalize>Sign In </button>    
       </div>
     </form>
   <!--

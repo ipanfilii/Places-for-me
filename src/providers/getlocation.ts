@@ -11,10 +11,10 @@ export class Getlocation {
   constructor(public geolocation: Geolocation,
               public backgroundGeolocation: BackgroundGeolocation,
               public zone: NgZone,) {
-    console.log('Hello Getlocation Provider');
+    // alert('Hello Getlocation Provider');
   }
 
-  public startTracking() {
+  public startTracking()  {
  
   // Background Tracking
  
@@ -22,7 +22,7 @@ export class Getlocation {
     desiredAccuracy: 0,
     stationaryRadius: 20,
     distanceFilter: 10, 
-    debug: true,
+    debug: false,
     interval: 2000 
   };
  
@@ -71,7 +71,7 @@ this.watch = this.geolocation.watchPosition(options).filter((p: any) => p.coords
 
 public stopTracking() {
  
-  console.log('stopTracking');
+  // alert('stopTracking');
  
   this.backgroundGeolocation.finish();
   this.watch.unsubscribe();

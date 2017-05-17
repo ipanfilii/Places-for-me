@@ -94,4 +94,5 @@
     <plugin name="cordova-plugin-geolocation" spec="~2.4.3" />
     <plugin name="Geolocation" value="org.apache.cordova.GeoBroker" />
     <plugin name="cordova.plugins.diagnostic" spec="~3.6.0" />
+    <plugin name="cordova-plugin-inappbrowser" spec="~1.7.1" />
 </widget>

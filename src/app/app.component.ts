@@ -4,6 +4,10 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { Auth } from '../providers/auth';
+import { HomePage } from "../pages/home/home";
+import { Informatii } from "../pages/informatii/informatii";
+import { Welcome } from "../pages/welcome/welcome";
+import { WelcomeBeforeLogin } from "../pages/welcome-before-login/welcome-before-login";
 
 @Component({
   templateUrl: 'app.html'
@@ -11,7 +15,7 @@ import { Auth } from '../providers/auth';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  public rootPage: any = "Welcome";
+   rootPage: any = "WelcomeBeforeLogin";
   public dataUser: any = [];
   pages: Array<{icon:string, title: string, component: any}>;
 
@@ -20,12 +24,15 @@ export class MyApp {
     let load = this.loadCtrl.create({
         content: "Data is loading...",
     });
+
+    this.rootPage = "WelcomeBeforeLogin";
+
     this.auth.login().then( (isLoggedIn) => {
       load.dismiss();
       this.dataUser = isLoggedIn;
-      console.log(this.dataUser)
-      if( this.dataUser.right == 0 ) {
-          this.rootPage = 'HomePage';
+      console.log(this.dataUser);
+      if( this.dataUser.success == true ) {//daca e logare cu succes--->afterLogin
+          this.rootPage = 'WelcomeAfterLogin';
           this.pages = [
             { icon:'home', title: 'Home', component: "HomePage" },
             { icon:'contact', title: 'Profilul meu', component: "Profile" },
@@ -34,18 +41,8 @@ export class MyApp {
             { icon:'log-in', title: 'Autentificare', component: "Login" },
             { icon:'log-in', title: 'Iesire', component: "Logout" },
           ];
-      } else  if( this.dataUser.right == 1 ) {
-          this.rootPage = 'HomePage';
-          this.pages = [
-            { icon:'home', title: 'Home', component: "HomePage" },
-            { icon:'contact', title: 'Profilul meu', component: "Profile" },
-            { icon:'school', title: 'Facultati', component: "Facultati" },  
-            { icon:'map', title: 'Harta Campusului', component: "Googlemaps" },
-            { icon:'log-in', title: 'Autentificare', component: "Login" },
-            { icon:'log-in', title: 'Iesire', component: "Logout" }
-          ];
-      } else {
-          this.rootPage = 'Welcome';
+      }  else {///daca e guest
+          this.rootPage = 'WelcomeBeforeLogin';
           this.pages = [
             { icon:'home', title: 'Home', component: "HomePage" },
             { icon:'contact', title: 'Profilul meu', component: "Profile" },
@@ -64,6 +61,41 @@ export class MyApp {
             { icon:'log-in', title: 'Iesire', component: "Logout" },
           ];
     })
+
+   /* this.auth.login().then( (isLoggedIn) => {
+      load.dismiss();
+      this.dataUser = isLoggedIn;
+      console.log(this.dataUser)
+      if( this.dataUser.right == 0 ) {
+          this.rootPage = 'HomePage';
+          this.pages = [
+            { icon:'home', title: 'Home', component: "HomePage" },
+            { icon:'contact', title: 'Profilul meu', component: "Profile" },
+            { icon:'school', title: 'Facultati', component: "Facultati" },
+            { icon:'map', title: 'Harta Campusului', component: "Googlemaps" },
+            { icon:'log-in', title: 'Autentificare', component: "Login" },
+            { icon:'log-in', title: 'Iesire', component: "Logout" },
+          ];
+      }  else {
+          this.rootPage = 'WelcomeBeforeLogin';
+          this.pages = [
+            { icon:'home', title: 'Home', component: "HomePage" },
+            { icon:'contact', title: 'Profilul meu', component: "Profile" },
+            { icon:'school', title: 'Facultati', component: "Facultati" },     
+            { icon:'map', title: 'Harta Campusului', component: "Googlemaps" },
+            { icon:'log-in', title: 'Autentificare', component: "Login" },
+            { icon:'log-out', title: 'Iesire', component: "Logout" },
+          ];
+      }
+       this.pages = [
+            { icon:'home', title: 'Home', component: "HomePage" },
+            { icon:'contact', title: 'Profilul meu', component: "Profile" },
+            { icon:'school', title: 'Facultati', component: "Facultati" },
+            { icon:'map', title: 'Harta Campusului', component: "Googlemaps" },
+            { icon:'log-in', title: 'Autentificare', component: "Login" },
+            { icon:'log-in', title: 'Iesire', component: "Logout" },
+          ];
+    })*/
 
   }
 

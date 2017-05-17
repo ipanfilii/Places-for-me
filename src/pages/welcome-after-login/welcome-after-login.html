@@ -1,0 +1,30 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Welcome,{{logedUser}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+  <!--<div style="height:50%;width:50%"> sjjskd</div> 
+  <div style="height:50%;width:50%"> sjjskd</div> 
+  <div style="height:50%;width:50%"> sjjskd</div> 
+  <div style="height:50%; position:right;"> sjjskd</div> -->
+ <ion-col col-12 > 
+  <div style="height:100%; float:left; width:50%;" padding-top="0%">
+   <button ion-button block (click)="goToAccountManagement()" class="quarter_button_left" >Account Management</button>
+   <button ion-button block (click)="goToReviews()" class="quarter_button_left" >Reviews</button>
+   <!--<button ion-button block (click)="goToGoogleMaps()" class="quarter_button_right" >My places</button>-->
+  </div>
+ </ion-col>
+  <ion-col col-12>
+  <div style="height:100%; float:right; width:50%;" padding-bottom="0%" >
+   <button ion-button block (click)="goToGoogleMaps()" class="quarter_button_right" >My places</button>
+   <button ion-button block (click)="goToStatistics()" class="quarter_button_right" >Statistics</button>
+   <!--<button ion-button block (click)="goToGoogleMaps()" class="quarter_button_right" >My places</button>-->
+  </div>
+   </ion-col>
+</ion-content>

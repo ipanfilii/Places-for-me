@@ -1,12 +1,40 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Harta Campusului</ion-title>
-     <h3>Current Latitude: {{location.lat}}</h3>
-      <h3>Current Longitude: {{location.lng}}</h3>
-  </ion-navbar>
+    <ion-navbar style="height:40px !important;" color="primary">
+        <ion-buttons right>
+            <button ion-button (click)="setMap()">Choose place</button>
+        </ion-buttons>
+         <ion-buttons right>
+            <button ion-button (click)="setMap()">Locate mee</button>
+        </ion-buttons>
+        <ion-buttons right>
+            <button [disabled]="saveDisabled" ion-button (click)="save()">Save</button>
+        </ion-buttons>
+    </ion-navbar>
+ 
+    <ion-toolbar>
+        <ion-searchbar [(ngModel)]="query" (ionInput)="searchPlace()"></ion-searchbar>
+    </ion-toolbar>
+ <!--<ion-card style= "">
+    <ion-card-content>
+        
+    </ion-card-content>
+</ion-card>-->
+        <div  style=" max-height: 150px; overflow: scroll; position: relative; z-index: 1;background-color: white; font-size:12px;" #directionsPanel></div>
+
+    <ion-list>
+        <ion-item *ngFor="let place of places" (touchstart)="selectPlace(place)">{{place.description}}</ion-item>
+    </ion-list>
+ 
 </ion-header>
+ 
+<ion-content>
 
-
-<ion-content >
-  <div div-height=100% id="map" #map></div>
+    <div #pleaseConnect id="please-connect">
+        <p>Please connect to the Internet...</p>
+    </div>
+ 
+    <div style="height: 100% -150px; " #map id="map">
+        <ion-spinner></ion-spinner>
+    </div>
+ 
 </ion-content>

@@ -31,7 +31,7 @@ export class Logout {
     });
     loader.present();
     localStorage.removeItem('user');
-    this.navCtrl.setRoot('Welcome')
+    this.navCtrl.setRoot('WelcomeBeforeLogin')
   
 
   }

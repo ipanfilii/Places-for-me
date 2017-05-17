@@ -32,12 +32,7 @@
 
 <div style="font-size:12 px;" text-capitalize >
   <ion-segment [(ngModel)]="profil">
-    <ion-segment-button style="font-size:12 px;" text-capitalize value="orar">
-      Orar
-    </ion-segment-button>
-     <ion-segment-button style="font-size:12 px;" text-capitalize value="note">
-      Note
-    </ion-segment-button>
+   
     <ion-segment-button style="font-size:12 px;" text-capitalize value="locatii">
       Locatii
     </ion-segment-button>
@@ -49,61 +44,7 @@
 </div>
 
 <div style="font-size:12 px;" text-capitalize no-padding [ngSwitch]="profil">
-  <ion-list *ngSwitchCase="'orar'">
- <ion-list *ngFor="let d of dataUser" no-padding>
-    <ion-grid no-padding  >
-      <ion-row class="grid-basic-page">
-        <ion-col style="background-color:  #55acee;" item-left width-100>
-          <div>
-             {{d.grupa}}
-          </div>
-        </ion-col >
-      </ion-row>
-        
-          <div *ngFor="let p of dataXls">   <!-- parsarea intregilor date venite de la server-->
-            <div *ngIf="p.grupa == d.grupa"> <!-- verificare existenta grupa -->
-         
-             <div *ngFor="let t of p.orar">    <!--  parsare date timp - zi si informatii -->
-                <ion-row class="grid-basic-page">  
-                  <ion-col *ngIf="t.zi!='c'"style="background-color: #69e814; font-size:12px;" col-3>
-                      <div>
-                           Timp
-                      </div>
-                  </ion-col >
-                  <ion-col *ngIf="t.zi!='c'" style="background-color: #69e814; font-size:12px;" item-left col-9>  
-                      <div>
-                          {{t.zi}} 
-                      </div>
-                     <ion-icon  (click)="toggleDetails(d,t.zi)" color="primary" item-right [name]="d.icon"></ion-icon>
-                      
-                  </ion-col>
-                </ion-row>
-                  <ion-row *ngIf="t.time!='' && d.showDetails " class="grid-basic-page">  
-                    <ion-col  style="font-size:12px;" col-3>
-                        <div text-left> 
-                            {{t.time}}
-                        </div>
-                    </ion-col >
-                    <ion-col   style="font-size:12px;" item-left col-9>  
-                        <div text-left>
-                            {{t.info}} 
-                        </div>
-                    </ion-col>
-                  </ion-row>
-                </div>
-              </div>
-             
-            </div>
-          
-    </ion-grid>
-    
-  </ion-list>
- 
-  </ion-list>
 
-  <ion-list *ngSwitchCase="'note'">
-     <img src="http://atestate-inf.tk/ghidtest/underconstruction.png" />
-  </ion-list>
 
   <ion-list *ngSwitchCase="'locatii'" >
     <ion-list *ngFor="let data of myRoute">

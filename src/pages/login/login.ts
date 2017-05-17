@@ -4,6 +4,8 @@ import { FormBuilder } from '@angular/forms';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { NativeStorage } from '@ionic-native/native-storage';
 import 'rxjs/add/operator/map';
+import { stringify } from "@angular/core/src/util";
+import { PageService } from "../../providers/pageservice";
 
 @IonicPage()
 @Component({
@@ -13,6 +15,7 @@ import 'rxjs/add/operator/map';
 export class Login {
   public myForm: any;
   public dataUser: any;
+ // private jsonData: any = null;
   constructor(public navCtrl: NavController,
               public menuCtrl: MenuController,
               public platform: Platform,
@@ -20,7 +23,7 @@ export class Login {
               public toastCtrl: ToastController,
               public loadingCtrl: LoadingController,
               public formBuilder: FormBuilder, 
-              public http: Http) {
+              public http: Http,) {
 
               this.menuCtrl.enable(false);
                
@@ -29,8 +32,8 @@ export class Login {
                   message: 'Sunteti logat cu ' +  localStorage.getItem('user'),
                   duration: 1500,
                   position: 'top'
-                }).present();
-                this.navCtrl.setRoot('HomePage')
+                }).present();                //this.navCtrl.setRoot('HomePage')
+                this.navCtrl.setRoot('WelcomeAfterLogin');
               }
               
               this.myForm = this.formBuilder.group({
@@ -65,13 +68,18 @@ export class Login {
       pwd:this.myForm._value.password,
     }
       loader.present();
-      this.http.post('http://www.atestate-inf.tk/ghidtest/login.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
+      this.http.post('http://192.168.43.95/login.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
       this.dataUser = data;
-      console.log(this.dataUser.data)
+      console.log(this.dataUser.username)
       if(this.dataUser.success){ 
         loader.dismiss();
-        localStorage.setItem('user',this.dataUser.data)
-        this.navCtrl.setRoot('HomePage',{item:this.dataUser});
+        localStorage.setItem('user',this.dataUser.username)
+         //this.navCtrl.push('WelcomeAfterLogin');
+        // let jsonData = stringify(this.dataUser);
+        //this.pageService.pageData = stringify(this.dataUser);
+     this.navCtrl.setRoot('WelcomeAfterLogin');
+     //,{ logedUser: this.dataUser.username });
+       
       }
       else{
         loader.dismiss();
@@ -80,7 +88,7 @@ export class Login {
     },error=>{
       console.log(error);
     });
-
+     //this.navCtrl.pop();
   }
    
   ionViewWillLeave() {

@@ -7,7 +7,6 @@ import { MyApp } from './app.component';
 import { Auth } from '../providers/auth';
 import { DataTabs } from '../providers/datatabs';
 import { Getlocation } from '../providers/getlocation';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Network } from '@ionic-native/network';
@@ -21,10 +20,15 @@ import { Transfer } from '@ionic-native/transfer';
 import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Diagnostic } from '@ionic-native/diagnostic';
+import { PageService } from "../providers/pageservice";
+import { Connectivity } from "../providers/connectivity-service";
+import { GoogleMaps } from "../providers/google-maps";
+import { InAppBrowser } from 'ionic-native';
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
+
   ],
   imports: [
     BrowserModule,
@@ -34,7 +38,7 @@ import { Diagnostic } from '@ionic-native/diagnostic';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
   ],
   providers: [
     StatusBar,
@@ -52,6 +56,8 @@ import { Diagnostic } from '@ionic-native/diagnostic';
     BackgroundGeolocation,
     Geolocation,
     Diagnostic,
+    Connectivity,
+    GoogleMaps,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
