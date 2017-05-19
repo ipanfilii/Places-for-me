@@ -317,11 +317,11 @@ export class Googlemaps {
           text: 'Save ',
           handler: data => {
             if(data.title) {
-<<<<<<< HEAD
+// <<<<<<< HEAD
               this.http.get('http://localhost/sendData.php?user='+localStorage.getItem('user')
-=======
-              this.http.get('http://atestate-inf.tk/ghidtest/sendData.php?user='+localStorage.getItem('user')
->>>>>>> b6ebcdd75d974bc6930b30677464a18edac35643
+// =======
+             // this.http.get('http://atestate-inf.tk/ghidtest/sendData.php?user='+localStorage.getItem('user')
+// >>>>>>> b6ebcdd75d974bc6930b30677464a18edac35643
                             +'&lat='+lat
                             +'&lng='+lng
                             +'&address='+address
@@ -329,11 +329,11 @@ export class Googlemaps {
               map(res=>res.json()).
               subscribe(data);
             } else {
-<<<<<<< HEAD
+// <<<<<<< HEAD
               this.http.get('http://localhost/sendData.php?user='+localStorage.getItem('user')
-=======
-              this.http.get('http://atestate-inf.tk/ghidtest/sendData.php?user='+localStorage.getItem('user')
->>>>>>> b6ebcdd75d974bc6930b30677464a18edac35643
+// =======
+              //this.http.get('http://atestate-inf.tk/ghidtest/sendData.php?user='+localStorage.getItem('user')
+// >>>>>>> b6ebcdd75d974bc6930b30677464a18edac35643
                             +'&lat='+lat
                             +'&lng='+lng
                             +'&address='+address

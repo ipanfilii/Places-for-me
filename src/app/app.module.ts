@@ -7,12 +7,8 @@ import { MyApp } from './app.component';
 import { Auth } from '../providers/auth';
 import { DataTabs } from '../providers/datatabs';
 import { Getlocation } from '../providers/getlocation';
-<<<<<<< HEAD
-=======
-import { Connectivity } from '../providers/connectivity-service';
-import { GoogleMaps } from '../providers/google-maps';
 
->>>>>>> b6ebcdd75d974bc6930b30677464a18edac35643
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Network } from '@ionic-native/network';
@@ -26,14 +22,15 @@ import { Transfer } from '@ionic-native/transfer';
 import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Diagnostic } from '@ionic-native/diagnostic';
-<<<<<<< HEAD
+
 import { PageService } from "../providers/pageservice";
 import { Connectivity } from "../providers/connectivity-service";
 import { GoogleMaps } from "../providers/google-maps";
 import { InAppBrowser } from 'ionic-native';
-=======
 import { OneSignal } from '@ionic-native/onesignal';
->>>>>>> b6ebcdd75d974bc6930b30677464a18edac35643
+import { RoomTypesService } from "../../providers/room_types_service";
+ 
+
 
 @NgModule({
   declarations: [
@@ -71,11 +68,9 @@ import { OneSignal } from '@ionic-native/onesignal';
     BackgroundGeolocation,
     Geolocation,
     Diagnostic,
-<<<<<<< HEAD
-=======
     OneSignal,
->>>>>>> b6ebcdd75d974bc6930b30677464a18edac35643
     Connectivity,
+    RoomTypesService,
     GoogleMaps,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

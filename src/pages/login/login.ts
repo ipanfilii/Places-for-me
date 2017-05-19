@@ -15,7 +15,7 @@ import { PageService } from "../../providers/pageservice";
 export class Login {
   public myForm: any;
   public dataUser: any;
- // private jsonData: any = null;
+
   constructor(public navCtrl: NavController,
               public menuCtrl: MenuController,
               public platform: Platform,
@@ -68,15 +68,15 @@ export class Login {
       pwd:this.myForm._value.password,
     }
       loader.present();
-      this.http.post('http://192.168.43.95/login.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
+      this.http.post('http://localhost/login.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
       this.dataUser = data;
-<<<<<<< HEAD
+
       console.log(this.dataUser.username)
-=======
+
         alert(this.dataUser)
       
       console.log(this.dataUser.data)
->>>>>>> b6ebcdd75d974bc6930b30677464a18edac35643
+
       if(this.dataUser.success){ 
         loader.dismiss();
         localStorage.setItem('user',this.dataUser.username)

@@ -4,15 +4,13 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { Auth } from '../providers/auth';
-<<<<<<< HEAD
 import { HomePage } from "../pages/home/home";
 import { Informatii } from "../pages/informatii/informatii";
 import { Welcome } from "../pages/welcome/welcome";
 import { WelcomeBeforeLogin } from "../pages/welcome-before-login/welcome-before-login";
-=======
 import { Getlocation } from '../providers/getlocation';
-import { OneSignal } from '@ionic-native/onesignal';
->>>>>>> b6ebcdd75d974bc6930b30677464a18edac35643
+import { OneSignal } from "@ionic-native/onesignal";
+
 
 @Component({
   templateUrl: 'app.html'
@@ -24,7 +22,7 @@ export class MyApp {
   public dataUser: any = [];
   pages: Array<{icon:string, title: string, component: any}>;
 
-  constructor(private oneSignal: OneSignal, public loadCtrl: LoadingController, public getlocation: Getlocation, public auth: Auth, public platform: Platform, private nativeStorage: NativeStorage, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(private  oneSignal: OneSignal, public loadCtrl: LoadingController, public getlocation: Getlocation, public auth: Auth, public platform: Platform, private nativeStorage: NativeStorage, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
     let load = this.loadCtrl.create({
         content: "Data is loading...",
@@ -100,11 +98,9 @@ export class MyApp {
             { icon:'log-in', title: 'Autentificare', component: "Login" },
             { icon:'log-in', title: 'Iesire', component: "Logout" },
           ];
-<<<<<<< HEAD
     })*/
 
-=======
-    })
+    
   this.pages = [
             { icon:'home', title: 'Home', component: "HomePage" },
             { icon:'contact', title: 'Profilul meu', component: "Profile" },
@@ -113,12 +109,12 @@ export class MyApp {
             { icon:'log-in', title: 'Autentificare', component: "Login" },
             { icon:'log-in', title: 'Iesire', component: "Logout" },
           ];
->>>>>>> b6ebcdd75d974bc6930b30677464a18edac35643
+
   }
 
 
   initializeApp() {
- //a0bfcab0-43b0-456e-a62d-48c86af5202a
+
     this.platform.ready().then(() => {
      this.getlocation.startTracking();
       // Okay, so the platform is ready and our plugins are available.
