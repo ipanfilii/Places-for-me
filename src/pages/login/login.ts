@@ -14,7 +14,7 @@ import { PageService } from "../../providers/pageservice";
 })
 export class Login {
   public myForm: any;
-  public dataUser: any;
+  public dataUser: any = [];
 
   constructor(public navCtrl: NavController,
               public menuCtrl: MenuController,
@@ -72,22 +72,25 @@ export class Login {
       this.dataUser = data;
 
       console.log(this.dataUser.username)
-
-        alert(this.dataUser)
-      
+      alert(this.dataUser)
       console.log(this.dataUser.data)
 
-      if(this.dataUser.success){ 
+      if(this.dataUser.success && this.dataUser.right == 0){ 
         loader.dismiss();
         localStorage.setItem('user',this.dataUser.username)
          //this.navCtrl.push('WelcomeAfterLogin');
         // let jsonData = stringify(this.dataUser);
         //this.pageService.pageData = stringify(this.dataUser);
-     this.navCtrl.setRoot('WelcomeAfterLogin');
+        this.navCtrl.setRoot('WelcomeAfterLogin');
      //,{ logedUser: this.dataUser.username });
        
       }
-      else{
+      else  if(this.dataUser.success && this.dataUser.right == 1){
+         loader.dismiss();
+        localStorage.setItem('user',this.dataUser.username)
+        localStorage.setItem('hotel', JSON.stringify(this.dataUser))
+        this.navCtrl.setRoot('AdminAfterLogin',{admin:this.dataUser});
+       } else {
         loader.dismiss();
         loginFail.present(); // if login fail show a message error
       }

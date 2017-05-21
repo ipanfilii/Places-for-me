@@ -34,7 +34,7 @@ export class MyApp {
       load.dismiss();
       this.dataUser = isLoggedIn;
       console.log(this.dataUser);
-      if( this.dataUser.success == true ) {//daca e logare cu succes--->afterLogin
+      if( this.dataUser.success == true && this.dataUser.right == 0 ) {//daca e logare cu succes--->afterLogin
           this.rootPage = 'WelcomeAfterLogin';
           this.pages = [
             { icon:'home', title: 'Home', component: "HomePage" },
@@ -44,8 +44,8 @@ export class MyApp {
             { icon:'log-in', title: 'Autentificare', component: "Login" },
             { icon:'log-in', title: 'Iesire', component: "Logout" },
           ];
-      }  else {///daca e guest
-          this.rootPage = 'WelcomeBeforeLogin';
+      }  else  if( this.dataUser.success == true && this.dataUser.right == 1 ){///daca e guest
+          this.rootPage = 'AdminAfterLogin';
           this.pages = [
             { icon:'home', title: 'Home', component: "HomePage" },
             { icon:'contact', title: 'Profilul meu', component: "Profile" },
