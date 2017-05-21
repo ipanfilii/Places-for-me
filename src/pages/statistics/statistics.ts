@@ -33,5 +33,6 @@ testRoomTypes()
 }
   ionViewDidLoad() {
     console.log('ionViewDidLoad Statistics');
+    this.testRoomTypes();
   }
 }
