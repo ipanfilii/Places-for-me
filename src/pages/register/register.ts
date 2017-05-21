@@ -35,6 +35,8 @@ export class RegisterPage {
         username: [''],
         password: [''],
         email: [''],
+        hotel_name: [''],
+        hotel_address: ['']
     });
     this.right = navParams.get("right");
     console.log(this.right);
@@ -56,10 +58,13 @@ export class RegisterPage {
     let postParams = {
       user:this.myForm._value.username,
       pwd:this.myForm._value.password,
-      email:this.myForm._value.email
+      email:this.myForm._value.email,
+      right:this.right,
+      hotel_name:this.myForm._value.hotel_name,
+      hotel_address:this.myForm._value.hotel_address
     }
       //loader.present();
-      this.http.post('http://192.168.43.96/register.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
+      this.http.post('http://localhost/register.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
       this.dataUser = data;
       console.log(this.dataUser)
       

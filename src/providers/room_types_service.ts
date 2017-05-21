@@ -19,7 +19,7 @@ export class RoomTypesService
     // let options = new RequestOptions({headers:headers});
     
  return new Promise((resolve) => {
-        this.http.get('http://192.168.43.96/room_type_reqData.php').map(result => result.json()).subscribe(data => {
+        this.http.get('http://localhost/room_type_reqData.php').map(result => result.json()).subscribe(data => {
         this.roomsTypeData = data;
         resolve(this.roomsTypeData);
         //console.log(this.roomsTypeData);
