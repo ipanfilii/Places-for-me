@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Platform} from 'ionic-angular';
-import { Http, RequestOptions } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { NativeStorage } from '@ionic-native/native-storage';
 import 'rxjs/add/operator/map';
 

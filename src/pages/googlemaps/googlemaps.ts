@@ -36,9 +36,12 @@ export class Googlemaps {
     public markerArrayy: any[] = [];
     private marker: any ;
     private infoWindow: any; 
-    private testRadioResult: string = 'store';
+    private typeOfPlace: any = 'store';
     public restartMap: any;
     public map: any;
+    public dataPlace: any = [];
+    public directionDisplay: any;
+    public directionService: any;
     constructor(public navCtrl: NavController,
                 public alertCtrl: AlertController, 
                 public toastCtrl: ToastController,
@@ -50,16 +53,17 @@ export class Googlemaps {
                 public geolocation: Geolocation, 
                 public getlocation: Getlocation,
                 public viewCtrl: ViewController) {
-       this.getlocation.startTracking();
-    
-    this.autocompleteItems = [];
-      this.descriptions = [];
-      this.autocomplete = {
-        query: ''
-    };
+
+        this.getlocation.startTracking();
+        this.autocompleteItems = [];
+          this.descriptions = [];
+          this.autocomplete = {
+            query: ''
+        };
         this.searchDisabled = true;
         this.saveDisabled = true;
         this.routeDisabled = true;
+
     }
  
   loadSetGoogle() {
@@ -105,6 +109,7 @@ export class Googlemaps {
             this.placesService = new google.maps.places.PlacesService(this.maps.map);
             this.searchDisabled = false;
             this.routeDisabled = false;
+           
         }); 
            
     }
@@ -114,17 +119,16 @@ export class Googlemaps {
     }
 
     public setMap() {
-        
-        let me = this;
-        for(let i = 0; i < this.markerArray.length; i++) {
-          this.markerArray[i].setMap(null);
-        }
-        this.infoWindow =  new google.maps.InfoWindow;
-        this.map = this.maps.map;
-         let directionService = new google.maps.DirectionsService;
+            this.directionDisplay = new google.maps.DirectionsRenderer({map:this.maps.map});
+            this.directionService = new google.maps.DirectionsService;
+            let me = this;
+            for(let i = 0; i < this.markerArray.length; i++) {
+              this.markerArray[i].setMap(null);
+            }
+            this.infoWindow =  new google.maps.InfoWindow;
+            this.map = this.maps.map;
             let myLocation = new google.maps.LatLng(this.getlocation.lat, this.getlocation.lng);
             console.log(myLocation)
-            let directionDisplay = new google.maps.DirectionsRenderer({map:me.map});
             this.marker = new google.maps.Marker({map:me.map,position:myLocation})
             google.maps.event.addListener(me.marker, 'click', function() {
                 me.infoWindow.setContent('My Location !');
@@ -137,35 +141,40 @@ export class Googlemaps {
                 service.nearbySearch({
                 location: myLocation,
                 radius: 1000,
-                type: me.testRadioResult
+                type: me.typeOfPlace
                 }, callback);
             
             function callback(results, status) {
                 if(status === google.maps.places.PlacesServiceStatus.OK) {
                     for(let i = 0; i < results.length; i++) {
-                        createMarker(results[i], directionDisplay, directionService);
+                        createMarker(results[i], me.directionDisplay, me.directionService);
                     }
             }
             }
 
             function createMarker(place, directionDisplay, directionService) {
                 
-                console.log(place);
                 let pointB = new google.maps.LatLng(place.geometry.location.lat(), place.geometry.location.lng());
                 let pointA = new google.maps.LatLng(me.getlocation.lat, me.getlocation.lng);
                 let marker = new google.maps.Marker({
                     map:me.map,
                     position: place.geometry.location,
                     zIndex:99999999
+
                 });
                 me.markerArray.push(marker);
+                console.log(place)
+                try {
                 let contentString:string = `<img style="width:24px;height:24px;" src =`+place.icon+` /><br>
                 <strong> Info : </strong> `+place.name+`<br>
-                <strong> Address : </strong>`+place.vicinity;
+                <strong> Address : </strong>`+place.vicinity+`<br>;`;
+                // <strong> Photos: <img src=`+ place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100})+`><br>`+
+                // `<strong> Open now:</strong> `+place.opening_hours.open_now+ `<br>
+                // <strong> Rating: </strong>` +place.rating;
                 google.maps.event.addListener(marker, 'click', function() {
                     me.infoWindow.setContent(contentString);
                     me.infoWindow.open(me.map, this);
-                    me.calculateAndDisplayRoute(directionDisplay, directionService, me.infoWindow, me.map, pointA, pointB);
+                    me.calculateAndDisplayRoute(me.directionDisplay, me.directionService, me.infoWindow, me.map, pointA, pointB);
                     
                 
                 // this.http.get('http://atestate-inf.tk/ghidtest/date.php?user='+
@@ -180,15 +189,47 @@ export class Googlemaps {
                 me.marker.setMap(null)
                 me.marker = new google.maps.Marker({map: me.map, position:myLocation})
                 me.saveDisabled = false;
-                    me.calculateAndDisplayRoute(directionDisplay, directionService, me.infoWindow, me.map, pointA, pointB);
-                    me.save(place.vicinity, place.geometry.location.lat(), place.geometry.location.lng())
-                    })
+                    me.calculateAndDisplayRoute(me.directionDisplay, me.directionService, me.infoWindow, me.map, pointA, pointB);
+                    me.dataPlace = place;
+                   })
                 
+  } catch(err) {
+    console.log(err)
+               let contentString:string = `<img style="width:24px;height:24px;" src =`+place.icon+` /><br>
+                <strong> Info : </strong> `+place.name+`<br>
+                <strong> Address : </strong>`+place.vicinity+`<br>
+                <strong> Photos:</strong> No image for this location <br>`;
+                //  +          
+                // `<strong> Open now: </strong>`+place.opening_hours.open_now + `<br>
+                // <strong> Rating: </strong>` +place.rating ;
+
+                google.maps.event.addListener(marker, 'click', function() {
+                    me.infoWindow.setContent(contentString);
+                    me.infoWindow.open(me.map, this);
+                    me.calculateAndDisplayRoute(me.directionDisplay, me.directionService, me.infoWindow, me.map, pointA, pointB);
+                    
+                
+                // this.http.get('http://atestate-inf.tk/ghidtest/date.php?user='+
+                //  localStorage.getItem('user')+'&lat='+position.coords.latitude
+                //  +'&lng='+position.coords.longitude
+                //  +'&speed='+ position.coords.speed).map(res => res.json()).subscribe(data => { });
+                    // Run update inside of Angular's zone
+                    // 	this.zone.run(() => {
+                        // this.lat = position.coords.latitude;
+                    // 	this.lng = position.coords.longitude;
+                    // });
+                me.marker.setMap(null)
+                me.marker = new google.maps.Marker({map: me.map, position:myLocation})
+                me.saveDisabled = false;
+                    me.calculateAndDisplayRoute(me.directionDisplay, me.directionService, me.infoWindow, me.map, pointA, pointB);
+                    me.dataPlace = place;
+                   }) 
+  } finally { }
        
             }
     }
 
-    public selectPlace(place){
+    public selectPlace(place) {
  
         this.places = [];
         let me = this;
@@ -257,7 +298,8 @@ export class Googlemaps {
     }
  
     public save(place, placeLat, placeLng){
-            this.showPrompt(place, placeLat, placeLng);
+//                    me.save(place.vicinity, place.geometry.location.lat(), place.geometry.location.lng())
+                      this.showPrompt();
     }
  
     public close(){
@@ -290,13 +332,104 @@ export class Googlemaps {
  
   }
 
+  
+  public  changeTypeOfPlace() {
+    //this.setMap()
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Choose place type:');
+
+    alert.addInput({
+      type: 'radio',
+      label: 'Store',
+      value: 'store',
+      checked:true
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'School',
+      value: 'school',
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'University',
+      value: 'university',
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'Hospital',
+      value: 'hospital',
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'Park',
+      value: 'park',
+    });
+    
+    alert.addInput({
+      type: 'radio',
+      label: 'Pharmacy',
+      value: 'pharmacy',
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'Police',
+      value: 'police',
+    });
+  
+    alert.addInput({
+      type: 'radio',
+      label: 'Transit station',
+      value: 'transit_station',
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'ATM bank',
+      value: 'atm',
+    });
+
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'OK',
+      handler: data => {
+
+        this.maps.init(this.mapElement.nativeElement, this.pleaseConnect.nativeElement).then(() => {
+            this.infoWindow =  new google.maps.InfoWindow;
+            this.service = new google.maps.places.AutocompleteService();
+            this.autocompleteService = new google.maps.places.AutocompleteService();
+            this.placesService = new google.maps.places.PlacesService(this.maps.map);
+            this.searchDisabled = false;
+            this.routeDisabled = false;
+                this.typeOfPlace = false;
+        this.typeOfPlace = data;
+        console.log(data);
+        for(let i = 0; i < this.markerArray.length; i++) {
+          this.markerArray[i].setMap(null);
+        }
+     //   this.directionsDisplay.setDirections(null);
+        this.marker.setMap(null);
+        this.setMap()
+        console.log(this.typeOfPlace)
+           
+        }); 
+      //  this.saveRoute = true;
+    
+      }
+    });
+    alert.present();
+  }
    /**
   * 
   * @param address 
   * @param lat 
   * @param lng 
   */
-  private showPrompt(address, lat, lng ) {
+  private showPrompt() {
     let prompt = this.alertCtrl.create({
       title: 'Locatie',
       message: "Seteaza un nume pentru aceasta locatie !",
@@ -316,28 +449,21 @@ export class Googlemaps {
         {
           text: 'Save ',
           handler: data => {
-            if(data.title) {
-// <<<<<<< HEAD
-              this.http.get('http://localhost/sendData.php?user='+localStorage.getItem('user')
-// =======
-             // this.http.get('http://atestate-inf.tk/ghidtest/sendData.php?user='+localStorage.getItem('user')
-// >>>>>>> b6ebcdd75d974bc6930b30677464a18edac35643
-                            +'&lat='+lat
-                            +'&lng='+lng
-                            +'&address='+address
+           if(data.title && this.dataPlace != []) {
+              console.log(this.dataPlace)
+              this.http.get('http://atestate-inf.tk/ghidtest/sendData.php?user='+localStorage.getItem('user')
+                            +'&lat='+this.dataPlace.geometry.location.lat()
+                            +'&lng='+this.dataPlace.geometry.location.lng()
+                            +'&address='+this.dataPlace.vicinity
                             +'&location='+data.title).
               map(res=>res.json()).
               subscribe(data);
-            } else {
-// <<<<<<< HEAD
-              this.http.get('http://localhost/sendData.php?user='+localStorage.getItem('user')
-// =======
-              //this.http.get('http://atestate-inf.tk/ghidtest/sendData.php?user='+localStorage.getItem('user')
-// >>>>>>> b6ebcdd75d974bc6930b30677464a18edac35643
-                            +'&lat='+lat
-                            +'&lng='+lng
-                            +'&address='+address
-                            +'&location='+address).
+            } else if( this.dataPlace != [] ) {
+              this.http.get('http://atestate-inf.tk/ghidtest/sendData.php?user='+localStorage.getItem('user')
+                            +'&lat='+this.dataPlace.geometry.location.lat()
+                            +'&lng='+this.dataPlace.geometry.location.lng()
+                            +'&address='+this.dataPlace.vicinity
+                            +'&location='+this.dataPlace.vicinity).
               map(res=>res.json()).
               subscribe(data);
             }
@@ -369,23 +495,23 @@ export class Googlemaps {
           if(status === 'OK') {
             console.log(response)
                directionDisplay.setDirections(response);
-               directionDisplay.setPanel(null);
-               directionDisplay.setPanel(me.directionsPanel.nativeElement);
+              //  directionDisplay.setPanel(null);
+              //  directionDisplay.setPanel(me.directionsPanel.nativeElement);
                
-               //directionDisplay.setPanel(document.getElementById('right'));
-               /**
-                * sectiunea urmatoare va genera indicatii pe traseu
-                */
-               let myRoute = response.routes[0].legs[0];
-                for(let i = 0; i < myRoute.steps.length; i++) {
-                    let marker = me.markerArrayy[i] = me.markerArrayy[i] || new google.maps.Marker;
-                    marker.setMap(map);
-                    marker.setPosition(myRoute.steps[i].start_location);
-                    google.maps.event.addListener(marker, 'click', function() {
-                    stepDisplay.setContent(myRoute.steps[i].instructions);
-                    stepDisplay.open(map, marker);
-                  })
-               }
+              //  //directionDisplay.setPanel(document.getElementById('right'));
+              //  /**
+              //   * sectiunea urmatoare va genera indicatii pe traseu
+              //   */
+              //  let myRoute = response.routes[0].legs[0];
+              //   for(let i = 0; i < myRoute.steps.length; i++) {
+              //       let marker = me.markerArrayy[i] = me.markerArrayy[i] || new google.maps.Marker;
+              //       marker.setMap(map);
+              //       marker.setPosition(myRoute.steps[i].start_location);
+              //       google.maps.event.addListener(marker, 'click', function() {
+              //       stepDisplay.setContent(myRoute.steps[i].instructions);
+              //       stepDisplay.open(map, marker);
+              //     })
+              //  }
           } else {
             alert('Error'+status);
           }

@@ -17,4 +17,11 @@
     <!--<iframe width="100%" height="100%" [src]="returl()" frameboarder="0" allowfullscreen></iframe>-->
     <button (click)="launch()">Launch URL</button>
     <button (click)="testRoomTypes()">room types</button>
+     <ion-item>
+  <ion-label>Type of room</ion-label>
+  <ion-select *ngFor="let type of roomTypeData" multiple="true" >
+    <ion-option  value={{type.short_name}}>{{type.name}}</ion-option>
+  </ion-select>
+</ion-item> 
+
 </ion-content>

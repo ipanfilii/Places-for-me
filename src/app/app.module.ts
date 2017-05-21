@@ -28,7 +28,7 @@ import { Connectivity } from "../providers/connectivity-service";
 import { GoogleMaps } from "../providers/google-maps";
 import { InAppBrowser } from 'ionic-native';
 import { OneSignal } from '@ionic-native/onesignal';
-import { RoomTypesService } from "../../providers/room_types_service";
+import { RoomTypesService } from "../providers/room_types_service";
  
 
 

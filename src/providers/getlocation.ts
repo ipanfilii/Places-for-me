@@ -39,7 +39,7 @@ export class Getlocation {
  
   }, (err) => {
  
-    console.log(err);
+   // console.log(err);
  
   });
  
