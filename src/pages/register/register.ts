@@ -59,7 +59,7 @@ export class RegisterPage {
       email:this.myForm._value.email
     }
       //loader.present();
-      this.http.post('http://localhost/register.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
+      this.http.post('http://192.168.43.96/register.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
       this.dataUser = data;
       console.log(this.dataUser)
       
