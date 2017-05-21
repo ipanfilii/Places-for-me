@@ -30,7 +30,7 @@ import { InAppBrowser } from 'ionic-native';
 import { OneSignal } from '@ionic-native/onesignal';
 import { RoomTypesService } from "../providers/room_types_service";
  
-
+import { CalendarModule } from "ion2-calendar";
 
 @NgModule({
   declarations: [
@@ -40,6 +40,7 @@ import { RoomTypesService } from "../providers/room_types_service";
   imports: [
     BrowserModule,
     HttpModule,
+    CalendarModule,
     IonicModule.forRoot(MyApp, {
       backButtonText: 'back',
       iconMode: 'ios',
