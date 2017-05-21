@@ -22,6 +22,7 @@ export class RegisterPage {
 
   public myForm:any;
   public dataUser: any;
+  right: number;
 
   constructor(public navCtrl: NavController, 
               public toastCtrl: ToastController,
@@ -35,6 +36,8 @@ export class RegisterPage {
         password: [''],
         email: [''],
     });
+    this.right = navParams.get("right");
+    console.log(this.right);
   }
 
   public registerForm() {

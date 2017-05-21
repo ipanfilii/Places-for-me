@@ -19,14 +19,29 @@
         <ion-input type="text" value="" formControlName="username"></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item >
         <ion-label floating>Password</ion-label>
         <ion-input type="password" value="" formControlName="password"></ion-input>
       </ion-item>
  <ion-item>
         <ion-label floating>E-mail</ion-label>
         <ion-input type="email" value="" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="right==1">
+        <ion-label floating >Address</ion-label>
+        <ion-input type="text" value="" ></ion-input>
       </ion-item>       
+
+      <ion-item  *ngIf="right==1" >
+        <ion-label floating>Phone number</ion-label>
+        <ion-input type="text" value="" ></ion-input>
+      </ion-item>    
+
+      <ion-item *ngIf="right==1" >
+        <ion-label floating >Name</ion-label>
+        <ion-input type="text" value="" ></ion-input>
+      </ion-item>    
+
     </ion-list>
 
     <div >

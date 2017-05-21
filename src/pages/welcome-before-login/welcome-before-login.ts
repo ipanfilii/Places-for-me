@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
+
 
 
 @IonicPage()
@@ -9,7 +11,7 @@ import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angul
 })
 export class WelcomeBeforeLogin {
 
-  constructor(public navCtrl: NavController, public menuCtrl: MenuController ,public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public menuCtrl: MenuController ,public navParams: NavParams, public alertCtrl: AlertController) {
        this.menuCtrl.enable(false);
   }
 
@@ -22,10 +24,54 @@ export class WelcomeBeforeLogin {
   }
 
   register() {
-    this.navCtrl.push('RegisterPage');
+  this.chooseRegisterType();
   }
 goToAboutapp(){
   this.navCtrl.push('Aboutapp');
 }
 
+chooseRegisterType() {
+    let alert = this.alertCtrl.create();
+    
+    alert.setTitle('Register as');
+
+    alert.addInput({
+      type: 'radio',
+      label: 'Individual user',
+      value: 'individual',
+      checked: true
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'Corporate user',
+      value: 'corporate',
+      
+    });
+
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'Okay',
+      handler: data => {
+        console.log('Checkbox data:', data);
+        if(data=='individual')
+          {
+            console.log(data);
+            this.navCtrl.push("RegisterPage", {right:0});
+          }
+          else if(data=='corporate')
+            {
+              console.log(data);
+              this.navCtrl.push("RegisterPage", {right:1});
+            }
+       // this.testCheckboxOpen = false;
+        //this.testCheckboxResult = data;
+
+      }
+    });
+    alert.present();
+    
+  }
 }
+
+
