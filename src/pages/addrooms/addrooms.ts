@@ -21,6 +21,7 @@ export class Addrooms {
   public myForm:any;
   public dataUser: any;
   right: number;
+  public buttonClicked: boolean = false; //Whatever you want to initialise it as
 
   constructor(public navCtrl: NavController, 
               public toastCtrl: ToastController,
@@ -58,7 +59,7 @@ export class Addrooms {
       email:this.myForm._value.email
     }
       //loader.present();
-      this.http.post('http://192.168.43.96/register.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
+      this.http.post('http://localhost/register.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
       this.dataUser = data;
       console.log(this.dataUser)
       
@@ -75,6 +76,11 @@ export class Addrooms {
     });
 
   }
+
+ onButtonClick() {
+
+        this.buttonClicked = !this.buttonClicked;
+    }
 
   ionViewDidLoad() { }
 
