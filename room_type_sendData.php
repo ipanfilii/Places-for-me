@@ -38,14 +38,22 @@
 						die('There was an error running the query [' . $db->error . ']');
 					}
 					
-				//if($data->right == 1)
-//					{
-						$insert_query_rooms = 'INSERT INTO `myplaces`.`rooms`(number) VALUES ("'.$data->room_number.'");';
-	//				}
-				if(!$result_rooms = $db->query($insert_query_rooms))
+					$hotel_id_select_query = 'SELECT hotels.id FROM `myplaces`.`hotels`
+								WHERE username="'.$data->user.'"';
+					if(!$hotel_id_result = $db->query($hotel_id_select_query))
+					{
+						die('There was an error running the query [' . $db->error . ']');
+					}			
+								
+				if($hotel_id_result->num_rows == 1)
+					{
+						$insert_query_rooms = 'INSERT INTO `myplaces`.`rooms`(roomType,number,hotelID) VALUES ("'.$data->short_name.'","'.$data->room_number.'",'$hotel_id_result');';
+						if(!$result_rooms = $db->query($insert_query_rooms))
 					{
 						die('There was an error running the query [' . $db->error . ']');
 					}
+					}
+				
 				 $response = '{"success":true}';  
             echo $response;
 				
