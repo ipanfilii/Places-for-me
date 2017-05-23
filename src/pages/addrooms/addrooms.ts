@@ -72,7 +72,9 @@ this.existingTypeForm = this.formBuilder.group({
        base_availability:this.newTypeForm._value.base_availability,
        base_price:this.newTypeForm._value.base_price,
        max_occupancy:this.newTypeForm._value.max_occupancy,
-       room_number:this.newTypeForm._value.room_number
+       room_number:this.newTypeForm._value.room_number,
+       user: localStorage.getItem('user')
+
      }
       //loader.present();
        this.http.post('http://localhost/room_type_sendData.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
