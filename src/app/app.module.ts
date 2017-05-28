@@ -31,6 +31,7 @@ import { OneSignal } from '@ionic-native/onesignal';
 import { RoomTypesService } from "../providers/room_types_service";
  
 import { CalendarModule } from "ion2-calendar";
+import { HotelsListService } from "../providers/hotels_list_service";
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { CalendarModule } from "ion2-calendar";
     OneSignal,
     Connectivity,
     RoomTypesService,
+    HotelsListService,
     GoogleMaps,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

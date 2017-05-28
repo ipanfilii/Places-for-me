@@ -11,15 +11,18 @@ export class RoomTypesService
 
    constructor(public http:Http){}
 
-   retrieve_room_types()
+   retrieve_room_types(hotelid: number)
     {
-    // let headers = new Headers();
-    // headers.append("Accept",'application/json');
-    // headers.append('Content-Type','application/json');
-    // let options = new RequestOptions({headers:headers});
+     let headers = new Headers();
+     headers.append("Accept",'application/json');
+     headers.append('Content-Type','application/json');
+     let options = new RequestOptions({headers:headers});
+      let postParams = {
+      hotelid: [hotelid]
+      }
     
  return new Promise((resolve) => {
-        this.http.get('http://localhost/room_type_reqData.php').map(result => result.json()).subscribe(data => {
+        this.http.post('http://localhost/room_type_reqData.php',JSON.stringify(postParams),options).map(result => result.json()).subscribe(data => {
         this.roomsTypeData = data;
         resolve(this.roomsTypeData);
         //console.log(this.roomsTypeData);
