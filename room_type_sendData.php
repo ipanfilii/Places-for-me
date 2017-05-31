@@ -32,31 +32,42 @@
         }
         else
 			{
-				$insert_query = 'INSERT INTO `myplaces`.`room_types`(name,short_name,base_availability,base_price,max_occupancy) VALUES ("'.$data->name.'","'.$data->short_name.'","'.$data->base_availability.'","'.$data->base_price.'","'.$data->max_occupancy.'");';
-				if(!$result = $db->query($insert_query))
-					{
-						die('There was an error running the query [' . $db->error . ']');
-					}
-					
-					$hotel_id_select_query = 'SELECT hotels.id FROM `myplaces`.`hotels`
+				$hotel_id_select_query = 'SELECT hotels.id FROM `myplaces`.`hotels`
 								WHERE username="'.$data->user.'"';
 					if(!$hotel_id_result = $db->query($hotel_id_select_query))
 					{
 						die('There was an error running the query [' . $db->error . ']');
 					}	
-
-                while($row = $hotel_id_result->fetch_assoc()) {
+					
+				 while($row = $hotel_id_result->fetch_assoc()) 
+				{
                     $id_hotel =  $row['id'];
                 }
-
 				if($hotel_id_result->num_rows == 1)
 					{
-						$insert_query_rooms = 'INSERT INTO `myplaces`.`rooms`(roomType,number,hotelID) VALUES ("'.$data->short_name.'","'.$data->room_number.'",'$id_hotel');';
+						$insert_query = 'INSERT INTO `myplaces`.`room_types`(name,short_name,base_availability,base_price,max_occupancy,hotelID) VALUES ("'.$data->name.'","'.$data->short_name.'","'.$data->base_availability.'","'.$data->base_price.'","'.$data->max_occupancy.'",'.$id_hotel.');';
+						if(!$result = $db->query($insert_query))
+							{
+								die('There was an error running the query [' . $db->error . ']');
+							}
+					
+						$insert_query_rooms = 'INSERT INTO `myplaces`.`rooms`(roomType,number,hotelID) VALUES ("'.$data->short_name.'","'.$data->room_number.'",'.$id_hotel.');';
 						if(!$result_rooms = $db->query($insert_query_rooms))
-					{
-						die('There was an error running the query [' . $db->error . ']');
+							{
+								die('There was an error running the query [' . $db->error . ']');
+							}
 					}
-					}
+				
+				
+					
+					
+
+               /* while($row = $hotel_id_result->fetch_assoc()) 
+				{
+                    $id_hotel =  $row['id'];
+                }*/
+
+				
 				
 				 $response = '{"success":true}';  
             echo $response;

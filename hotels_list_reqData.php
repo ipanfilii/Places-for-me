@@ -7,7 +7,6 @@
   header('Access-Control-Allow-Headers: origin, X-Requested-With, Authorization, Content-Type');
   header('Content-type: application/json');
   
-   $postdata = file_get_contents("php://input");
    $db = new mysqli('localhost','root','' );
 
     //verify connection
@@ -17,28 +16,20 @@
         //connected
     }
 
-	
-	if( $postdata){
-	$data = json_decode($postdata);
-	 if( $data->hotelid != null)
+      $query = 'SELECT * FROM `myplaces`.`hotels` WHERE 1 ';
+      if(!$result = $db->query($query))
 		{
-			
-						$query = 'SELECT * FROM `myplaces`.`room_types` WHERE hotelID = "'.$data->hotelid.'" ;';
-						if(!$result = $db->query($query))
-							{
-								die('There was an error running the query [' . $db->error . ']');
-							}
+			die('There was an error running the query [' . $db->error . ']');
 		}
+	
 	while($row = $result->fetch_array())
 		{
-			$types[] = array(
+			$hotels_list[] = array(
+				'id' => $row['id'],
 				'name' => $row['name'],
-				'short_name' => $row['short_name'],
-				'base_price' => $row['base_price'],
-				'max_occupancy' => $row['max_occupancy'],
-				'base_availability' => $row['base_availability']
+				'address' => $row['address'],
+				'username' => $row['username']
 			);	
 		}
-		echo json_encode($types);
-		}
+		echo json_encode($hotels_list);
 ?>
