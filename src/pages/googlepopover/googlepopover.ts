@@ -1,21 +1,17 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
-/**
- * Generated class for the Googlepopover page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 @IonicPage()
 @Component({
   selector: 'page-googlepopover',
   templateUrl: 'googlepopover.html',
+  providers: [InAppBrowser]
 })
 export class Googlepopover {
   public place : any = [];
   public booli: boolean = false;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private iab: InAppBrowser) {
     console.log(navParams.get('place'))
     this.place = navParams.get('place')
   }
@@ -27,7 +23,13 @@ export class Googlepopover {
     this.booli = !this.booli;
     console.log(this.booli)
   }
-  public goToWebsite() {
+  public goToWebsite(placeWebsite: any) {
     //alert(this.place.website)
+     const browser = this.iab.create(placeWebsite,"location=no");
+     browser.show();
+  }
+
+  goToReservationsPage(placeForReservation){
+    this.navCtrl.push("Reservations", {place:placeForReservation});
   }
 }

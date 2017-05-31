@@ -18,7 +18,8 @@ export class Reservations {
    public roomTypeData: any = [];
    public roomNumberData: any = [];
    public reservationForm: any;
-   private hotelid: number;
+   //private hotelid: number;
+   public hotelInfo: any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private hotelsListService:HotelsListService,  public formBuilder: FormBuilder, 
   private roomtypesservice: RoomTypesService, private roomNumberService: RoomNumberService) {
@@ -29,6 +30,8 @@ export class Reservations {
                 roomType: [],
                 roomNumber: []
               });
+    this.hotelInfo = navParams.get('place');
+    console.log(this.hotelInfo);
   }
 
   retrieveHotelsListData()
@@ -40,20 +43,16 @@ export class Reservations {
  });
   }
 
-  retrieveRoomTypesData(ev){
-   
-   this.hotelid= this.reservationForm._value.hotel;
-   console.log(this.hotelid);
-    this.roomtypesservice.retrieve_room_types(this.hotelid).then((data)=>{
+  retrieveRoomTypesData(){
+    this.roomtypesservice.retrieve_room_types(this.hotelInfo.id).then((data)=>{
       this.roomTypeData = data;
        console.log(this.roomTypeData);  
  });
   }
 
   retrieveRoomNumberData(event){
-    this.hotelid= this.reservationForm._value.hotel;
-   console.log(this.hotelid);
-   this.roomNumberService.retrieve_room_numbers(this.hotelid).then((data)=>{
+
+   this.roomNumberService.retrieve_room_numbers(this.hotelInfo.id).then((data)=>{
      this.roomNumberData = data;
      console.log(this.roomNumberData);
    });
@@ -65,6 +64,7 @@ export class Reservations {
 
   }
   ionViewDidLoad() {
+    this.retrieveRoomTypesData();
     console.log('ionViewDidLoad Reservations');
      this.retrieveHotelsListData(); 
   }
