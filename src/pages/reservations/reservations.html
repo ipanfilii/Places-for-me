@@ -14,33 +14,38 @@
 
 
 <ion-content padding>
-     <form [formGroup]="reservationForm" >
-      <ion-list>
+    <form [formGroup]="reservationForm" >
+        <ion-list>
 
-        <ion-item>
-          <ion-label fixed>Username</ion-label>
-          <ion-input type="email" [value]=logedUser formControlName="user">{{logedUser}}</ion-input>
-        </ion-item>
+          <ion-item>
+              <ion-label fixed>Username</ion-label>
+              <ion-input type="email" [value]=logedUser >{{logedUser}}</ion-input>
+          </ion-item>
 
-        <ion-item >
-           <ion-label fixed>Hotel</ion-label>
-  <ion-select interface="popover" multiple="false" formControlName="hotel">
-      <!--<ion-option *ngFor="let hotel of hotelsListData" interface="popover" (ionSelect)="showRooms(type.short_name)" [value]=hotel.id>{{hotel.name}}</ion-option>-->
-    <ion-option *ngFor="let hotel of hotelsListData"  (ionChange)="retrieveRoomTypesData(hotel.id)" [value]=hotel.id>{{hotel.name}}</ion-option>
-  </ion-select>
-        </ion-item>
+          <ion-item >
+              <ion-label fixed>Hotel</ion-label>
+              <ion-select interface="popover" multiple="false"  formControlName="hotel"  (ionChange)="retrieveRoomTypesData($event)" >
+                 <ion-option *ngFor="let hotel of hotelsListData"  [value]=hotel.id >{{hotel.name}} {{hotel.id}}</ion-option>
+              </ion-select>
+          </ion-item>
 
-         <ion-item >
-           <ion-label fixed>Room type</ion-label>
-  <ion-select interface="popover" multiple="false" formControlName="roomType">
-      <!--<ion-option *ngFor="let hotel of hotelsListData" interface="popover" (ionSelect)="showRooms(type.short_name)" [value]=hotel.id>{{hotel.name}}</ion-option>-->
-    <ion-option *ngFor="let type of roomTypeData"  [value]=type.short_name>{{type.name}}</ion-option>
-  </ion-select>
-        </ion-item>
+          <ion-item >
+              <ion-label fixed>Room type</ion-label>
+                  <ion-select interface="popover"  formControlName="roomType" multiple="false" (ionChange)=" retrieveRoomNumberData($event)"  >
+                  <ion-option *ngFor="let type of roomTypeData" [value]=type.short_name>{{type.name}}</ion-option>
+              </ion-select>
+          </ion-item>
 
-      </ion-list>
+          <ion-item >
+              <ion-label fixed>Room number</ion-label>
+                  <ion-select interface="popover"  formControlName="roomNumber" multiple="false">
+                  <ion-option *ngFor="let number of roomNumberData" [value]=number.number>{{number.number}}</ion-option>
+              </ion-select>
+          </ion-item>
 
-      
-        <button ion-button color="primary"  (click)="formSubmit()" full text-capitalize>Show rooms</button>    
-     </form>
+        </ion-list>
+    <button ion-button color="primary"  (click)="formSubmit()" full text-capitalize>Show rooms</button>    
+
+    </form>
+
 </ion-content>

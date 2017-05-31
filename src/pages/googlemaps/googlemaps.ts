@@ -5,7 +5,7 @@ import { GoogleMaps } from '../../providers/google-maps';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { Getlocation } from '../../providers/getlocation';
 import { Http } from '@angular/http';
-
+import { PopoverController } from 'ionic-angular';
 declare var google;
 
 @IonicPage()
@@ -36,9 +36,10 @@ export class Googlemaps {
     public markerArrayy: any[] = [];
     private marker: any ;
     private infoWindow: any; 
-    private typeOfPlace: any = 'store';
+    private typeOfPlace: any = 'hotel';
     public restartMap: any;
     public map: any;
+    public website: string = '';
     public dataPlace: any = [];
     public directionDisplay: any;
     public directionService: any;
@@ -52,6 +53,7 @@ export class Googlemaps {
                 public platform: Platform,
                 public geolocation: Geolocation, 
                 public getlocation: Getlocation,
+                public popoverCtrl: PopoverController,
                 public viewCtrl: ViewController) {
 
         this.getlocation.startTracking();
@@ -119,6 +121,9 @@ export class Googlemaps {
     }
 
     public setMap() {
+      function  dothat(data) {
+              alert(data)
+            }
             this.directionDisplay = new google.maps.DirectionsRenderer({map:this.maps.map});
             this.directionService = new google.maps.DirectionsService;
             let me = this;
@@ -143,90 +148,83 @@ export class Googlemaps {
                 radius: 1000,
                 type: me.typeOfPlace
                 }, callback);
+                
             
             function callback(results, status) {
+                console.log(results.length)
                 if(status === google.maps.places.PlacesServiceStatus.OK) {
                     for(let i = 0; i < results.length; i++) {
-                        createMarker(results[i], me.directionDisplay, me.directionService);
+                        let serviceDetails = new google.maps.places.PlacesService(me.map);
+                        serviceDetails.getDetails({
+                          placeId: results[i].place_id
+                        },createMarker);
                     }
+                 }
             }
-            }
 
-            function createMarker(place, directionDisplay, directionService) {
-                
-                let pointB = new google.maps.LatLng(place.geometry.location.lat(), place.geometry.location.lng());
-                let pointA = new google.maps.LatLng(me.getlocation.lat, me.getlocation.lng);
-                let marker = new google.maps.Marker({
-                    map:me.map,
-                    position: place.geometry.location,
-                    zIndex:99999999
+          
 
-                });
-                me.markerArray.push(marker);
-                console.log(place)
-                try {
-                let contentString:string = `<img style="width:24px;height:24px;" src =`+place.icon+` /><br>
-                <strong> Info : </strong> `+place.name+`<br>
-                <strong> Address : </strong>`+place.vicinity+`<br>;`;
-                // <strong> Photos: <img src=`+ place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100})+`><br>`+
-                // `<strong> Open now:</strong> `+place.opening_hours.open_now+ `<br>
-                // <strong> Rating: </strong>` +place.rating;
-                google.maps.event.addListener(marker, 'click', function() {
-                    me.infoWindow.setContent(contentString);
-                    me.infoWindow.open(me.map, this);
-                    me.calculateAndDisplayRoute(me.directionDisplay, me.directionService, me.infoWindow, me.map, pointA, pointB);
+            function createMarker(place, status) {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    let service = new google.maps.places.PlacesService(me.map);
+                        //   console.log( place);
+                        let pointB = new google.maps.LatLng(place.geometry.location.lat(), place.geometry.location.lng());
+                        let pointA = new google.maps.LatLng(me.getlocation.lat, me.getlocation.lng);
+                        let marker = new google.maps.Marker({
+                            map:me.map,
+                            position: place.geometry.location,
+                            zIndex:99999999
+                        });
+                        me.markerArray.push(marker);
+                        //  console.log(place)
+                          console.log(place.website)
+                         
+                                 let contentString:string = `<img style="width:24px;height:24px;" src =`+place.icon+` /><br>
+                                <strong> Info : </strong> `+place.name+`<br>
+                                <strong> Address : </strong>`+place.vicinity+`<br>`+`
+                                <strong> Website : </strong> <a href=`+place.website +`> Link to website _  `+place.website +` </a> 
+                                
+                               <input type="button"  onClick=dothat(place.website) />
+                               
+                               `;
+
+             
+                        
+                        // <strong> Photos: <img src=`+ place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100})+`><br>`+
+                        // `<strong> Open now:</strong> `+place.opening_hours.open_now+ `<br>
+                        // <strong> Rating: </strong>` +place.rating;
+                        google.maps.event.addListener(marker, 'click', function() {
+                        me.infoWindow.setContent(contentString);
+                        me.googlePopUp(place);
+                        me.infoWindow.open(me.map, this);
+                        me.calculateAndDisplayRoute(me.directionDisplay, me.directionService, me.infoWindow, me.map, pointA, pointB);
                     
-                
-                // this.http.get('http://atestate-inf.tk/ghidtest/date.php?user='+
-                //  localStorage.getItem('user')+'&lat='+position.coords.latitude
-                //  +'&lng='+position.coords.longitude
-                //  +'&speed='+ position.coords.speed).map(res => res.json()).subscribe(data => { });
-                    // Run update inside of Angular's zone
-                    // 	this.zone.run(() => {
-                        // this.lat = position.coords.latitude;
-                    // 	this.lng = position.coords.longitude;
-                    // });
-                me.marker.setMap(null)
-                me.marker = new google.maps.Marker({map: me.map, position:myLocation})
-                me.saveDisabled = false;
-                    me.calculateAndDisplayRoute(me.directionDisplay, me.directionService, me.infoWindow, me.map, pointA, pointB);
-                    me.dataPlace = place;
-                   })
-                
-  } catch(err) {
-    console.log(err)
-               let contentString:string = `<img style="width:24px;height:24px;" src =`+place.icon+` /><br>
-                <strong> Info : </strong> `+place.name+`<br>
-                <strong> Address : </strong>`+place.vicinity+`<br>
-                <strong> Photos:</strong> No image for this location <br>`;
-                //  +          
-                // `<strong> Open now: </strong>`+place.opening_hours.open_now + `<br>
-                // <strong> Rating: </strong>` +place.rating ;
-
-                google.maps.event.addListener(marker, 'click', function() {
-                    me.infoWindow.setContent(contentString);
-                    me.infoWindow.open(me.map, this);
-                    me.calculateAndDisplayRoute(me.directionDisplay, me.directionService, me.infoWindow, me.map, pointA, pointB);
-                    
-                
-                // this.http.get('http://atestate-inf.tk/ghidtest/date.php?user='+
-                //  localStorage.getItem('user')+'&lat='+position.coords.latitude
-                //  +'&lng='+position.coords.longitude
-                //  +'&speed='+ position.coords.speed).map(res => res.json()).subscribe(data => { });
-                    // Run update inside of Angular's zone
-                    // 	this.zone.run(() => {
-                        // this.lat = position.coords.latitude;
-                    // 	this.lng = position.coords.longitude;
-                    // });
-                me.marker.setMap(null)
-                me.marker = new google.maps.Marker({map: me.map, position:myLocation})
-                me.saveDisabled = false;
-                    me.calculateAndDisplayRoute(me.directionDisplay, me.directionService, me.infoWindow, me.map, pointA, pointB);
-                    me.dataPlace = place;
-                   }) 
-  } finally { }
+                        // this.http.get('http://atestate-inf.tk/ghidtest/date.php?user='+
+                        //  localStorage.getItem('user')+'&lat='+position.coords.latitude
+                        //  +'&lng='+position.coords.longitude
+                        //  +'&speed='+ position.coords.speed).map(res => res.json()).subscribe(data => { });
+                            // Run update inside of Angular's zone
+                            // 	this.zone.run(() => {
+                                // this.lat = position.coords.latitude;
+                            // 	this.lng = position.coords.longitude;
+                            // });
+                        me.marker.setMap(null)
+                        me.marker = new google.maps.Marker({map: me.map, position:myLocation})
+                        me.saveDisabled = false;
+                        me.calculateAndDisplayRoute(me.directionDisplay, me.directionService, me.infoWindow, me.map, pointA, pointB);
+                        me.dataPlace = place;
+                        })
+                }    
        
             }
+                 
+             
+            
+    }
+
+    public googlePopUp(place) {
+        let popover = this.popoverCtrl.create('Googlepopover',{ place:place });
+        popover.present();
     }
 
     public selectPlace(place) {
@@ -371,6 +369,12 @@ export class Googlemaps {
     
     alert.addInput({
       type: 'radio',
+      label: 'Hotel',
+      value: 'hotel',
+    });
+
+    alert.addInput({
+      type: 'radio',
       label: 'Pharmacy',
       value: 'pharmacy',
     });
@@ -380,7 +384,13 @@ export class Googlemaps {
       label: 'Police',
       value: 'police',
     });
-  
+    
+    alert.addInput({
+      type: 'radio',
+      label: 'Restaurant',
+      value: 'restaurant',
+    });
+
     alert.addInput({
       type: 'radio',
       label: 'Transit station',
@@ -485,7 +495,7 @@ export class Googlemaps {
    * @param pointB 
    */
   public calculateAndDisplayRoute(directionDisplay, directionService, stepDisplay, map, pointA, pointB) {
-    console.log('da')
+ //   console.log('da')
     let me = this;
     directionService.route({
         origin:pointA,
@@ -493,7 +503,7 @@ export class Googlemaps {
         travelMode:'WALKING'
     }, function(response, status) {
           if(status === 'OK') {
-            console.log(response)
+            //console.log(response)
                directionDisplay.setDirections(response);
               //  directionDisplay.setPanel(null);
               //  directionDisplay.setPanel(me.directionsPanel.nativeElement);
