@@ -77,20 +77,15 @@ goToReservationsPage(){
 
     //_daysConfig.push(...this.days);
 
-      if(type == 'single') {
-        this.showDetailsSingle = true;
-        this.showDetailsDouble = false;
-        console.log('1');
-      } else if(type == 'Double') {
-        this.showDetailsDouble = true;
-        this.showDetailsSingle = false;
-        console.log('2');
-         this.calendarCtrl.openCalendar({
-            from: new Date(2017,0,1),
-            to  : new Date(2017,11.1),
-            daysConfig:_daysConfig
+ 
+    this.showDetailsDouble = true;
+    this.showDetailsSingle = false;
+    console.log('2');
+      this.calendarCtrl.openCalendar({
+        from: new Date(2017,0,1),
+        to  : new Date(2017,11.1),
+        daysConfig:_daysConfig
     })
     .then( res => { alert(res) } );
-      }
   }
 }
