@@ -10,44 +10,69 @@
 
 
 <ion-content padding>
-  <button ion-button (click)="onButtonClick()">Click</button>
-<ion-input *ngIf="buttonClicked" type="form" value="myForm">
-<form [formGroup]="myForm" >
+  <button ion-button (click)="onNewTypeButtonClick()">New type</button>
+  <div *ngIf="newTypeButtonClicked">
+<form [formGroup]="newTypeForm" >
     <ion-list>
 
       <ion-item>
-        <ion-label floating>Username</ion-label>
-        <ion-input type="text" value="" formControlName="username"></ion-input>
+        <ion-label floating>Name</ion-label>
+        <ion-input type="text" value="" formControlName="name"></ion-input>
       </ion-item>
 
       <ion-item >
-        <ion-label floating>Password</ion-label>
-        <ion-input type="password" value="" formControlName="password"></ion-input>
+        <ion-label floating>Short name</ion-label>
+        <ion-input type="text" value="" formControlName="short_name" ></ion-input>
       </ion-item>
- <ion-item>
-        <ion-label floating>E-mail</ion-label>
-        <ion-input type="email" value="" formControlName="email"></ion-input>
+
+      <ion-item >
+        <ion-label floating>Base availability</ion-label>
+        <ion-input type="number" value="" formControlName="base_availability" ></ion-input>
       </ion-item>
-      <ion-item *ngIf="right==1">
-        <ion-label floating >Address</ion-label>
-        <ion-input type="text" value="" formControlName="hotel_address"></ion-input>
-      </ion-item>       
 
-      <ion-item  *ngIf="right==1" >
-        <ion-label floating>Phone number</ion-label>
-        <ion-input type="text" value="" ></ion-input>
-      </ion-item>    
+      <ion-item >
+        <ion-label floating>Base price</ion-label>
+        <ion-input type="number" value="" formControlName="base_price" ></ion-input>
+      </ion-item>
 
-      <ion-item *ngIf="right==1" >
-        <ion-label floating >Name</ion-label>
-        <ion-input type="text" value="" formControlName="hotel_name"></ion-input>
-      </ion-item>    
+      <ion-item >
+        <ion-label floating>Maximal occupancy</ion-label>
+        <ion-input type="number" value="" formControlName="max_occupancy"></ion-input>
+      </ion-item>
+
+        <ion-item >
+        <ion-label floating>Room number</ion-label>
+        <ion-input type="number" value="" formControlName="room_number"></ion-input>
+      </ion-item>
 
     </ion-list>
-
     <div >
       <button ion-button color="primary" full text-capitalize (click)="registerForm()">Submit </button>    
     </div>
 </form>
-</ion-input>
+  </div>
+
+<button ion-button (click)="onExistingTypeButtonClick()">Existing type</button>
+  <div *ngIf="existingTypeButtonClicked">
+<form [formGroup]="existingTypeForm" >
+    <ion-list>
+
+      <ion-item>
+        <ion-label floating>Name</ion-label>
+        <ion-input type="text" value="" ></ion-input>
+      </ion-item>
+
+      <ion-item >
+        <ion-label floating>Surname</ion-label>
+        <ion-input type="password" value="" ></ion-input>
+      </ion-item>
+    </ion-list>
+    <div >
+      <button ion-button color="primary" full text-capitalize (click)="registerForm()">Submit </button>    
+    </div>
+</form>
+  </div>
+
+
+
 </ion-content>

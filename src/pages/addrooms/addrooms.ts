@@ -18,10 +18,12 @@ import 'rxjs/add/operator/map';
 })
 export class Addrooms {
 
-  public myForm:any;
-  public dataUser: any;
+  public newTypeForm: any;
+  public existingTypeForm: any;
+  public typeData: any;
   right: number;
-  public buttonClicked: boolean = false; //Whatever you want to initialise it as
+  public newTypeButtonClicked: boolean = false; //Whatever you want to initialise it as
+  public existingTypeButtonClicked: boolean = false; 
 
   constructor(public navCtrl: NavController, 
               public toastCtrl: ToastController,
@@ -30,12 +32,23 @@ export class Addrooms {
               public http: Http,
               private formBuilder: FormBuilder) {
                 console.log(JSON.parse(localStorage.getItem('hotel')))
-     this.myForm = this.formBuilder.group({
+     this.newTypeForm = this.formBuilder.group({
        
-        username: [''],
-        password: [''],
-        email: [''],
+        name: [''],
+        short_name: [''],
+        base_availability: [0],
+        base_price: [0],
+        max_occupancy: [0],
+        room_number:[0]
     });
+
+this.existingTypeForm = this.formBuilder.group({
+
+          name: [''],
+          surname: [''],
+          address: ['']
+        });
+
     this.right = navParams.get("right");
     console.log(this.right);
   }
@@ -53,33 +66,43 @@ export class Addrooms {
     headers.append('Content-Type','application/json');
     let options = new RequestOptions({headers:headers});
 
-    let postParams = {
-      user:this.myForm._value.username,
-      pwd:this.myForm._value.password,
-      email:this.myForm._value.email
-    }
+     let postParams = {
+       name:this.newTypeForm._value.name,
+       short_name:this.newTypeForm._value.short_name,
+       base_availability:this.newTypeForm._value.base_availability,
+       base_price:this.newTypeForm._value.base_price,
+       max_occupancy:this.newTypeForm._value.max_occupancy,
+       room_number:this.newTypeForm._value.room_number,
+       user: localStorage.getItem('user')
+
+     }
       //loader.present();
-      this.http.post('http://localhost/register.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
-      this.dataUser = data;
-      console.log(this.dataUser)
+       this.http.post('http://localhost/room_type_sendData.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
+      this.typeData = data;
+       console.log(this.typeData)
       
-      if(this.dataUser.success)
-        { 
-          this.navCtrl.setRoot('Login');
+      if(this.typeData.success)
+       { 
+           this.navCtrl.setRoot('RoomsManagement');
         }
-      else
+       else
         {
-          registerFail.present(); // if login fail show a message error
+           registerFail.present(); // if login fail show a message error
         }
-    },error=>{
-      console.log(error);
-    });
+     },error=>{
+       console.log(error);
+     });
 
   }
 
- onButtonClick() {
+ onNewTypeButtonClick() {
 
-        this.buttonClicked = !this.buttonClicked;
+        this.newTypeButtonClicked = !this.newTypeButtonClicked;
+    }
+
+ onExistingTypeButtonClick() {
+
+        this.existingTypeButtonClicked = !this.existingTypeButtonClicked;
     }
 
   ionViewDidLoad() { }

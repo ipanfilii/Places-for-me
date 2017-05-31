@@ -6,13 +6,6 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/map';
 
-/**
- * Generated class for the Register page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-register',
@@ -64,7 +57,7 @@ export class RegisterPage {
       hotel_address:this.myForm._value.hotel_address
     }
       //loader.present();
-      this.http.post('http://localhost/register.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
+      this.http.post('http://192.168.43.96/register.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
       this.dataUser = data;
       console.log(this.dataUser)
       

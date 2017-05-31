@@ -1,0 +1,34 @@
+<!--
+  Generated template for the Googlepopover page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+<button *ngIf="place.website !== 'undefined'" text-capitalize full (click)="goToWebsite()" ion-button color="primary"> Go to website </button>
+<ion-list>
+    <img style="width:50px; height:50px; display: block; margin: auto;" src={{place.icon}} />
+    <ion-item>
+        <p text-wrap style="white-space: normal;"> <strong> Nume: </strong> {{place.name}} </p>
+    </ion-item>
+    <ion-item>
+        <p text-wrap style="white-space: normal;"> <strong> Addresa:</strong> {{place.vicinity}} </p>
+    </ion-item>
+    <ion-item *ngIf="place.formatted_phone_number">
+        <p text-wrap style="white-space: normal;"> <strong> Phone number:</strong> {{place.formatted_phone_number}} </p>
+    </ion-item>
+    <ion-item *ngIf="place.opening_hours">
+        <!--<button text-capitalize full (click)="showData()" ion-button color="primary"> Program  <ion-icon  name="add"></ion-icon></button> <br>-->
+        <strong> Program:</strong>
+        <div>
+            <p *ngFor="let hour of place.opening_hours.weekday_text" style="white-space: normal;"> {{hour}} <br> </p>
+        </div>
+    </ion-item>
+    <ion-item *ngIf="place.rating">
+        <p text-wrap style="white-space: normal;"> <strong> Rating:</strong> {{place.rating}} </p>
+    </ion-item>
+    <ion-item *ngIf="place.website">
+        <p text-wrap style="white-space: normal;"> <strong> Website:</strong> {{place.website}} </p>
+    </ion-item>
+</ion-list>

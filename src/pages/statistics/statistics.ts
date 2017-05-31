@@ -24,18 +24,22 @@ launch() {
      browser.show();
 }
 
-testRoomTypes()
-{
- this.roomtypesservice.retrieve_room_types().then((data)=>{
-      this.roomTypeData = data;
-       console.log(this.roomTypeData);  
+// testRoomTypes()
+// {
+//  this.roomtypesservice.retrieve_room_types().then((data)=>{
+//       this.roomTypeData = data;
+//        console.log(this.roomTypeData);  
     
- });
+//  });
  
+// }
+
+goToReservationsPage(){
+  this.navCtrl.push('Reservations');
 }
   ionViewDidLoad() {
     console.log('ionViewDidLoad Statistics');
-    this.testRoomTypes();
+   // this.testRoomTypes();
   }
 
   showRooms(type) {

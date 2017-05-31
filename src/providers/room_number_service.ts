@@ -5,15 +5,14 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class RoomTypesService 
+export class RoomNumberService 
 {
-   public roomsTypeData: any = [];
+   public roomNumberData: any = [];
 
    constructor(public http:Http){}
 
-   retrieve_room_types(hotelid: number)
+   retrieve_room_numbers(hotelid: number)
     {
-      console.log('dadad')
       console.log(hotelid)
       
      let headers = new Headers();
@@ -25,9 +24,9 @@ export class RoomTypesService
       }
     
  return new Promise((resolve) => {
-        this.http.post('http://192.168.43.96/room_type_reqData.php',JSON.stringify(postParams),options).map(result => result.json()).subscribe(data => {
-        this.roomsTypeData = data;
-        resolve(this.roomsTypeData);
+        this.http.post('http://192.168.43.96/room_number_reqData.php',JSON.stringify(postParams),options).map(result => result.json()).subscribe(data => {
+        this.roomNumberData = data;
+        resolve(this.roomNumberData);
         //console.log(this.roomsTypeData);
         })
       });
