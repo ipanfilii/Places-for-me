@@ -32,7 +32,8 @@
         }
         else
 			{
-				$insert_query = 'INSERT INTO `myplaces`.`room_types`(name,short_name,base_availability,base_price,max_occupancy) VALUES ("'.$data->name.'","'.$data->short_name.'","'.$data->base_availability.'","'.$data->base_price.'","'.$data->max_occupancy.'");';
+				$insert_query = 'INSERT INTO `myplaces`.`room_types`(name,short_name,base_availability,base_price,max_occupancy) 
+                VALUES ("'.$data->name.'","'.$data->short_name.'","'.$data->base_availability.'","'.$data->base_price.'","'.$data->max_occupancy.'");';
 				if(!$result = $db->query($insert_query))
 					{
 						die('There was an error running the query [' . $db->error . ']');
