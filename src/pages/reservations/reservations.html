@@ -24,9 +24,10 @@
 
           <ion-item >
               <ion-label fixed>Hotel</ion-label>
-              <ion-select interface="popover" multiple="false"  formControlName="hotel"  (ionChange)="retrieveRoomTypesData($event)" >
+              <!--<ion-select interface="popover" multiple="false"  formControlName="hotel"  (ionChange)="retrieveRoomTypesData($event)" >
                  <ion-option *ngFor="let hotel of hotelsListData"  [value]=hotel.id >{{hotel.name}} {{hotel.id}}</ion-option>
-              </ion-select>
+              </ion-select>-->
+              <ion-input type="email"  formControlName="hotel" [value]=hotelInfo.id>{{hotelInfo.name}}</ion-input>
           </ion-item>
 
           <ion-item >
