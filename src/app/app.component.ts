@@ -119,7 +119,7 @@ export class MyApp {
      this.getlocation.startTracking();
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      this.oneSignal.startInit("a0bfcab0-43b0-456e-a62d-48c86af5202a", "791062974267");
+      this.oneSignal.startInit("af47a622-d32a-4279-a3da-df9b33d5519b", "1018379274693");
       this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
       this.oneSignal.setSubscription(true);
       this.oneSignal.handleNotificationReceived().subscribe(() => {

@@ -5,13 +5,13 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class RoomReservationService 
+export class InsertReservationService 
 {
-   public reservationData: any = [];
+   public reservationParameters: any = [];
 
    constructor(public http:Http){}
 
-   retrieve_reservation_details(hotelid: any, roomtypeid: any, checkin: any, checkout: any)
+   retrieve_reservation_info(hotelid: any, roomtypeid: any, checkin: any, checkout: any)
     {
       console.log('dadad')
       console.log(hotelid)
@@ -20,9 +20,9 @@ export class RoomReservationService
  
  return new Promise((resolve) => {
         this.http.get('http://localhost/reservations_request_data.php?hotelid='+hotelid+"&roomtypeid="+roomtypeid+"&checkin="+checkin+"&checkout="+checkout).map(result => result.json()).subscribe(data => {
-        this.reservationData = data;
-        resolve(this.reservationData);
-        //console.log(this.roomsTypeData);
+        // this.reservationData = data;
+        // resolve(this.reservationData);
+        // //console.log(this.roomsTypeData);
         })
       });
     }
