@@ -33,6 +33,7 @@ import { RoomTypesService } from "../providers/room_types_service";
 import { CalendarModule } from "ion2-calendar";
 import { HotelsListService } from "../providers/hotels_list_service";
 import { RoomNumberService } from "../providers/room_number_service";
+import { RoomReservationService } from "../providers/reservations_service";
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { RoomNumberService } from "../providers/room_number_service";
     RoomTypesService,
     HotelsListService,
     RoomNumberService,
+    RoomReservationService,
     GoogleMaps,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

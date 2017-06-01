@@ -5,6 +5,7 @@ import { HotelsListService } from "../../providers/hotels_list_service";
 import { FormBuilder } from '@angular/forms';
 import { RoomTypesService } from "../../providers/room_types_service";
 import { RoomNumberService } from "../../providers/room_number_service";
+import { RoomReservationService } from "../../providers/reservations_service";
 
 @IonicPage()
 @Component({
@@ -22,16 +23,23 @@ export class Reservations {
    public hotelInfo: any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private hotelsListService:HotelsListService,  public formBuilder: FormBuilder, 
-  private roomtypesservice: RoomTypesService, private roomNumberService: RoomNumberService) {
+  private roomtypesservice: RoomTypesService, private roomNumberService: RoomNumberService, private roomReservationsService: RoomReservationService) {
      this.logedUser = localStorage.getItem('user');
      this.reservationForm = this.formBuilder.group({
                 user: [this.logedUser],
                 hotel: [], 
                 roomType: [],
-                roomNumber: []
+                startDate: [],
+                endDate: []
               });
     this.hotelInfo = navParams.get('place');
     console.log(this.hotelInfo);
+  }
+
+  retrieveReservationData(){
+  //  console.log(this.reservationForm._value);
+    this.roomReservationsService.retrieve_reservation_details(this.hotelInfo.id, this.reservationForm._value.roomType,
+    this.reservationForm._value.startDate,this.reservationForm._value.endDate);
   }
 
   retrieveHotelsListData()

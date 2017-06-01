@@ -37,15 +37,24 @@
               </ion-select>
           </ion-item>
 
-          <ion-item >
+          <!--<ion-item >
               <ion-label fixed>Room number</ion-label>
                   <ion-select interface="popover"  formControlName="roomNumber" multiple="false">
                   <ion-option *ngFor="let number of roomNumberData" [value]=number.number>{{number.number}}</ion-option>
               </ion-select>
-          </ion-item>
+          </ion-item>-->
+          <ion-item>
+  <ion-label>Start Time</ion-label>
+  <ion-datetime displayFormat="YYYY MM DD" pickerFormat="DD MM YYYY" formControlName="startDate" ></ion-datetime>
+</ion-item>
+
+ <ion-item>
+  <ion-label>End Time</ion-label>
+  <ion-datetime displayFormat="YYYY MM DD" pickerFormat="DD MM YYYY" formControlName="endDate"></ion-datetime>
+</ion-item>
 
         </ion-list>
-    <button ion-button color="primary"  (click)="formSubmit()" full text-capitalize>Show rooms</button>    
+    <button ion-button color="primary"  (click)=" retrieveReservationData()" full text-capitalize>Show rooms</button>    
 
     </form>
 
