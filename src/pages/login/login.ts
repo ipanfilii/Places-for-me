@@ -68,7 +68,11 @@ export class Login {
       pwd:this.myForm._value.password,
     }
       loader.present();
+<<<<<<< HEAD
       this.http.post('http://192.168.43.95/login.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
+=======
+      this.http.post('http://localhost/login.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
+>>>>>>> 28dd2e53ec256c4fdf00493c7c2718cb353c64ea
       this.dataUser = data;
 
       console.log(this.dataUser.username)

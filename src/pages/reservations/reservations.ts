@@ -27,7 +27,7 @@ export class Reservations {
      this.logedUser = localStorage.getItem('user');
      this.reservationForm = this.formBuilder.group({
                 user: [this.logedUser],
-                hotel: [], 
+             //   hotel: [], 
                 roomType: [],
                 startDate: [],
                 endDate: []
@@ -39,7 +39,9 @@ export class Reservations {
   retrieveReservationData(){
   //  console.log(this.reservationForm._value);
     this.roomReservationsService.retrieve_reservation_details(this.hotelInfo.id, this.reservationForm._value.roomType,
-    this.reservationForm._value.startDate,this.reservationForm._value.endDate);
+    this.reservationForm._value.startDate,this.reservationForm._value.endDate).then((data) => {
+      this.navCtrl.push('ReservationList', {reservationList: data, formReservation: this.reservationForm._value, hotelId: this.hotelInfo.id});
+    })
   }
 
   retrieveHotelsListData()
