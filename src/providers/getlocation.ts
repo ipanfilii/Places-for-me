@@ -7,8 +7,8 @@ import 'rxjs/add/operator/filter';
 @Injectable()
 export class Getlocation {
   public watch: any;    
-  public lat: number = 0;
-  public lng: number = 0;
+  public lat: number = 45.748507;
+  public lng: number = 21.239703;
   constructor(public geolocation: Geolocation,
               public backgroundGeolocation: BackgroundGeolocation,
               public zone: NgZone,) {
@@ -33,8 +33,8 @@ export class Getlocation {
  
     // Run update inside of Angular's zone
     this.zone.run(() => {
-      this.lat = location.latitude;
-      this.lng = location.longitude;
+      // this.lat = location.latitude;
+      // this.lng = location.longitude;
     });
  
   }, (err) => {
@@ -62,8 +62,8 @@ this.watch = this.geolocation.watchPosition(options).filter((p: any) => p.coords
  
   // Run update inside of Angular's zone
   this.zone.run(() => {
-    this.lat = position.coords.latitude;
-    this.lng = position.coords.longitude;
+    // this.lat = position.coords.latitude;
+    // this.lng = position.coords.longitude;
   });
  
 });
