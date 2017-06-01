@@ -14,10 +14,10 @@
 
 
 <ion-content >
- <ion-list *ngFor="let reservationList of reservation">
+ <ion-list *ngFor="let item of freeRooms">
     <ion-item >
-    Room number :  {{reservationList.number}}
-      <button ion-button color="primary" item-right  (click)="reserveRoom(reservationList)" >Reserve</button>
+    Room number :  {{item.number}}
+      <button ion-button color="primary" item-right  (click)="reserveRoom(item)" >Reserve</button>
     </ion-item>
  </ion-list>
 </ion-content>
