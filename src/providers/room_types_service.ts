@@ -25,7 +25,7 @@ export class RoomTypesService
       }
     
  return new Promise((resolve) => {
-        this.http.post('http://localhost/room_type_reqData.php',JSON.stringify(postParams),options).map(result => result.json()).subscribe(data => {
+        this.http.post('http://192.168.43.96/room_type_reqData.php',JSON.stringify(postParams),options).map(result => result.json()).subscribe(data => {
         this.roomsTypeData = data;
         resolve(this.roomsTypeData);
         //console.log(this.roomsTypeData);

@@ -6,9 +6,9 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Statistics</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Statistics</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
@@ -22,30 +22,26 @@
     <!--<button (click)="testRoomTypes()">room types</button>-->
 
     <ion-list>
-     <ion-item>
-  <ion-label>Type of room</ion-label>
-  <ion-select>
-    <ion-option *ngFor="let type of roomTypeData" interface="popover" (ionSelect)="showRooms(type.short_name)" [value]=type.short_name>{{type.name}}</ion-option>
-  </ion-select>
+        <ion-item>
+            <ion-label>Type of room</ion-label>
+            <ion-select (ionChange)="showRooms()">
+                <ion-option *ngFor="let type of roomTypeData" interface="popover" [value]=type.short_name>{{type.name}}</ion-option>
+            </ion-select>
 
-</ion-item> 
+        </ion-item>
     </ion-list>
-      <div *ngIf="showDetailsSingle">
-        <ion-list *ngFor="let type of roomTypeData" > 
-          <div *ngIf="type.short_name == 'single'"> 
-            {{type.id}} <br>
-            {{type.short_name}} <br>
-            {{type.base_price}}
-          </div>
+    <div *ngIf="showDetailsSingle">
+        <ion-list *ngFor="let type of roomTypeData">
+            <div *ngIf="type.short_name == 'single'">
+                {{type.id}} <br> {{type.short_name}} <br> {{type.base_price}}
+            </div>
         </ion-list>
-     </div>
-      <div *ngIf="showDetailsDouble">
-        <ion-list *ngFor="let type of roomTypeData" >
-          <div *ngIf="type.short_name == 'Double'"> 
-            {{type.id}} <br>
-            {{type.short_name}} <br>
-            {{type.base_price}}
-          </div>
+    </div>
+    <div *ngIf="showDetailsDouble">
+        <ion-list *ngFor="let type of roomTypeData">
+            <div *ngIf="type.short_name == 'Double'">
+                {{type.id}} <br> {{type.short_name}} <br> {{type.base_price}}
+            </div>
         </ion-list>
-     </div>
+    </div>
 </ion-content>
