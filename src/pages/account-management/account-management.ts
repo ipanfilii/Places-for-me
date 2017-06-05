@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, Platform, ToastController } from 'ionic-angular';
+import { Http } from '@angular/http';
+import { NativeStorage } from '@ionic-native/native-storage';
+import 'rxjs/add/operator/map';
 
 /**
  * Generated class for the AccountManagement page.
@@ -13,12 +16,65 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'account-management.html',
 })
 export class AccountManagement {
+public user: any;
+  public grupa: number;
+  public dataXls: any = [];
+  public myRoute: any = [];
+  public zi: any = [];
+  public oneDay: any;
+  public dataUser: Array<{user: string, image: string, showDetails: boolean, grupa:number, icon:string, zi:any[]}> = [];
+  constructor(public navCtrl: NavController, 
+              public http: Http,
+              private nativeStorage: NativeStorage,
+              private platform: Platform,
+              private toastCtrl: ToastController) { }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+  ionViewCanEnter() {
+     
+    this.user = localStorage.getItem('user');
+  
+    if( this.user ) {
+      this.http.get('http://192.168.43.96/reqData.php?user='+this.user).map(res => res.json()).subscribe(data => {
+        this.myRoute = data;
+        console.log(this.myRoute)
+      });
+
+   
+    } else {
+      let toast = this.toastCtrl.create({
+        message: 'Nu sunteti logat. Pentru a accesa aceasta sectiune este nevoie sa va logati.',
+        duration: 3000,
+        position: 'bottom'
+      })
+      toast.present();
+      this.navCtrl.setRoot('WelcomeAfterLogin');
+    }
   }
+  public toggleDetails(data, zi) {
 
+    this.oneDay = zi;
+    if (data.showDetails) {
+      data.showDetails = false;
+      data.icon = 'arrow-down';
+    } else {
+      data.showDetails = true;
+      data.icon = 'close';
+    }
+
+  }
+  
+  public createRoute(data) {
+    this.navCtrl.push('Routeprofile',{data:data});
+    let toast = this.toastCtrl.create({
+        message: 'Google maps is loading ... Please wait',
+        duration: 2000,
+        position: 'bottom'
+      })
+    toast.present();
+  }
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AccountManagement');
+    console.log('ionViewDidLoad Profile');
   }
 
 }

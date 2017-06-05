@@ -39,6 +39,7 @@
     "@types/google-maps": "^3.2.0",
     "@types/googlemaps": "^3.26.11",
     "angular-calendar": "^0.15.2",
+    "chart.js": "^2.6.0",
     "intl": "^1.2.5",
     "ion2-calendar": "^1.0.7",
     "ionic-angular": "3.1.1",

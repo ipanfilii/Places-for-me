@@ -68,6 +68,8 @@ export class Login {
       pwd:this.myForm._value.password,
     }
       loader.present();
+
+     
       this.http.post('http://localhost/login.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
       this.dataUser = data;
 

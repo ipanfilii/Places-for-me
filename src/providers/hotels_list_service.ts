@@ -19,6 +19,7 @@ export class HotelsListService
     // let options = new RequestOptions({headers:headers});
     
  return new Promise((resolve) => {
+
         this.http.get('http://localhost/hotels_list_reqData.php').map(result => result.json()).subscribe(data => {
         this.hotelsListData = data;
         resolve(this.hotelsListData);

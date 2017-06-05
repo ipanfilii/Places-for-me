@@ -14,10 +14,10 @@ import { InsertReservationService } from "../../providers/insert_reservation_ser
   templateUrl: 'reservation-list.html',
 })
 export class ReservationList {
-  public reservationForm: any [];
+  public reservationForm: any = [];
   public user: any;
   public hotelID: any;
-  public freeRooms: any [];
+  public freeRooms: any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private insertreservationservice: InsertReservationService) {
     this.freeRooms = navParams.get('reservationList');
@@ -34,6 +34,5 @@ export class ReservationList {
   }
 
   public reserveRoom(item) {
-      this.insertreservationservice
-  }
+      this.insertreservationservice.retrieve_reservation_info(this.reservationForm.user,this.hotelID,item.id,this.reservationForm.startDate,this.reservationForm.endDate,this.reservationForm.roomType) }
 }
