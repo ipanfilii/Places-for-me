@@ -3,12 +3,7 @@ import { IonicPage, NavController, Platform, ToastController } from 'ionic-angul
 import { Http } from '@angular/http';
 import { NativeStorage } from '@ionic-native/native-storage';
 import 'rxjs/add/operator/map';
-/**
- * Generated class for the Profile page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+
 @IonicPage()
 @Component({
   selector: 'page-profile',
@@ -34,7 +29,7 @@ export class Profile {
     this.user = localStorage.getItem('user');
   
     if( this.user ) {
-      this.http.get('http://192.168.43.96/reqData.php?user='+this.user).map(res => res.json()).subscribe(data => {
+      this.http.get('http://localhost/reqData.php?user='+this.user).map(res => res.json()).subscribe(data => {
         this.myRoute = data;
         console.log(this.myRoute)
       });
