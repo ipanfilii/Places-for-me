@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { InsertReservationService } from "../../providers/insert_reservation_service";
 
 /**
  * Generated class for the ReservationList page.
@@ -13,15 +14,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'reservation-list.html',
 })
 export class ReservationList {
-  public reservation: any [];
-  public reservationForm: any [];
+  public reservationForm: any = [];
+  public user: any;
   public hotelID: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.reservation = navParams.get('reservationList');
+  public freeRooms: any = [];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private insertreservationservice: InsertReservationService) {
+    this.freeRooms = navParams.get('reservationList');
     this.reservationForm = navParams.get('formReservation');
     this.hotelID = navParams.get('hotelId');
     console.log(this.hotelID);
-    console.log(this.reservation)
+    console.log(this.freeRooms)
     console.log(this.reservationForm)
     
 }
@@ -31,6 +34,5 @@ export class ReservationList {
   }
 
   public reserveRoom(item) {
-
-  }
+      this.insertreservationservice.retrieve_reservation_info(this.reservationForm.user,this.hotelID,item.id,this.reservationForm.startDate,this.reservationForm.endDate,this.reservationForm.roomType) }
 }

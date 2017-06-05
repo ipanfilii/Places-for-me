@@ -8,21 +8,31 @@ import 'rxjs/add/operator/map';
 export class InsertReservationService 
 {
    public reservationParameters: any = [];
+   constructor(public http:Http){
+   }
 
-   constructor(public http:Http){}
-
-   retrieve_reservation_info(hotelid: any, roomtypeid: any, checkin: any, checkout: any)
+   retrieve_reservation_info(user: any, hotelid: any, roomid:any, checkin: any, checkout: any, roomtypeid: any)
     {
-      console.log('dadad')
-      console.log(hotelid)
+        let headers = new Headers();
+     headers.append("Accept",'application/json');
+     headers.append('Content-Type','application/json');
+     let options = new RequestOptions({headers:headers});
+      let postParams = {
+      user : localStorage.getItem('user'),
+      hotelid: hotelid,
+      roomid: roomid,
+      checkin: checkin,
+      checkout: checkout,
+      roomtypeid: roomtypeid
+      }
+  
+      console.log(hotelid,user,roomid,checkin,checkout,roomtypeid);
       
-     let headers = new Headers();
- 
  return new Promise((resolve) => {
-        this.http.get('http://localhost/reservations_request_data.php?hotelid='+hotelid+"&roomtypeid="+roomtypeid+"&checkin="+checkin+"&checkout="+checkout).map(result => result.json()).subscribe(data => {
-        // this.reservationData = data;
-        // resolve(this.reservationData);
-        // //console.log(this.roomsTypeData);
+        this.http.post('http://localhost/insert_reservations_sendData.php',JSON.stringify(postParams),options).map(result => result.json()).subscribe(data => {
+         this.reservationParameters = data;
+        resolve(this.reservationParameters);
+        // // //console.log(this.roomsTypeData);
         })
       });
     }
