@@ -1,40 +1,33 @@
 page-profile {
-.icons {
-    background-color: #fff;
-    border: 1px solid #7f8c8d;
-    color: #7f8c8d;
-    margin: 0;
-}
- 
-.name {
-    margin: 0;
-}
- 
-.handle {
-    margin: 0;
-}
- 
-.status {
-    white-space: normal;
-    color: #000;
-    margin-top: 5px;
-}
- 
-.item {
-    align-items: baseline;
-}
- 
-.button-container {
-    align-self: flex-end;
-}
- .grid-basic-page {
-
-  ion-col {
-    background-color: #F9FAFB;
-    border: 1px solid #ddd;
-    border-radius: 1px;
-    text-align: center;
-  }
-
-}
+    .icons {
+        background-color: #fff;
+        border: 1px solid #7f8c8d;
+        color: #7f8c8d;
+        margin: 0;
+    }
+    .name {
+        margin: 0;
+    }
+    .handle {
+        margin: 0;
+    }
+    .status {
+        white-space: normal;
+        color: #000;
+        margin-top: 5px;
+    }
+    .item {
+        align-items: baseline;
+    }
+    .button-container {
+        align-self: flex-end;
+    }
+    .grid-basic-page {
+        ion-col {
+            background-color: #F9FAFB;
+            border: 1px solid #ddd;
+            border-radius: 1px;
+            text-align: center;
+        }
+    }
 }

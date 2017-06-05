@@ -1,9 +1,3 @@
-<!--
-  Generated template for the AccountManagement page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
     <ion-navbar>
         <button ion-button menuToggle>
@@ -43,7 +37,10 @@
             </ion-segment-button>
 
             <ion-segment-button value="informatii">
-                Cont
+                Contt
+            </ion-segment-button>
+            <ion-segment-button value="event">
+                Add eventtt
             </ion-segment-button>
         </ion-segment>
     </div>
@@ -77,6 +74,9 @@
         </ion-list>
         <ion-list *ngSwitchCase="'informatii'">
             <img src="http://atestate-inf.tk/ghidtest/underconstruction.png" />
+        </ion-list>
+        <ion-list *ngSwitchCase="'event'">
+            <button ion-button full (click)="addNewEvent()">Add new  <ion-icon name="add"></ion-icon></button>
         </ion-list>
         <img *ngIf="!profil" src='http://atestate-inf.tk/ghidtest/upt.png'>
         <img *ngIf="!profil" src='http://atestate-inf.tk/ghidtest/ligalogo.jpg'>

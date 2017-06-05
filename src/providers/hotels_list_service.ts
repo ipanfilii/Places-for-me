@@ -19,11 +19,7 @@ export class HotelsListService
     // let options = new RequestOptions({headers:headers});
     
  return new Promise((resolve) => {
-<<<<<<< HEAD
-        this.http.get('http://192.168.43.95/hotels_list_reqData.php').map(result => result.json()).subscribe(data => {
-=======
         this.http.get('http://localhost/hotels_list_reqData.php').map(result => result.json()).subscribe(data => {
->>>>>>> 28dd2e53ec256c4fdf00493c7c2718cb353c64ea
         this.hotelsListData = data;
         resolve(this.hotelsListData);
         //console.log(this.roomsTypeData);

@@ -1,77 +1,76 @@
-
 <ion-header>
 
-  <ion-navbar>
-    <ion-title></ion-title>
+    <ion-navbar>
+        <ion-title></ion-title>
 
-  </ion-navbar>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <button ion-button (click)="onNewTypeButtonClick()">New type</button>
-  <div *ngIf="newTypeButtonClicked">
-<form [formGroup]="newTypeForm" >
-    <ion-list>
+    <button ion-button (click)="onNewTypeButtonClick()">New type</button>
+    <div *ngIf="newTypeButtonClicked">
+        <form [formGroup]="newTypeForm">
+            <ion-list>
 
-      <ion-item>
-        <ion-label floating>Name</ion-label>
-        <ion-input type="text" value="" formControlName="name"></ion-input>
-      </ion-item>
+                <ion-item>
+                    <ion-label floating>Name</ion-label>
+                    <ion-input type="text" value="" formControlName="name"></ion-input>
+                </ion-item>
 
-      <ion-item >
-        <ion-label floating>Short name</ion-label>
-        <ion-input type="text" value="" formControlName="short_name" ></ion-input>
-      </ion-item>
+                <ion-item>
+                    <ion-label floating>Short name</ion-label>
+                    <ion-input type="text" value="" formControlName="short_name"></ion-input>
+                </ion-item>
 
-      <ion-item >
-        <ion-label floating>Base availability</ion-label>
-        <ion-input type="number" value="" formControlName="base_availability" ></ion-input>
-      </ion-item>
+                <ion-item>
+                    <ion-label floating>Base availability</ion-label>
+                    <ion-input type="number" value="" formControlName="base_availability"></ion-input>
+                </ion-item>
 
-      <ion-item >
-        <ion-label floating>Base price</ion-label>
-        <ion-input type="number" value="" formControlName="base_price" ></ion-input>
-      </ion-item>
+                <ion-item>
+                    <ion-label floating>Base price</ion-label>
+                    <ion-input type="number" value="" formControlName="base_price"></ion-input>
+                </ion-item>
 
-      <ion-item >
-        <ion-label floating>Maximal occupancy</ion-label>
-        <ion-input type="number" value="" formControlName="max_occupancy"></ion-input>
-      </ion-item>
+                <ion-item>
+                    <ion-label floating>Maximal occupancy</ion-label>
+                    <ion-input type="number" value="" formControlName="max_occupancy"></ion-input>
+                </ion-item>
 
-        <ion-item >
-        <ion-label floating>Room number</ion-label>
-        <ion-input type="number" value="" formControlName="room_number"></ion-input>
-      </ion-item>
+                <ion-item>
+                    <ion-label floating>Room number</ion-label>
+                    <ion-input type="number" value="" formControlName="room_number"></ion-input>
+                </ion-item>
 
-    </ion-list>
-    <div >
-      <button ion-button color="primary" full text-capitalize (click)="registerForm()">Submit </button>    
+            </ion-list>
+            <div>
+                <button ion-button color="primary" full text-capitalize (click)="registerForm()">Submit </button>
+            </div>
+        </form>
     </div>
-</form>
-  </div>
 
-<button ion-button (click)="onExistingTypeButtonClick()">Existing type</button>
-  <div *ngIf="existingTypeButtonClicked">
-<form [formGroup]="existingTypeForm" >
-    <ion-list>
+    <button ion-button (click)="onExistingTypeButtonClick()">Existing type</button>
+    <div *ngIf="existingTypeButtonClicked">
+        <form [formGroup]="existingTypeForm">
+            <ion-list>
 
-      <ion-item>
-        <ion-label floating>Name</ion-label>
-        <ion-input type="text" value="" ></ion-input>
-      </ion-item>
+                <ion-item>
+                    <ion-label floating>Name</ion-label>
+                    <ion-input type="text" value=""></ion-input>
+                </ion-item>
 
-      <ion-item >
-        <ion-label floating>Surname</ion-label>
-        <ion-input type="password" value="" ></ion-input>
-      </ion-item>
-    </ion-list>
-    <div >
-      <button ion-button color="primary" full text-capitalize (click)="registerForm()">Submit </button>    
+                <ion-item>
+                    <ion-label floating>Surname</ion-label>
+                    <ion-input type="password" value=""></ion-input>
+                </ion-item>
+            </ion-list>
+            <div>
+                <button ion-button color="primary" full text-capitalize (click)="registerForm()">Submit </button>
+            </div>
+        </form>
     </div>
-</form>
-  </div>
 
 
 

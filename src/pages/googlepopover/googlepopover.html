@@ -1,5 +1,6 @@
 <button *ngIf="place.website !== 'undefined'" text-capitalize full (click)="goToWebsite(place.website)" ion-button color="primary"> Go to website </button>
 <button text-capitalize full (click)="goToReservationsPage(place)" ion-button color="primary"> Make reservation </button>
+<button text-capitalize full (click)="followPlace(place)" ion-button color="primary"> Follow </button>
 
 <ion-list>
     <img style="width:50px; height:50px; display: block; margin: auto;" src={{place.icon}} />

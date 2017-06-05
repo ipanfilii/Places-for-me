@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, Platform, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, Platform, ToastController, ModalController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { NativeStorage } from '@ionic-native/native-storage';
 import 'rxjs/add/operator/map';
@@ -26,7 +26,8 @@ public user: any;
   constructor(public navCtrl: NavController, 
               public http: Http,
               private nativeStorage: NativeStorage,
-              private platform: Platform,
+              private platform: Platform,   
+              private modalCtrl: ModalController,
               private toastCtrl: ToastController) { }
 
 
@@ -76,5 +77,10 @@ public user: any;
   ionViewDidLoad() {
     console.log('ionViewDidLoad Profile');
   }
+
+  addNewEvent() {
+    let profileModall = this.modalCtrl.create( 'CreateEvent', { idd: 1 , placeID: 3 }); 
+    profileModall.present();
+ }
 
 }

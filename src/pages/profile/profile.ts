@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, Platform, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, Platform, ToastController, ModalController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { NativeStorage } from '@ionic-native/native-storage';
 import 'rxjs/add/operator/map';
@@ -26,6 +26,7 @@ export class Profile {
               public http: Http,
               private nativeStorage: NativeStorage,
               private platform: Platform,
+              private modalCtrl: ModalController,
               private toastCtrl: ToastController) { }
 
 
@@ -34,12 +35,12 @@ export class Profile {
     this.user = localStorage.getItem('user');
   
     if( this.user ) {
-      this.http.get('http://192.168.43.96/reqData.php?user='+this.user).map(res => res.json()).subscribe(data => {
+      this.http.get('http://localhost/reqData.php?user='+this.user).map(res => res.json()).subscribe(data => {
         this.myRoute = data;
         console.log(this.myRoute)
       });
 
-   
+      
     } else {
       let toast = this.toastCtrl.create({
         message: 'Nu sunteti logat. Pentru a accesa aceasta sectiune este nevoie sa va logati.',
@@ -76,4 +77,9 @@ export class Profile {
     console.log('ionViewDidLoad Profile');
   }
 
+
+ addNewEvent() {
+    let profileModall = this.modalCtrl.create( 'CreateEvent', { idd: 1 , placeID: 3 }); 
+    profileModall.present();
+ }
 }
