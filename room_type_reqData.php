@@ -8,7 +8,7 @@
   header('Content-type: application/json');
   
    $postdata = file_get_contents("php://input");
-   $db = new mysqli('localhost','root','' );
+   $db = new mysqli('192.168.43.95','root','' );
 
     //verify connection
     if($db->connect_errno > 0) {   

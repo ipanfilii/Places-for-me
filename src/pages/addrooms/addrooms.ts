@@ -77,7 +77,7 @@ this.existingTypeForm = this.formBuilder.group({
 
      }
       //loader.present();
-       this.http.post('http://localhost/room_type_sendData.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
+       this.http.post('http://192.168.43.95/room_type_sendData.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
       this.typeData = data;
        console.log(this.typeData)
       

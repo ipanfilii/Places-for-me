@@ -15,8 +15,7 @@ declare var cordova: any;
   templateUrl: 'create-event.html',
 })
 export class CreateEvent {
-
- lastImage: string = null;
+  lastImage: string = null;
   loading: Loading;
   myForm:any;
   posts:any;
@@ -57,8 +56,7 @@ export class CreateEvent {
              icon:this.iddd.icon,
              id:this.iddd.id
            })
-      }
-      else {
+      } else {
         
       }
       console.log(this.id[0].title)
@@ -80,7 +78,7 @@ export class CreateEvent {
         insertimage:localStorage.getItem('upt'),
         facultate:this.facultate // place id 
       }
-      this.http.post('http://www.atestate-inf.tk/ghidtest/insert.php',JSON.stringify(postParams),options).map(res => res.json())
+      this.http.post('http://192.168.43.95/insert.php',JSON.stringify(postParams),options).map(res => res.json())
       .subscribe(data=>{
         console.log(data);
       },error=>{
@@ -88,15 +86,12 @@ export class CreateEvent {
       });
     }
     else{
-
-       let headers = new Headers();
+      let headers = new Headers();
       headers.append("Accept",'application/json');
       headers.append('Content-Type','application/json');
       let options = new RequestOptions({headers:headers});
-
       console.log(this.id)
       console.log(localStorage.getItem('upt'));
-
 
       if(this.myForm.value.title             && this.myForm.value.text === "" && localStorage.getItem('upt')===null){ //100
           this.myForm.value.text = this.id[0].text;
@@ -106,6 +101,7 @@ export class CreateEvent {
       }else if(this.myForm.value.title       && this.myForm.value.text        && localStorage.getItem('upt')===null){//110
           localStorage.setItem('upt',this.id[0].icon);
       }else if(this.myForm.value.title       && this.myForm.value.text        && localStorage.getItem('upt')){//111
+
       }else if(this.myForm.value.title == "" && this.myForm.value.text == ""  && localStorage.getItem('upt')===null){//000
           localStorage.setItem('upt',this.id[0].icon);
           this.myForm.value.text = this.id[0].text;
@@ -119,6 +115,7 @@ export class CreateEvent {
       }else if(this.myForm.value.title == "" && this.myForm.value.text         && localStorage.getItem('upt')){//011
           this.myForm.value.title = this.id[0].title;
       }
+      
 console.log(this.myForm)
       this.postParamss = {
         inputtitle:this.myForm.value.title+" ",
@@ -126,7 +123,7 @@ console.log(this.myForm)
         inputimage:localStorage.getItem('upt'),
         id:this.id[0].id
       }
-      this.http.post('http://www.atestate-inf.tk/ghidtest/edit.php',JSON.stringify(this.postParamss),options)
+      this.http.post('http://192.168.43.95/edit.php',JSON.stringify(this.postParamss),options)
       .subscribe(data=>{
         console.log(data);
       },error=>{
@@ -243,7 +240,7 @@ public pathForImage(img) {
     this.id[0].icon = localStorage.getItem('upt');
  
   // Destination URL
-  var url = "http://www.atestate-inf.tk/ghidtest/upload.php";
+  var url = "http://192.168.43.95/upload.php";
  //http://atestate-inf.tk/ghidtest/upload.php
   // File for Upload
   var targetPath = this.pathForImage(this.lastImage);

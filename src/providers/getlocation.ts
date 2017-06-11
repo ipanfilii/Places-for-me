@@ -62,8 +62,8 @@ this.watch = this.geolocation.watchPosition(options).filter((p: any) => p.coords
  
   // Run update inside of Angular's zone
   this.zone.run(() => {
-    // this.lat = position.coords.latitude;
-    // this.lng = position.coords.longitude;
+     this.lat = position.coords.latitude;
+     this.lng = position.coords.longitude;
   });
  
 });

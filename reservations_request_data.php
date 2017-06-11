@@ -7,7 +7,7 @@
     header('Access-Control-Allow-Headers: origin, X-Requested-With, Authorization, Content-Type');
     header('Content-type: application/json');
 
-     $db = new mysqli('localhost','root','' );
+     $db = new mysqli('192.168.43.95','root','' );
   if( $postdata){
         $data = json_decode($postdata);
     //verify connection
