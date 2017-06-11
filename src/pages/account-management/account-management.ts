@@ -16,6 +16,7 @@ import 'rxjs/add/operator/map';
   templateUrl: 'account-management.html',
 })
 export class AccountManagement {
+   public posts: any;
 public user: any;
   public grupa: number;
   public dataXls: any = [];
@@ -28,7 +29,13 @@ public user: any;
               private nativeStorage: NativeStorage,
               private platform: Platform,   
               private modalCtrl: ModalController,
-              private toastCtrl: ToastController) { }
+              private toastCtrl: ToastController) {
+                  this.http.get('http://192.168.43.95/getdata.php').map(res => res.json()).subscribe(data => {
+        this.posts = data;
+        localStorage.removeItem('upt');
+        
+      });
+               }
 
 
   ionViewCanEnter() {
@@ -36,7 +43,7 @@ public user: any;
     this.user = localStorage.getItem('user');
   
     if( this.user ) {
-      this.http.get('http://192.168.43.96/reqData.php?user='+this.user).map(res => res.json()).subscribe(data => {
+      this.http.get('http://192.168.43.95/reqData.php?user='+this.user).map(res => res.json()).subscribe(data => {
         this.myRoute = data;
         console.log(this.myRoute)
       });
@@ -83,4 +90,10 @@ public user: any;
     profileModall.present();
  }
 
+ doRefresh(refresher) {
+    localStorage.removeItem('upt');
+    this.http.get('http://192.168.43.95/getdata.php').map(res => res.json()).subscribe(data => {
+      this.posts = data;
+    });
+ }
 }

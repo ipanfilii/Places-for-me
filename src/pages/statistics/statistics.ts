@@ -19,24 +19,38 @@ export class Statistics {
     barChart: any;
     doughnutChart: any;
     lineChart: any;
+    public roomStatisticsData: any = [];
+    public roomNameData: any = [];
+    public reservationsNumber: any = [];
+    public hotelStatisticsData: any = [];
+    public hotelNameData: any = [];
+    public reservationsNumberHotels: any = [];
   public roomTypeData: any = [];
   public date: Date = new Date(Date.now());
   public showDetailsSingle: boolean = false;
   public showDetailsDouble: boolean = false
-  constructor(public navCtrl: NavController, public navParams: NavParams, platform: Platform,private iab: InAppBrowser, private roomtypesservice: RoomTypesService,  public calendarCtrl: CalendarController){
+  constructor(public http: Http,public navCtrl: NavController, public navParams: NavParams, platform: Platform,private iab: InAppBrowser, private roomtypesservice: RoomTypesService,  public calendarCtrl: CalendarController){
+ this.http.get('http://192.168.43.95/retrieve_statistics_Data.php').map(result => result.json()).subscribe(data => {
+        this.roomStatisticsData = data;
+                console.log(this.roomStatisticsData.length)
+        
+        for(let i =0 ;i<this.roomStatisticsData.length; i++)
+            {
 
+                this.roomNameData.push(this.roomStatisticsData[i].info.name);
+                this.reservationsNumber.push(this.roomStatisticsData[i].nr_rezervari);    
+            }
 
-  }
-ionViewDidLoad() {
- 
+       console.log(this.roomNameData);
+       console.log(this.reservationsNumber);
         this.barChart = new Chart(this.barCanvas.nativeElement, {
  
             type: 'bar',
             data: {
-                labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                labels: this.roomNameData,
                 datasets: [{
                     label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
+                    data: this.reservationsNumber ,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -68,14 +82,31 @@ ionViewDidLoad() {
  
         });
  
+
+    })
+    
+     this.http.get('http://192.168.43.95/retrieve_statistics_hotelsData.php').map(result => result.json()).subscribe(data => {
+        this.hotelStatisticsData = data;
+                console.log(this.roomStatisticsData.length)
+        
+        for(let i =0 ;i<this.hotelStatisticsData.length; i++)
+            {
+
+                this.hotelNameData.push(this.hotelStatisticsData[i].info.name);
+                this.reservationsNumberHotels.push(this.hotelStatisticsData[i].nr_rezervari);    
+            }
+
+       console.log(this.roomNameData);
+       console.log(this.reservationsNumber);
+       
         this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
  
             type: 'doughnut',
             data: {
-                labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange", "Black"],
+                labels: this.hotelNameData,
                 datasets: [{
                     label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3,4],
+                    data: this.reservationsNumberHotels,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -96,41 +127,12 @@ ionViewDidLoad() {
             }
  
         });
- 
-        this.lineChart = new Chart(this.lineCanvas.nativeElement, {
- 
-            type: 'line',
-            data: {
-                labels: ["January", "February", "March", "April", "May", "June", "July"],
-                datasets: [
-                    {
-                        label: "My First dataset",
-                        fill: false,
-                        lineTension: 0.1,
-                        backgroundColor: "rgba(75,192,192,0.4)",
-                        borderColor: "rgba(75,192,192,1)",
-                        borderCapStyle: 'butt',
-                        borderDash: [],
-                        borderDashOffset: 0.0,
-                        borderJoinStyle: 'miter',
-                        pointBorderColor: "rgba(75,192,192,1)",
-                        pointBackgroundColor: "#fff",
-                        pointBorderWidth: 1,
-                        pointHoverRadius: 5,
-                        pointHoverBackgroundColor: "rgba(75,192,192,1)",
-                        pointHoverBorderColor: "rgba(220,220,220,1)",
-                        pointHoverBorderWidth: 2,
-                        pointRadius: 1,
-                        pointHitRadius: 10,
-                        data: [65, 59, 80, 81, 56, 55, 40],
-                        spanGaps: false,
-                    }
-                ]
-            }
- 
-        });
- 
-    }
+
+        })
+    console.log(1);
+
+  }
+
 launch() {
      const browser = this.iab.create('https://www.google.ro/?gws_rd=cr,ssl&ei=EQUcWcv3LOTI6ASxp71A',"location=no");
      browser.show();

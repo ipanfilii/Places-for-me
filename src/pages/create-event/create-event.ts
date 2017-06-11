@@ -78,9 +78,9 @@ export class CreateEvent {
         inserttitle:this.myForm._value.title,
         inserttext:this.myForm._value.text,
         insertimage:localStorage.getItem('upt'),
-        facultate:this.facultate // place id 
+        facultate:"7aeefe1e5c85135b458e15e1622b3de6c5f0f0b4" // place id 
       }
-      this.http.post('http://www.atestate-inf.tk/ghidtest/insert.php',JSON.stringify(postParams),options).map(res => res.json())
+      this.http.post('http://192.168.43.95/insert.php',JSON.stringify(postParams),options).map(res => res.json())
       .subscribe(data=>{
         console.log(data);
       },error=>{
@@ -126,7 +126,7 @@ console.log(this.myForm)
         inputimage:localStorage.getItem('upt'),
         id:this.id[0].id
       }
-      this.http.post('http://www.atestate-inf.tk/ghidtest/edit.php',JSON.stringify(this.postParamss),options)
+      this.http.post('http://localhost/edit.php',JSON.stringify(this.postParamss),options)
       .subscribe(data=>{
         console.log(data);
       },error=>{
@@ -243,7 +243,7 @@ public pathForImage(img) {
     this.id[0].icon = localStorage.getItem('upt');
  
   // Destination URL
-  var url = "http://www.atestate-inf.tk/ghidtest/upload.php";
+  var url = "http://192.168.43.95/upload.php";
  //http://atestate-inf.tk/ghidtest/upload.php
   // File for Upload
   var targetPath = this.pathForImage(this.lastImage);

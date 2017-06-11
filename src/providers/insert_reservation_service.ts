@@ -29,7 +29,7 @@ export class InsertReservationService
       console.log(hotelid,user,roomid,checkin,checkout,roomtypeid);
       
  return new Promise((resolve) => {
-        this.http.post('http://localhost/insert_reservations_sendData.php',JSON.stringify(postParams),options).map(result => result.json()).subscribe(data => {
+        this.http.post('http://192.168.43.95/insert_reservations_sendData.php',JSON.stringify(postParams),options).map(result => result.json()).subscribe(data => {
          this.reservationParameters = data;
         resolve(this.reservationParameters);
         // // //console.log(this.roomsTypeData);

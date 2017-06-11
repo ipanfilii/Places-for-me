@@ -42,10 +42,11 @@ export class Googlepopover {
   }
 
   followPlace(place) {
+    console.log(place);
       this.oneSignal.getIds().then((ids)=>{
       this.userId = ids.userId; // recieve de id device and send it to server 
       // add to db user phone id, username, place Id
-      this.http.get('http://localhost/notification.php?id='+ this.userId+'&user='+localStorage.getItem('user')+'&place='+place.id).map(res => res.json()).subscribe(data => {
+      this.http.get('http://192.168.43.95/notification.php?id='+ this.userId+'&user='+localStorage.getItem('user')+'&place='+place.id).map(res => res.json()).subscribe(data => {
       });
     });
   }

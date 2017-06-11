@@ -1,26 +1,14 @@
 <ion-header>
-    <ion-navbar>
-        <button ion-button menuToggle>
+  <ion-navbar>
+    <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-        <ion-title>Profile {{user}}</ion-title>
-    </ion-navbar>
-
+    <ion-title>Profile  {{user}}</ion-title>
+  </ion-navbar>
+  
 </ion-header>
 
 <ion-content no-padding fullscreen>
-<<<<<<< HEAD
-    <ion-row class="header">
-        <ion-col style="max-width: 200px; max-height: 200px;" width-40>
-            <img src="http://atestate-inf.tk/ghidtest/profilelogo.png" />
-        </ion-col>
-        <ion-col width-60 class="button-container">
-            <button full round icon-only ion-button icon-left>
-          <ion-icon name="cog"></ion-icon>
-        </button>
-            <button full round icon-only ion-button icon-right>
-          <ion-icon name="people"></ion-icon>
-=======
   <ion-row class="header">
     <ion-col style="max-width: 170px; max-height: 200px;" width-40>
         <img src="http://atestate-inf.tk/ghidtest/profilelogo.png" />
@@ -31,73 +19,58 @@
         </button>
         <button full round icon-only ion-button  icon-right >
           <ion-icon name="key"></ion-icon>
->>>>>>> fe4c952fec8c674458230a01e0e66673aae7b6af
         </button>
-            <button full round icon-only ion-button icon-left>
+         <button full round icon-only ion-button  icon-left>
           <ion-icon name="cog"></ion-icon>
         </button>
-<<<<<<< HEAD
-            <button round full ion-button>
-          Edit Profile
-        </button>
-        </ion-col>
-    </ion-row>
-
-    <div style="font-size:12 px;" text-capitalize>
-        <ion-segment [(ngModel)]="profil">
-=======
     </ion-col>
 </ion-row>
->>>>>>> fe4c952fec8c674458230a01e0e66673aae7b6af
 
-            <ion-segment-button style="font-size:12 px;" text-capitalize value="locatii">
-                Locatii
-            </ion-segment-button>
+<div style="font-size:12 px;" text-capitalize >
+  <ion-segment [(ngModel)]="profil">
+   
+    <ion-segment-button style="font-size:12 px;" text-capitalize value="locatii">
+      Locatii
+    </ion-segment-button>
+     
+     <ion-segment-button  value="informatii">
+       Cont
+    </ion-segment-button>
+  </ion-segment>
+</div>
 
-            <ion-segment-button value="informatii">
-                Contt
-            </ion-segment-button>
-            <ion-segment-button value="event">
-                Add eventtt
-            </ion-segment-button>
-        </ion-segment>
-    </div>
-
-    <div style="font-size:12 px;" text-capitalize no-padding [ngSwitch]="profil">
+<div style="font-size:12 px;" text-capitalize no-padding [ngSwitch]="profil">
 
 
-        <ion-list *ngSwitchCase="'locatii'">
-            <ion-list *ngFor="let data of myRoute">
-                <ion-card>
-                    <ion-grid>
-                        <ion-row>
-                            <ion-col>
-                                <h2> {{data.location}} </h2>
-                            </ion-col>
-                        </ion-row>
-                        <ion-row>
-                            <ion-col col-11>
-                                <p> {{data.address}} </p>
-                            </ion-col>
-                            <ion-col col-1>
-                                <ion-icon tappable (click)="createRoute(data)" color="secondary" item-right name="navigate"> </ion-icon>
-                            </ion-col>
-                        </ion-row>
-                    </ion-grid>
-                </ion-card>
-            </ion-list>
-            <!--<ion-thumbnail item-left>
+  <ion-list *ngSwitchCase="'locatii'" >
+    <ion-list *ngFor="let data of myRoute">
+        <ion-card>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <h2> {{data.location}} </h2>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-11>
+                 <p>  {{data.address}} </p>
+              </ion-col>
+              <ion-col  col-1>
+                 <ion-icon tappable (click) = "createRoute(data)" color="secondary" item-right name="navigate"> </ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+    </ion-list>
+      <!--<ion-thumbnail item-left>
       </ion-thumbnail>
       <h2>Locatii</h2>-->
-        </ion-list>
-        <ion-list *ngSwitchCase="'informatii'">
-            <img src="http://atestate-inf.tk/ghidtest/underconstruction.png" />
-        </ion-list>
-        <ion-list *ngSwitchCase="'event'">
-            <button ion-button full (click)="addNewEvent()">Add new  <ion-icon name="add"></ion-icon></button>
-        </ion-list>
-        <img *ngIf="!profil" src='http://atestate-inf.tk/ghidtest/upt.png'>
-        <img *ngIf="!profil" src='http://atestate-inf.tk/ghidtest/ligalogo.jpg'>
-
-    </div>
+  </ion-list>
+  <ion-list *ngSwitchCase="'informatii'">
+      <img src="http://atestate-inf.tk/ghidtest/underconstruction.png" />
+  </ion-list>
+  <img *ngIf="!profil" src='http://atestate-inf.tk/ghidtest/upt.png'>
+  <img *ngIf="!profil" src='http://atestate-inf.tk/ghidtest/ligalogo.jpg'>
+ 
+</div>
 </ion-content>

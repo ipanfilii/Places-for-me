@@ -19,7 +19,7 @@ export class RoomReservationService
      let headers = new Headers();
  
  return new Promise((resolve) => {
-        this.http.get('http://localhost/reservations_request_data.php?hotelid='+hotelid+"&roomtypeid="+roomtypeid+"&checkin="+checkin+"&checkout="+checkout).map(result => result.json()).subscribe(data => {
+        this.http.get('http://192.168.43.95/reservations_request_data.php?hotelid='+hotelid+"&roomtypeid="+roomtypeid+"&checkin="+checkin+"&checkout="+checkout).map(result => result.json()).subscribe(data => {
         this.reservationData = data;
         resolve(this.reservationData);
         //console.log(this.roomsTypeData);
