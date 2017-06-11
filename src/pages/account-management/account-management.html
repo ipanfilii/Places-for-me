@@ -14,10 +14,10 @@
             <img src="http://atestate-inf.tk/ghidtest/profilelogo.png" />
         </ion-col>
        <ion-col width-60 class="button-container">
-        <button full round icon-only ion-button  icon-left>
+        <button full round icon-only ion-button  icon-left (click)="changeEmail($event)">
             <ion-icon name="mail"></ion-icon>
         </button>
-        <button full round icon-only ion-button  icon-right >
+        <button full round icon-only ion-button  icon-right (click)="changePassword($event)" >
           <ion-icon name="key"></ion-icon>
         </button>
          <button full round icon-only ion-button  icon-left>
@@ -29,15 +29,15 @@
     <div style="font-size:12 px;" text-capitalize>
         <ion-segment [(ngModel)]="profil">
 
-            <ion-segment-button style="font-size:12 px;" text-capitalize value="locatii">
-                Locatiiii
+            <ion-segment-button style="font-size:12 px;"  value="locatii">
+                Locations
             </ion-segment-button>
 
             <ion-segment-button value="informatii">
-                Contt
+                Timeline
             </ion-segment-button>
             <ion-segment-button value="event">
-                Add eventtt
+                Add event
             </ion-segment-button>
         </ion-segment>
     </div>

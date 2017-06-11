@@ -36,7 +36,17 @@ public user: any;
         
       });
                }
+  changeEmail(ev)
+    {
+        this.navCtrl.push('ChangeEmail',{user: localStorage.getItem('user')} );
+        
+    } 
 
+     changePassword(ev)
+    {
+        this.navCtrl.push('ChangePassword',{user: localStorage.getItem('user')} );
+        
+    } 
 
   ionViewCanEnter() {
      
