@@ -127,7 +127,7 @@ export class MyApp {
       });
       this.oneSignal.handleNotificationOpened().subscribe(() => {
       // do something when the notification is opened.
-      this.rootPage = 'Facultati';
+      this.rootPage = 'AccountManagement';
       });
       this.oneSignal.endInit();
       this.oneSignal.getIds().then(data => {

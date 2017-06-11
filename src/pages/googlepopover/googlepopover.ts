@@ -42,6 +42,7 @@ export class Googlepopover {
   }
 
   followPlace(place) {
+    console.log(place);
       this.oneSignal.getIds().then((ids)=>{
       this.userId = ids.userId; // recieve de id device and send it to server 
       // add to db user phone id, username, place Id

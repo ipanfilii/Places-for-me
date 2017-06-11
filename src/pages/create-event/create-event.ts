@@ -76,7 +76,7 @@ export class CreateEvent {
         inserttitle:this.myForm._value.title,
         inserttext:this.myForm._value.text,
         insertimage:localStorage.getItem('upt'),
-        facultate:this.facultate // place id 
+        facultate:"7aeefe1e5c85135b458e15e1622b3de6c5f0f0b4" // place id 
       }
       this.http.post('http://192.168.43.95/insert.php',JSON.stringify(postParams),options).map(res => res.json())
       .subscribe(data=>{
@@ -123,7 +123,11 @@ console.log(this.myForm)
         inputimage:localStorage.getItem('upt'),
         id:this.id[0].id
       }
+<<<<<<< HEAD
       this.http.post('http://192.168.43.95/edit.php',JSON.stringify(this.postParamss),options)
+=======
+      this.http.post('http://localhost/edit.php',JSON.stringify(this.postParamss),options)
+>>>>>>> dc175a0cd95610fd4fc9bbeab3bfb7bb02a323c6
       .subscribe(data=>{
         console.log(data);
       },error=>{

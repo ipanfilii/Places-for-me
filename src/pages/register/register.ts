@@ -60,9 +60,13 @@ export class RegisterPage {
       this.http.post('http://192.168.43.95/register.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
       this.dataUser = data;
       console.log(this.dataUser)
+          this.http.get('http://192.168.43.95/phpmailer/examples/gmail.php?user='+this.myForm._value.username+'&email='+this.myForm._value.email).map(result => result.json()).subscribe(data => {
+        //console.log(this.roomsTypeData);
+        })      
       
       if(this.dataUser.success)
         { 
+      console.log(this.dataUser);
           this.navCtrl.setRoot('Login');
         }
       else

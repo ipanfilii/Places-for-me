@@ -20,7 +20,10 @@ export class HotelsListService
     
  return new Promise((resolve) => {
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> dc175a0cd95610fd4fc9bbeab3bfb7bb02a323c6
         this.http.get('http://192.168.43.95/hotels_list_reqData.php').map(result => result.json()).subscribe(data => {
         this.hotelsListData = data;
         resolve(this.hotelsListData);
