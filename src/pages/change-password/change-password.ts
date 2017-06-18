@@ -37,7 +37,7 @@ if(this.changePasswordForm._value.current_password === this.changePasswordForm._
 {
     let postParams = {
       old_password: this.changePasswordForm._value.current_password,
-      future_mail:this.changePasswordForm._value.new_password,
+      future_password:this.changePasswordForm._value.new_password,
      user: this.navParams.get('user')
     
 }
@@ -50,7 +50,6 @@ if(this.changePasswordForm._value.current_password === this.changePasswordForm._
     },error=>{
       console.log(error);
     });
-     //this.n
      
     }
     }

@@ -461,7 +461,7 @@ export class Googlemaps {
           handler: data => {
            if(data.title && this.dataPlace != []) {
               console.log(this.dataPlace)
-              this.http.get('http://atestate-inf.tk/ghidtest/sendData.php?user='+localStorage.getItem('user')
+              this.http.get('http://192.168.43.95/sendData.php?user='+localStorage.getItem('user')
                             +'&lat='+this.dataPlace.geometry.location.lat()
                             +'&lng='+this.dataPlace.geometry.location.lng()
                             +'&address='+this.dataPlace.vicinity
@@ -469,7 +469,7 @@ export class Googlemaps {
               map(res=>res.json()).
               subscribe(data);
             } else if( this.dataPlace != [] ) {
-              this.http.get('http://atestate-inf.tk/ghidtest/sendData.php?user='+localStorage.getItem('user')
+              this.http.get('http://192.168.43.95/sendData.php?user='+localStorage.getItem('user')
                             +'&lat='+this.dataPlace.geometry.location.lat()
                             +'&lng='+this.dataPlace.geometry.location.lng()
                             +'&address='+this.dataPlace.vicinity
