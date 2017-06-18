@@ -126,7 +126,7 @@ console.log(this.myForm)
 <<<<<<< HEAD
       this.http.post('http://192.168.43.95/edit.php',JSON.stringify(this.postParamss),options)
 =======
-      this.http.post('http://localhost/edit.php',JSON.stringify(this.postParamss),options)
+      this.http.post('http://192.168.43.95/edit.php',JSON.stringify(this.postParamss),options)
 >>>>>>> dc175a0cd95610fd4fc9bbeab3bfb7bb02a323c6
       .subscribe(data=>{
         console.log(data);
