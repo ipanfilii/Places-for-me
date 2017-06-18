@@ -24,42 +24,33 @@
         </div>
     </div>
     <img *ngIf="id[0].icon" class="profile-image-wrapper" src="{{pathForImage(lastImage)}}" style="width: 100%" [hidden]="lastImage === null">
-<<<<<<< HEAD
-    <<<<<<< HEAD <img *ngIf="id[0].icon" [hidden]="lastImage != null" class="profile-image-wrapper" src="http://192.168.43.95/upload/{{id[0].icon}}" style="width: 100%">
-        =======
-        <img *ngIf="id[0].icon" [hidden]="lastImage != null" class="profile-image-wrapper" src="http://192.168.43.95/upload/{{id[0].icon}}" style="width: 100%"> >>>>>>> dc175a0cd95610fd4fc9bbeab3bfb7bb02a323c6
-        <button ion-button block icon-left (click)="uploadImage()" [disabled]="lastImage === null">
-=======
-<<<<<<< HEAD
-    <img *ngIf="id[0].icon" [hidden]="lastImage != null" class="profile-image-wrapper" src="http://localhost/upload/{{id[0].icon}}" style="width: 100%">
-=======
-    <img *ngIf="id[0].icon" [hidden]="lastImage != null" class="profile-image-wrapper" src="http://localhost/upload/{{id[0].icon}}" style="width: 100%">
->>>>>>> dc175a0cd95610fd4fc9bbeab3bfb7bb02a323c6
+    <img *ngIf="id[0].icon" [hidden]="lastImage != null" class="profile-image-wrapper" src="http://192.168.43.95/upload/{{id[0].icon}}" style="width: 100%">
+    <img *ngIf="id[0].icon" [hidden]="lastImage != null" class="profile-image-wrapper" src="http://192.168.43.95/upload/{{id[0].icon}}" style="width: 100%">
     <button ion-button block icon-left (click)="uploadImage()" [disabled]="lastImage === null">
->>>>>>> d1d3327a3859693a289f9a5bc54b761e0f8aca48
+
         <ion-icon name="cloud-upload"></ion-icon>Upload
     </button>
-        <form [formGroup]="myForm" (ngSubmit)="logForm()">
+    <form [formGroup]="myForm" (ngSubmit)="logForm()">
 
-            <ion-item>
-                <ion-label color="primary" floating>Titlu</ion-label>
-                <ion-input *ngIf="!id[0].title" formControlName="title"></ion-input>
-                <ion-input *ngIf="id[0].title" value="{{id[0].title}}" formControlName="title"></ion-input>
-            </ion-item>
-            <ion-item>
+        <ion-item>
+            <ion-label color="primary" floating>Titlu</ion-label>
+            <ion-input *ngIf="!id[0].title" formControlName="title"></ion-input>
+            <ion-input *ngIf="id[0].title" value="{{id[0].title}}" formControlName="title"></ion-input>
+        </ion-item>
+        <ion-item>
 
-                <ion-label color="primary" floating>Continut</ion-label>
-                <ion-textarea *ngIf="!id[0].text" mode="ios" rows="6" cols="10" white-space: pre-wrap lineHeight="22" formControlName="text" type="text"></ion-textarea>
-                <ion-textarea *ngIf="id[0].text" value="{{id[0].text}}" mode="ios" rows="6" cols="10" white-space: pre-wrap lineHeight="22" formControlName="text" type="text"></ion-textarea>
-
-
+            <ion-label color="primary" floating>Continut</ion-label>
+            <ion-textarea *ngIf="!id[0].text" mode="ios" rows="6" cols="10" white-space: pre-wrap lineHeight="22" formControlName="text" type="text"></ion-textarea>
+            <ion-textarea *ngIf="id[0].text" value="{{id[0].text}}" mode="ios" rows="6" cols="10" white-space: pre-wrap lineHeight="22" formControlName="text" type="text"></ion-textarea>
 
 
-            </ion-item>
 
-            <button *ngIf="idd" ion-button block (click)="navigateToSecondPage()" [disabled]="lastImage === null && !myForm._value.title && !myForm._value.text ">Finish</button>
-            <button *ngIf="id && !idd" ion-button block (click)="navigateToSecondPage()">Finish</button>
-        </form>
+
+        </ion-item>
+
+        <button *ngIf="idd" ion-button block (click)="navigateToSecondPage()" [disabled]="lastImage === null && !myForm._value.title && !myForm._value.text ">Finish</button>
+        <button *ngIf="id && !idd" ion-button block (click)="navigateToSecondPage()">Finish</button>
+    </form>
 
 
 </ion-content>
