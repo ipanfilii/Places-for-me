@@ -11,25 +11,30 @@
 <ion-content no-padding fullscreen>
     <ion-row class="header">
         <ion-col style="max-width: 200px; max-height: 200px;" width-40>
-            <img src="http://atestate-inf.tk/ghidtest/profilelogo.png" />
+            <div *ngIf="userData.photo == null">
+                <img src="http://atestate-inf.tk/ghidtest/profilelogo.png" />
+            </div>
+            <div *ngIf="userData.photo">
+                <img src="http://192.168.43.95/uploadphoto/{{userData.photo}}" />
+            </div>
         </ion-col>
-       <ion-col width-60 class="button-container">
-        <button full round icon-only ion-button  icon-left (click)="changeEmail($event)">
+        <ion-col width-60 class="button-container">
+            <button full round icon-only ion-button icon-left (click)="changeEmail($event)">
             <ion-icon name="mail"></ion-icon>
         </button>
-        <button full round icon-only ion-button  icon-right (click)="changePassword($event)" >
+            <button full round icon-only ion-button icon-right (click)="changePassword($event)">
           <ion-icon name="key"></ion-icon>
         </button>
-         <button full round icon-only ion-button  icon-left>
+            <button full round icon-only ion-button icon-left (click)="changePhotoProfile($event)">
           <ion-icon name="cog"></ion-icon>
         </button>
-    </ion-col>
+        </ion-col>
     </ion-row>
 
     <div style="font-size:12 px;" text-capitalize>
         <ion-segment [(ngModel)]="profil">
 
-            <ion-segment-button style="font-size:12 px;"  value="locatii">
+            <ion-segment-button style="font-size:12 px;" value="locatii">
                 Locations
             </ion-segment-button>
 
@@ -70,36 +75,32 @@
       <h2>Locatii</h2>-->
         </ion-list>
         <ion-list *ngSwitchCase="'informatii'">
- <ion-refresher (ionRefresh)="doRefresh($event)">   
-         <ion-refresher-content
-           pullingIcon = "arrow-dropdown"
-           pullingText = "Pull to refresh"
-           refreshingSpinner = "circles"
-           refreshingText="Refreshing..."  >
-         </ion-refresher-content>               
-  </ion-refresher>
-  <!--<ion-buttons>
+            <ion-refresher (ionRefresh)="doRefresh($event)">
+                <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+                </ion-refresher-content>
+            </ion-refresher>
+            <!--<ion-buttons>
   <button ion-button full (click)="addNewEvent()" >Add new  <ion-icon name="add"></ion-icon></button>
   </ion-buttons>-->
-  <ion-list  *ngFor="let post of posts">
-    <ion-card fullscreen >
-  <ion-item >
-        <ion-avatar item-left>
-          <img src="http://placehold.it/200x200"   />
-        </ion-avatar>
-        <h2 style="white-space: pre-line;" text-wrap> lloc</h2>
-        <p>{{post.data}} </p>
-  </ion-item>
-    <ion-card-content>
+            <ion-list *ngFor="let post of posts">
+                <ion-card fullscreen>
+                    <ion-item>
+                        <ion-avatar item-left>
+                            <img src="http://placehold.it/200x200" />
+                        </ion-avatar>
+                        <h2 style="white-space: pre-line;" text-wrap> lloc</h2>
+                        <p>{{post.data}} </p>
+                    </ion-item>
+                    <ion-card-content>
 
-  <img  *ngIf="post.icon" src="http://192.168.43.95/upload/{{post.icon}}"  />
-       <br>
-       <h1  style="white-space: pre-line;" text-wrap  >{{post.title}}</h1>
-       <br>
-      <p padding-horizontal text-justify style="white-space: pre-line;" text-wrap  [innerHTML]="post.text">
-      </p>
-      </ion-card-content>
-     <!--<ion-row >
+                        <img *ngIf="post.icon" src="http://192.168.43.95/upload/{{post.icon}}" />
+                        <br>
+                        <h1 style="white-space: pre-line;" text-wrap>{{post.title}}</h1>
+                        <br>
+                        <p padding-horizontal text-justify style="white-space: pre-line;" text-wrap [innerHTML]="post.text">
+                        </p>
+                    </ion-card-content>
+                    <!--<ion-row >
       <ion-col tappable *ngIf="info.facultate == dataTabs.message.note && info.right == 1" (click)="presentProfileModal(post)"  width-50 text-left>
         <button  ion-button outline full clear icon-left text-capitalize>
           <ion-icon name='create'></ion-icon>
@@ -119,8 +120,8 @@
         </button>
       </ion-col>
      </ion-row>-->
-    </ion-card>
-    </ion-list>
+                </ion-card>
+            </ion-list>
 
 
         </ion-list>

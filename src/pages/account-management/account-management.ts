@@ -23,6 +23,7 @@ public user: any;
   public myRoute: any = [];
   public zi: any = [];
   public oneDay: any;
+  public userData: any = [];
   public dataUser: Array<{user: string, image: string, showDetails: boolean, grupa:number, icon:string, zi:any[]}> = [];
   constructor(public navCtrl: NavController, 
               public http: Http,
@@ -30,6 +31,11 @@ public user: any;
               private platform: Platform,   
               private modalCtrl: ModalController,
               private toastCtrl: ToastController) {
+                this.http.get('http://192.168.43.95/login.php?user='+this.user).map(res => res.json()).subscribe(data => {
+
+        this.userData = data;
+        // localStorage.setItem('user', this.userData.username);
+      });
                   this.http.get('http://192.168.43.95/getdata.php').map(res => res.json()).subscribe(data => {
         this.posts = data;
         localStorage.removeItem('upt');
@@ -48,6 +54,10 @@ public user: any;
         
     } 
 
+    changePhotoProfile(ev)
+    {
+      this.navCtrl.push('EditProfile')
+    }
   ionViewCanEnter() {
      
     this.user = localStorage.getItem('user');

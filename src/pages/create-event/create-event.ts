@@ -125,6 +125,7 @@ console.log(this.myForm)
       }
 
       this.http.post('http://192.168.43.95/edit.php',JSON.stringify(this.postParamss),options)
+
  .subscribe(data=>{
         console.log(data);
       },error=>{
