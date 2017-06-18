@@ -52,7 +52,7 @@ this.user = localStorage.getItem('user')
   }
  
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LigaacPage');
+    console.log('ionViewDidLoadsss LigaacPage');
   }
 navigateToSecondPage() {
     this.navCtrl.pop();
