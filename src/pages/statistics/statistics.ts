@@ -49,7 +49,7 @@ export class Statistics {
             data: {
                 labels: this.roomNameData,
                 datasets: [{
-                    label: '# of Votes',
+                    label: 'number of rooms',
                     data: this.reservationsNumber ,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
@@ -105,7 +105,7 @@ export class Statistics {
             data: {
                 labels: this.hotelNameData,
                 datasets: [{
-                    label: '# of Votes',
+                    label: 'number of reservations',
                     data: this.reservationsNumberHotels,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',

@@ -78,7 +78,7 @@ export class CreateEvent {
         insertimage:localStorage.getItem('upt'),
         facultate:"7aeefe1e5c85135b458e15e1622b3de6c5f0f0b4" // place id 
       }
-      this.http.post('http://localhost/insert.php',JSON.stringify(postParams),options).map(res => res.json())
+      this.http.post('http://192.168.43.95/insert.php',JSON.stringify(postParams),options).map(res => res.json())
       .subscribe(data=>{
         console.log(data);
       },error=>{
