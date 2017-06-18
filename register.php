@@ -10,7 +10,7 @@
     //getting the input
     $postdata = file_get_contents("php://input");
 
-    $db = new mysqli('192.168.43.95', 'root', '' );
+    $db = new mysqli('localhost', 'root', '' );
 
     //verify connection
     if($db->connect_errno > 0){   

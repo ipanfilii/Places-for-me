@@ -5,12 +5,7 @@ import { FormBuilder } from '@angular/forms';
 import { Http, Headers, RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/map';
-/**
- * Generated class for the Addrooms page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+
 @IonicPage()
 @Component({
   selector: 'page-addrooms',
