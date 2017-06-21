@@ -41,7 +41,7 @@ if(this.changePasswordForm._value.current_password === this.changePasswordForm._
      user: this.navParams.get('user')
     
 }
-      this.http.post('http://192.168.43.95/change_password.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
+      this.http.post('http://hainedefirmasj.com/placesforme//change_password.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
       this.changePasswordData = data;
       console.log(this.changePasswordData);
       alert('Password was succesfully modified');

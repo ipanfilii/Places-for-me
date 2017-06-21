@@ -69,7 +69,7 @@ export class Login {
     }
       loader.present();
 
-      this.http.post('http://192.168.43.95/login.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
+      this.http.post('http://hainedefirmasj.com/placesforme//login.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
       this.dataUser = data;
 
       console.log(this.dataUser.username)
@@ -90,7 +90,7 @@ export class Login {
          loader.dismiss();
         localStorage.setItem('user',this.dataUser.username)
         localStorage.setItem('hotel', JSON.stringify(this.dataUser))
-        this.navCtrl.setRoot('AdminAfterLogin',{admin:this.dataUser});
+        this.navCtrl.setRoot('AccountManagement',{admin:this.dataUser});
        } else {
         loader.dismiss();
         loginFail.present(); // if login fail show a message error

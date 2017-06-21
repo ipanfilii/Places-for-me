@@ -9,13 +9,13 @@
 </ion-header>
 
 <ion-content no-padding fullscreen>
-    <ion-row class="header">
-        <ion-col style="max-width: 200px; max-height: 200px;" width-40>
+    <ion-row  *ngIf="userData.right == 0" class="header">
+        <ion-col style="max-width: 200px; max-height: 10px;" width-40>
             <div *ngIf="userData.photo == null">
                 <img src="http://atestate-inf.tk/ghidtest/profilelogo.png" />
             </div>
             <div *ngIf="userData.photo">
-                <img src="http://192.168.43.95/uploadphoto/{{userData.photo}}" />
+                <img style="max-width: 220px; max-height: 150px; margin-left:30px;" src="http://hainedefirmasj.com/placesforme//uploadphoto/{{userData.photo}}.jpg" />
             </div>
         </ion-col>
         <ion-col width-60 class="button-container">
@@ -31,105 +31,134 @@
         </ion-col>
     </ion-row>
 
-    <div style="font-size:12 px;" text-capitalize>
+        <ion-row *ngIf="userData.right == 1" class="header">
+        <ion-col style="max-width: 200px; max-height: 180px;" width-40>
+            <div *ngIf="userData.photo == ''">
+                <img src="http://atestate-inf.tk/ghidtest/profilelogo.png" />
+            </div>
+            <div *ngIf="userData.photo">
+                <img style="max-width: 220px; max-height: 180px; margin-left:30px;" src="http://hainedefirmasj.com/placesforme//uploadphoto/{{userData.photo}}.jpg" />
+            </div>
+        </ion-col>
+        <ion-col width-60 class="button-container">
+            <button full round icon-only ion-button icon-left (click)="changeEmail($event)">
+            <ion-icon name="mail"></ion-icon>
+        </button>
+            <button full round icon-only ion-button icon-right (click)="changePassword($event)">
+          <ion-icon name="key"></ion-icon>
+        </button>
+            <button full round icon-only ion-button icon-left (click)="changePhotoProfile($event)">
+          <ion-icon name="cog"></ion-icon>
+        </button>
+            <button full round icon-only ion-button icon-left (click)="administration($event)">
+                <ion-icon name="construct"></ion-icon>
+          <!--<ion-icon name="cog"></ion-icon>-->
+        </button>
+        </ion-col>
+    </ion-row>
+    <div *ngIf="userData.right == 0"  style="font-size:12 px;" text-capitalize>
         <ion-segment [(ngModel)]="profil">
-
-            <ion-segment-button style="font-size:12 px;" value="locatii">
-                Locations
-            </ion-segment-button>
-
             <ion-segment-button value="informatii">
-                Timeline
+              Timeline
             </ion-segment-button>
-            <ion-segment-button value="event">
-                Add event
+            <ion-segment-button    style="font-size:12 px;" value="locatii">
+                Location
+            </ion-segment-button>
+       
+        </ion-segment>
+    </div>
+ <div *ngIf="userData.right == 1"  style="font-size:12 px;" text-capitalize>
+        <ion-segment [(ngModel)]="profil">
+            <ion-segment-button value="informatii">
+              Timeline
+            </ion-segment-button>
+            <ion-segment-button  style="font-size:12 px;" value="rooms">
+                Rooms Management
             </ion-segment-button>
         </ion-segment>
     </div>
-
     <div style="font-size:12 px;" text-capitalize no-padding [ngSwitch]="profil">
 
 
-        <ion-list *ngSwitchCase="'locatii'">
-            <ion-list *ngFor="let data of myRoute">
-                <ion-card>
-                    <ion-grid>
-                        <ion-row>
-                            <ion-col>
-                                <h2> {{data.location}} </h2>
-                            </ion-col>
-                        </ion-row>
-                        <ion-row>
-                            <ion-col col-11>
-                                <p> {{data.address}} </p>
-                            </ion-col>
-                            <ion-col col-1>
-                                <ion-icon tappable (click)="createRoute(data)" color="secondary" item-right name="navigate"> </ion-icon>
-                            </ion-col>
-                        </ion-row>
-                    </ion-grid>
-                </ion-card>
+            <ion-list *ngSwitchCase="'locatii'">
+                    <ion-list *ngFor="let data of myRoute">
+                            <ion-card>
+                                    <ion-grid>
+                                        <ion-row>
+                                            <ion-col>
+                                                  <h2> {{data.location}} </h2>
+                                            </ion-col>
+                                            </ion-row>
+                                        <ion-row>
+                                            <ion-col col-11>
+                                                 <p> {{data.address}} </p>
+                                            </ion-col>
+                                            <ion-col col-1>
+                                                     <ion-icon tappable (click)="createRoute(data)" color="secondary" item-right name="navigate"> </ion-icon>
+                                            </ion-col>
+                                        </ion-row>
+                                    </ion-grid>
+                            </ion-card>
+                    </ion-list>
             </ion-list>
-            <!--<ion-thumbnail item-left>
-      </ion-thumbnail>
-      <h2>Locatii</h2>-->
-        </ion-list>
-        <ion-list *ngSwitchCase="'informatii'">
-            <ion-refresher (ionRefresh)="doRefresh($event)">
-                <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
-                </ion-refresher-content>
-            </ion-refresher>
-            <!--<ion-buttons>
-  <button ion-button full (click)="addNewEvent()" >Add new  <ion-icon name="add"></ion-icon></button>
-  </ion-buttons>-->
-            <ion-list *ngFor="let post of posts">
-                <ion-card fullscreen>
-                    <ion-item>
-                        <ion-avatar item-left>
-                            <img src="http://placehold.it/200x200" />
-                        </ion-avatar>
-                        <h2 style="white-space: pre-line;" text-wrap> lloc</h2>
-                        <p>{{post.data}} </p>
-                    </ion-item>
-                    <ion-card-content>
+            <ion-list *ngSwitchCase="'informatii'">
+                    <ion-refresher (ionRefresh)="doRefresh($event)">
+                        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">    </ion-refresher-content>
+                    </ion-refresher>
+                    <button *ngIf="userData.right == 1" ion-button full (click)="addNewEvent()">Add new event <ion-icon name="add"></ion-icon></button>
+                    <!--<ion-buttons>
+                    <button ion-button full (click)="addNewEvent()" >Add new  <ion-icon name="add"></ion-icon></button>
+                    </ion-buttons>-->
+                    <ion-list *ngFor="let post of posts">
+                            <ion-card fullscreen>
+                                    <ion-item>
+                                    <ion-avatar item-left>
+                                    <img src="http://placehold.it/200x200" />
+                                    </ion-avatar>
+                                    <h2 style="white-space: pre-line;" text-wrap> {{post.facultate}}</h2>
+                                    <p>{{post.data}} </p>
+                                    </ion-item>
+                                    <ion-card-content>
 
-                        <img *ngIf="post.icon" src="http://192.168.43.95/upload/{{post.icon}}" />
-                        <br>
-                        <h1 style="white-space: pre-line;" text-wrap>{{post.title}}</h1>
-                        <br>
-                        <p padding-horizontal text-justify style="white-space: pre-line;" text-wrap [innerHTML]="post.text">
-                        </p>
-                    </ion-card-content>
-                    <!--<ion-row >
-      <ion-col tappable *ngIf="info.facultate == dataTabs.message.note && info.right == 1" (click)="presentProfileModal(post)"  width-50 text-left>
-        <button  ion-button outline full clear icon-left text-capitalize>
-          <ion-icon name='create'></ion-icon>
-          Edit 
-        </button>
-      </ion-col>
-      <ion-col tappable *ngIf="info.facultate == dataTabs.message.note && info.right == 1" (click)="deleteProfil(post.id)" width-50  text-center>
-        <button ion-button  outline full clear icon-left text-capitalize>
-          <ion-icon  name="close-circle"></ion-icon>
-          Remove 
-        </button>
-      </ion-col>
-       <ion-col tappable *ngIf="info.facultate == dataTabs.message.note && info.right == 0" text-center>
-        <button text-capitalize ion-button clear small color="secondary" icon-left>
-          <ion-icon name='share-alt' ></ion-icon>
-          Share
-        </button>
-      </ion-col>
-     </ion-row>-->
-                </ion-card>
+                                    <img *ngIf="post.icon" src="http://hainedefirmasj.com/placesforme//upload/{{post.icon}}" />
+                                    <br>
+                                    <h1 style="white-space: pre-line;" text-wrap>{{post.title}}</h1>
+                                    <br>
+                                    <p padding-horizontal text-justify style="white-space: pre-line;" text-wrap [innerHTML]="post.text">
+                                    </p>
+                                    </ion-card-content>
+                                    <!--<ion-row >
+                                    <ion-col tappable *ngIf="info.facultate == dataTabs.message.note && info.right == 1" (click)="presentProfileModal(post)"  width-50 text-left>
+                                    <button  ion-button outline full clear icon-left text-capitalize>
+                                    <ion-icon name='create'></ion-icon>
+                                    Edit 
+                                    </button>
+                                    </ion-col>
+                                    <ion-col tappable *ngIf="info.facultate == dataTabs.message.note && info.right == 1" (click)="deleteProfil(post.id)" width-50  text-center>
+                                    <button ion-button  outline full clear icon-left text-capitalize>
+                                    <ion-icon  name="close-circle"></ion-icon>
+                                    Remove 
+                                    </button>
+                                    </ion-col>
+                                    <ion-col tappable *ngIf="info.facultate == dataTabs.message.note && info.right == 0" text-center>
+                                    <button text-capitalize ion-button clear small color="secondary" icon-left>
+                                    <ion-icon name='share-alt' ></ion-icon>
+                                    Share
+                                    </button>
+                                    </ion-col>
+                            </ion-row>-->
+                            </ion-card>
+                    </ion-list>
             </ion-list>
-
-
-        </ion-list>
-        <ion-list *ngSwitchCase="'event'">
-            <button ion-button full (click)="addNewEvent()">Add new  <ion-icon name="add"></ion-icon></button>
-        </ion-list>
-        <img *ngIf="!profil" src='http://atestate-inf.tk/ghidtest/upt.png'>
-        <img *ngIf="!profil" src='http://atestate-inf.tk/ghidtest/ligalogo.jpg'>
-
+             <ion-list *ngSwitchCase="'rooms'">
+                    <ion-list *ngFor="let post of freeRooms">
+                        <ion-card>
+                            <ion-card-content>
+                                <ion-card-header> Number: {{post.number}}  </ion-card-header>
+                                <img src="/assets/camera-hotel.jpg" />
+                           </ion-card-content>
+                        </ion-card>
+                    </ion-list>
+            </ion-list>
     </div>
 </ion-content>

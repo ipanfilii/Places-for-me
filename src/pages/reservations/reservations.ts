@@ -12,36 +12,36 @@ import { RoomReservationService } from "../../providers/reservations_service";
   selector: 'page-reservations',
   templateUrl: 'reservations.html',
 })
-export class Reservations {
+export class Reservations 
+{
 
    private logedUser: string = '';
    public hotelsListData: any = [];
    public roomTypeData: any = [];
    public roomNumberData: any = [];
    public reservationForm: any;
-   //private hotelid: number;
    public hotelInfo: any = [];
-
   constructor(public navCtrl: NavController, public navParams: NavParams, private hotelsListService:HotelsListService,  public formBuilder: FormBuilder, 
-  private roomtypesservice: RoomTypesService, private roomNumberService: RoomNumberService, private roomReservationsService: RoomReservationService) {
-     this.logedUser = localStorage.getItem('user');
-     this.reservationForm = this.formBuilder.group({
+  private roomtypesservice: RoomTypesService, private roomNumberService: RoomNumberService, private roomReservationsService: RoomReservationService) 
+  {
+      this.logedUser = localStorage.getItem('user');
+      this.reservationForm = this.formBuilder.group({
                 user: [this.logedUser],
-             //   hotel: [], 
                 roomType: [],
                 startDate: [],
                 endDate: []
               });
-    this.hotelInfo = navParams.get('place');
-    console.log(this.hotelInfo);
+      this.hotelInfo = navParams.get('place');
+      console.log(this.hotelInfo);
   }
 
-  retrieveReservationData(){
-  //  console.log(this.reservationForm._value);
-    this.roomReservationsService.retrieve_reservation_details(this.hotelInfo.id, this.reservationForm._value.roomType,
-    this.reservationForm._value.startDate,this.reservationForm._value.endDate).then((data) => {
-      this.navCtrl.push('ReservationList', {reservationList: data, formReservation: this.reservationForm._value, hotelId: this.hotelInfo.id});
-    })
+  retrieveReservationData()
+    {
+      console.log(this.reservationForm._value);
+        this.roomReservationsService.retrieve_reservation_details(this.hotelInfo.id, this.reservationForm._value.roomType,
+        this.reservationForm._value.startDate,this.reservationForm._value.endDate).then((data) => {
+        this.navCtrl.push('ReservationList', {reservationList: data, formReservation: this.reservationForm._value, hotelId: this.hotelInfo.id});
+        })
   }
 
   retrieveHotelsListData()
@@ -64,6 +64,7 @@ export class Reservations {
 
    this.roomNumberService.retrieve_room_numbers(this.hotelInfo.id).then((data)=>{
      this.roomNumberData = data;
+  
      console.log(this.roomNumberData);
    });
 

@@ -51,6 +51,7 @@ export class Reviews {
     public dataPlace: any = [];
     public directionDisplay: any;
     public directionService: any;
+    public showReviews: boolean = true;
     constructor(public navCtrl: NavController,
                 public alertCtrl: AlertController, 
                 public toastCtrl: ToastController,
@@ -117,6 +118,7 @@ let extraction_result = keyword_extractor.extract(sentence,{
     let successCallback = (isAvailable) => { if(!isAvailable) { this.loadSetGoogle(); }  };
     let errorCallback = (e) => console.log(e);
     this.diagnostic.isGpsLocationAvailable().then(successCallback).catch(errorCallback);
+       this.getlocation.startTracking();
   //  this.diagnostic.isGpsLocationEnabled().then(successCallback, errorCallback);
   }
 
@@ -129,7 +131,8 @@ let extraction_result = keyword_extractor.extract(sentence,{
             this.placesService = new google.maps.places.PlacesService(this.maps.map);
             this.searchDisabled = false;
             this.routeDisabled = false;
-           this.setMap()
+               this.getlocation.startTracking();
+          
         }); 
            
     }
@@ -139,6 +142,8 @@ let extraction_result = keyword_extractor.extract(sentence,{
     }
 
     public setMap() {
+         this.getlocation.startTracking();
+      this.showReviews=false;
       function  dothat(data) {
               alert(data)
             }
@@ -487,7 +492,7 @@ let extraction_result = keyword_extractor.extract(sentence,{
           handler: data => {
            if(data.title && this.dataPlace != []) {
               console.log(this.dataPlace)
-              this.http.get('http://192.168.43.95/sendData.php?user='+localStorage.getItem('user')
+              this.http.get('http://hainedefirmasj.com/placesforme//sendData.php?user='+localStorage.getItem('user')
                             +'&lat='+this.dataPlace.geometry.location.lat()
                             +'&lng='+this.dataPlace.geometry.location.lng()
                             +'&address='+this.dataPlace.vicinity
@@ -495,7 +500,7 @@ let extraction_result = keyword_extractor.extract(sentence,{
               map(res=>res.json()).
               subscribe(data);
             } else if( this.dataPlace != [] ) {
-              this.http.get('http://192.168.43.95/sendData.php?user='+localStorage.getItem('user')
+              this.http.get('http://hainedefirmasj.com/placesforme//sendData.php?user='+localStorage.getItem('user')
                             +'&lat='+this.dataPlace.geometry.location.lat()
                             +'&lng='+this.dataPlace.geometry.location.lng()
                             +'&address='+this.dataPlace.vicinity

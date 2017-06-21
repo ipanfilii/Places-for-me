@@ -40,7 +40,7 @@ export class ChangeEmail {
       future_mail:this.changeEmailForm._value.new_mail,
        user: this.navParams.get('user')
     }
-      this.http.post('http://192.168.43.95/change_email.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
+      this.http.post('http://hainedefirmasj.com/placesforme//change_email.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
       this.changeEmailData = data;
       console.log(this.changeEmailData);
       alert('E-mail was succesfully modified');

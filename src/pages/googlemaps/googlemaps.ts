@@ -6,6 +6,8 @@ import { Diagnostic } from '@ionic-native/diagnostic';
 import { Getlocation } from '../../providers/getlocation';
 import { Http } from '@angular/http';
 import { PopoverController } from 'ionic-angular';
+
+import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 declare var google;
 
 @IonicPage()
@@ -54,7 +56,8 @@ export class Googlemaps {
                 public geolocation: Geolocation, 
                 public getlocation: Getlocation,
                 public popoverCtrl: PopoverController,
-                public viewCtrl: ViewController) {
+                public viewCtrl: ViewController,
+                private launchNavigator:LaunchNavigator) {
 
         this.getlocation.startTracking();
         this.autocompleteItems = [];
@@ -111,7 +114,7 @@ export class Googlemaps {
             this.placesService = new google.maps.places.PlacesService(this.maps.map);
             this.searchDisabled = false;
             this.routeDisabled = false;
-           
+            this.setMap();
         }); 
            
     }
@@ -461,7 +464,7 @@ export class Googlemaps {
           handler: data => {
            if(data.title && this.dataPlace != []) {
               console.log(this.dataPlace)
-              this.http.get('http://192.168.43.95/sendData.php?user='+localStorage.getItem('user')
+              this.http.get('http://hainedefirmasj.com/placesforme//sendData.php?user='+localStorage.getItem('user')
                             +'&lat='+this.dataPlace.geometry.location.lat()
                             +'&lng='+this.dataPlace.geometry.location.lng()
                             +'&address='+this.dataPlace.vicinity
@@ -469,7 +472,7 @@ export class Googlemaps {
               map(res=>res.json()).
               subscribe(data);
             } else if( this.dataPlace != [] ) {
-              this.http.get('http://192.168.43.95/sendData.php?user='+localStorage.getItem('user')
+              this.http.get('http://hainedefirmasj.com/placesforme//sendData.php?user='+localStorage.getItem('user')
                             +'&lat='+this.dataPlace.geometry.location.lat()
                             +'&lng='+this.dataPlace.geometry.location.lng()
                             +'&address='+this.dataPlace.vicinity

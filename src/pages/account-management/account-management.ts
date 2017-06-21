@@ -17,10 +17,12 @@ import 'rxjs/add/operator/map';
 })
 export class AccountManagement {
    public posts: any;
+   public profil: string = "informatii";
 public user: any;
   public grupa: number;
   public dataXls: any = [];
   public myRoute: any = [];
+  public freeRooms: any = [];
   public zi: any = [];
   public oneDay: any;
   public userData: any = [];
@@ -31,12 +33,13 @@ public user: any;
               private platform: Platform,   
               private modalCtrl: ModalController,
               private toastCtrl: ToastController) {
-                this.http.get('http://192.168.43.95/login.php?user='+this.user).map(res => res.json()).subscribe(data => {
+                this.retrieveFreeRoomsForAdmin();
+                this.http.get('http://hainedefirmasj.com/placesforme/login.php?user='+localStorage.getItem('user')).map(res => res.json()).subscribe(data => {
 
         this.userData = data;
         // localStorage.setItem('user', this.userData.username);
       });
-                  this.http.get('http://192.168.43.95/getdata.php').map(res => res.json()).subscribe(data => {
+                  this.http.get('http://hainedefirmasj.com/placesforme/getdata.php').map(res => res.json()).subscribe(data => {
         this.posts = data;
         localStorage.removeItem('upt');
         
@@ -58,12 +61,15 @@ public user: any;
     {
       this.navCtrl.push('EditProfile')
     }
-  ionViewCanEnter() {
+    administration(ev) {
+      this.navCtrl.push('Addrooms');
+    }
+      ionViewCanEnter() {
      
     this.user = localStorage.getItem('user');
   
     if( this.user ) {
-      this.http.get('http://192.168.43.95/reqData.php?user='+this.user).map(res => res.json()).subscribe(data => {
+      this.http.get('http://hainedefirmasj.com/placesforme/reqData.php?user='+this.user).map(res => res.json()).subscribe(data => {
         this.myRoute = data;
         console.log(this.myRoute)
       });
@@ -112,8 +118,20 @@ public user: any;
 
  doRefresh(refresher) {
     localStorage.removeItem('upt');
-    this.http.get('http://192.168.43.95/getdata.php').map(res => res.json()).subscribe(data => {
+    this.http.get('http://hainedefirmasj.com/placesforme/getdata.php').map(res => res.json()).subscribe(data => {
       this.posts = data;
+      refresher.complete();
     });
  }
-}
+
+ retrieveFreeRoomsForAdmin()
+  {
+       this.user = localStorage.getItem('user');
+  
+    if( this.user ) {
+      this.http.get('http://hainedefirmasj.com/placesforme/retrieve_rooms.php?user='+this.user).map(res => res.json()).subscribe(data => {
+        this.freeRooms = data;
+        console.log(this.freeRooms)
+      });
+  }
+}}

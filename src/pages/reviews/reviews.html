@@ -11,15 +11,15 @@
 
 <ion-header>
     <ion-navbar style="height:40px !important;" color="primary">
-        <ion-buttons right>
+        <!--<ion-buttons right>
             <button ion-button (click)="changeTypeOfPlace()">Choose place</button>
-        </ion-buttons>
+        </ion-buttons>-->
         <ion-buttons right>
-            <button ion-button (click)="getlocation.startTracking()" (click)="setMap()">Locate mee</button>
+            <button ion-button (click)="getlocation.startTracking()" (click)="setMap()">Show reviews</button>
         </ion-buttons>
-        <ion-buttons right>
+        <!--<ion-buttons right>
             <button [disabled]="saveDisabled" ion-button (click)="save()">Save</button>
-        </ion-buttons>
+        </ion-buttons>-->
     </ion-navbar>
 
     <!--<ion-toolbar>
@@ -38,7 +38,9 @@
 </ion-header>
 
 <ion-content>
-
+<div *ngIf="showReviews">
+   <img style="margin-top:30%;" align-center src="http://www.broddickchiropractic.com/wp-content/uploads/2014/02/Broddick-Chiro-Google-Review.jpg"> 
+</div>
     <div #pleaseConnect id="please-connect">
         <p>Please connect to the Internet...</p>
     </div>
