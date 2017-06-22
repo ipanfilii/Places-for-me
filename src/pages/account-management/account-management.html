@@ -15,7 +15,7 @@
                 <img src="http://atestate-inf.tk/ghidtest/profilelogo.png" />
             </div>
             <div *ngIf="userData.photo">
-                <img style="max-width: 220px; max-height: 150px; margin-left:30px;" src="http://hainedefirmasj.com/placesforme//uploadphoto/{{userData.photo}}.jpg" />
+                <img style="max-width: 220px; max-height: 150px; margin-left:20px; margin-top:140px !important;" src="http://hainedefirmasj.com/placesforme//uploadphoto/{{userData.photo}}.jpg" />
             </div>
         </ion-col>
         <ion-col width-60 class="button-container">
@@ -32,25 +32,25 @@
     </ion-row>
 
         <ion-row *ngIf="userData.right == 1" class="header">
-        <ion-col style="max-width: 200px; max-height: 180px;" width-40>
+        <ion-col style="width: 150px; height: 150px;" >
             <div *ngIf="userData.photo == ''">
                 <img src="http://atestate-inf.tk/ghidtest/profilelogo.png" />
             </div>
             <div *ngIf="userData.photo">
-                <img style="max-width: 220px; max-height: 180px; margin-left:30px;" src="http://hainedefirmasj.com/placesforme//uploadphoto/{{userData.photo}}.jpg" />
+                <img style="width: 150px; height: 155px; margin-left:15px; margin-top:5px; " src="http://hainedefirmasj.com/placesforme//uploadphoto/{{userData.photo}}.jpg" />
             </div>
         </ion-col>
         <ion-col width-60 class="button-container">
-            <button full round icon-only ion-button icon-left (click)="changeEmail($event)">
+            <button full icon-only ion-button icon-left (click)="changeEmail($event)">
             <ion-icon name="mail"></ion-icon>
         </button>
-            <button full round icon-only ion-button icon-right (click)="changePassword($event)">
+            <button full icon-only ion-button icon-right (click)="changePassword($event)">
           <ion-icon name="key"></ion-icon>
         </button>
-            <button full round icon-only ion-button icon-left (click)="changePhotoProfile($event)">
+            <button full icon-only ion-button icon-left (click)="changePhotoProfile($event)">
           <ion-icon name="cog"></ion-icon>
         </button>
-            <button full round icon-only ion-button icon-left (click)="administration($event)">
+            <button full icon-only ion-button icon-left (click)="administration($event)">
                 <ion-icon name="construct"></ion-icon>
           <!--<ion-icon name="cog"></ion-icon>-->
         </button>
@@ -120,7 +120,7 @@
                                     </ion-item>
                                     <ion-card-content>
 
-                                    <img *ngIf="post.icon" src="http://hainedefirmasj.com/placesforme//upload/{{post.icon}}" />
+                                    <img style="width: 350px; height: 140px;" *ngIf="post.icon" src="http://hainedefirmasj.com/placesforme//upload/{{post.icon}}" />
                                     <br>
                                     <h1 style="white-space: pre-line;" text-wrap>{{post.title}}</h1>
                                     <br>

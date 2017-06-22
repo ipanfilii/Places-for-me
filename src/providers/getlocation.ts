@@ -58,22 +58,22 @@ export class Getlocation {
       timeout: 5000
     };
     this.geolocation.getCurrentPosition(options).then((position) => {
-        this.lat = position.coords.latitude;
-        this.lng = position.coords.longitude;
+     //   this.lat = position.coords.latitude;
+        //this.lng = position.coords.longitude;
     }).catch((error) => {
         console.log('Eroare: ' + error);
     });
 
-    this.watch = this.geolocation.watchPosition(options).filter((p: any) => p.coords !== undefined).subscribe((position: Geoposition) => {
+    // this.watch = this.geolocation.watchPosition(options).filter((p: any) => p.coords !== undefined).subscribe((position: Geoposition) => {
     
-      console.log(position);
-      // Run update inside of Angular's zone
-      this.zone.run(() => {
-        this.lat = position.coords.latitude;
-        this.lng = position.coords.longitude;
-      });
+    //   console.log(position);
+    //   // Run update inside of Angular's zone
+    //   this.zone.run(() => {
+    //     this.lat = position.coords.latitude;
+    //     this.lng = position.coords.longitude;
+    //   });
     
-    });
+    // });
  })
 
  
@@ -84,7 +84,7 @@ public stopTracking() {
   // alert('stopTracking');
  
   this.backgroundGeolocation.finish();
-  this.watch.unsubscribe();
+ // this.watch.unsubscribe();
  
 }
 

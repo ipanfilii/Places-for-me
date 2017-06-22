@@ -199,7 +199,7 @@ export class Googlemaps {
                         google.maps.event.addListener(marker, 'click', function() {
                         me.infoWindow.setContent(contentString);
                         me.googlePopUp(place);
-                        me.infoWindow.open(me.map, this);
+                       // me.infoWindow.open(me.map, this);
                         me.calculateAndDisplayRoute(me.directionDisplay, me.directionService, me.infoWindow, me.map, pointA, pointB);
                     
                         // this.http.get('http://atestate-inf.tk/ghidtest/date.php?user='+
@@ -410,28 +410,28 @@ export class Googlemaps {
     alert.addButton({
       text: 'OK',
       handler: data => {
-
+this.setMap()
         this.maps.init(this.mapElement.nativeElement, this.pleaseConnect.nativeElement).then(() => {
-            this.infoWindow =  new google.maps.InfoWindow;
+           // this.infoWindow =  new google.maps.InfoWindow;
             this.service = new google.maps.places.AutocompleteService();
             this.autocompleteService = new google.maps.places.AutocompleteService();
             this.placesService = new google.maps.places.PlacesService(this.maps.map);
             this.searchDisabled = false;
             this.routeDisabled = false;
-                this.typeOfPlace = false;
+                //this.typeOfPlace = false;
         this.typeOfPlace = data;
         console.log(data);
-        for(let i = 0; i < this.markerArray.length; i++) {
-          this.markerArray[i].setMap(null);
-        }
+        // for(let i = 0; i < this.markerArray.length; i++) {
+        //   this.markerArray[i].setMap(null);
+        // }
      //   this.directionsDisplay.setDirections(null);
-        this.marker.setMap(null);
+        //this.marker.setMap(null);
         this.setMap()
         console.log(this.typeOfPlace)
            
         }); 
       //  this.saveRoute = true;
-    
+    this.setMap()
       }
     });
     alert.present();
