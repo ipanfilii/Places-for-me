@@ -29,6 +29,7 @@
     "@ionic-native/geolocation": "^3.6.1",
     "@ionic-native/http": "^3.6.1",
     "@ionic-native/in-app-browser": "^3.8.1",
+    "@ionic-native/launch-navigator": "^3.12.1",
     "@ionic-native/native-storage": "^3.6.1",
     "@ionic-native/network": "^3.6.1",
     "@ionic-native/onesignal": "^3.10.3",

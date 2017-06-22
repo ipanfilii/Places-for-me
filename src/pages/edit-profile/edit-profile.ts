@@ -91,7 +91,7 @@ private createFileName() {
   n = d.getSeconds(),
   newFileName =  n + ".jpg";
   localStorage.setItem('upt',newFileName);
-   this.http.get('http://192.168.43.95/insert_photo.php?user='+this.user+'&img='+ n ).map(res => res.json()).subscribe(data => {
+   this.http.get('http://hainedefirmasj.com/placesforme//insert_photo.php?user='+this.user+'&img='+ n ).map(res => res.json()).subscribe(data => {
           this.posts = data;
          alert(this.posts)
         });
@@ -150,7 +150,7 @@ public pathForImage(img) {
 }
   public uploadImage() {
   // Destination URL
-  var url = "http://192.168.43.95/upload_photo.php";
+  var url = "http://hainedefirmasj.com/placesforme//upload_photo.php";
   // File for Upload
   var targetPath = this.pathForImage(this.lastImage);
 

@@ -30,7 +30,7 @@ export class Statistics {
   public showDetailsSingle: boolean = false;
   public showDetailsDouble: boolean = false
   constructor(public http: Http,public navCtrl: NavController, public navParams: NavParams, platform: Platform,private iab: InAppBrowser, private roomtypesservice: RoomTypesService,  public calendarCtrl: CalendarController){
- this.http.get('http://192.168.43.95/retrieve_statistics_Data.php').map(result => result.json()).subscribe(data => {
+ this.http.get('http://hainedefirmasj.com/placesforme//retrieve_statistics_Data.php').map(result => result.json()).subscribe(data => {
         this.roomStatisticsData = data;
                 console.log(this.roomStatisticsData.length)
         
@@ -85,7 +85,7 @@ export class Statistics {
 
     })
     
-     this.http.get('http://192.168.43.95/retrieve_statistics_hotelsData.php').map(result => result.json()).subscribe(data => {
+     this.http.get('http://hainedefirmasj.com/placesforme//retrieve_statistics_hotelsData.php').map(result => result.json()).subscribe(data => {
         this.hotelStatisticsData = data;
                 console.log(this.roomStatisticsData.length)
         

@@ -76,9 +76,9 @@ export class CreateEvent {
         inserttitle:this.myForm._value.title,
         inserttext:this.myForm._value.text,
         insertimage:localStorage.getItem('upt'),
-        facultate:"7aeefe1e5c85135b458e15e1622b3de6c5f0f0b4" // place id 
+        facultate:localStorage.getItem('user') // place id 
       }
-      this.http.post('http://192.168.43.95/insert.php',JSON.stringify(postParams),options).map(res => res.json())
+      this.http.post('http://hainedefirmasj.com/placesforme//insert.php',JSON.stringify(postParams),options).map(res => res.json())
       .subscribe(data=>{
         console.log(data);
       },error=>{
@@ -124,7 +124,7 @@ console.log(this.myForm)
         id:this.id[0].id
       }
 
-      this.http.post('http://192.168.43.95/edit.php',JSON.stringify(this.postParamss),options)
+      this.http.post('http://hainedefirmasj.com/placesforme//edit.php',JSON.stringify(this.postParamss),options)
 
  .subscribe(data=>{
         console.log(data);
@@ -242,7 +242,7 @@ public pathForImage(img) {
     this.id[0].icon = localStorage.getItem('upt');
  
   // Destination URL
-  var url = "http://192.168.43.95/upload.php";
+  var url = "http://hainedefirmasj.com/placesforme//upload.php";
  
   // File for Upload
   var targetPath = this.pathForImage(this.lastImage);

@@ -35,6 +35,7 @@ import { HotelsListService } from "../providers/hotels_list_service";
 import { RoomNumberService } from "../providers/room_number_service";
 import { RoomReservationService } from "../providers/reservations_service";
 import { InsertReservationService } from "../providers/insert_reservation_service";
+import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { InsertReservationService } from "../providers/insert_reservation_servic
     StatusBar,
     SplashScreen,
     Network,
+    LaunchNavigator,
     HTTP,
     NativeStorage,
     Auth,

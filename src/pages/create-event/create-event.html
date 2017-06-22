@@ -24,8 +24,8 @@
         </div>
     </div>
     <img *ngIf="id[0].icon" class="profile-image-wrapper" src="{{pathForImage(lastImage)}}" style="width: 100%" [hidden]="lastImage === null">
-    <img *ngIf="id[0].icon" [hidden]="lastImage != null" class="profile-image-wrapper" src="http://192.168.43.95/upload/{{id[0].icon}}" style="width: 100%">
-    <img *ngIf="id[0].icon" [hidden]="lastImage != null" class="profile-image-wrapper" src="http://192.168.43.95/upload/{{id[0].icon}}" style="width: 100%">
+    <img *ngIf="id[0].icon" [hidden]="lastImage != null" class="profile-image-wrapper" src="http://hainedefirmasj.com/placesforme//upload/{{id[0].icon}}" style="width: 100%">
+    <img *ngIf="id[0].icon" [hidden]="lastImage != null" class="profile-image-wrapper" src="http://hainedefirmasj.com/placesforme//upload/{{id[0].icon}}" style="width: 100%">
     <button ion-button block icon-left (click)="uploadImage()" [disabled]="lastImage === null">
 
         <ion-icon name="cloud-upload"></ion-icon>Upload

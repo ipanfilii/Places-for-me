@@ -37,31 +37,31 @@ export class MyApp {
       if( this.dataUser.success == true && this.dataUser.right == 0 ) {//daca e logare cu succes--->afterLogin
           this.rootPage = 'WelcomeAfterLogin';
           this.pages = [
-            { icon:'home', title: 'Home', component: "HomePage" },
-            { icon:'contact', title: 'Profilul meu', component: "Profile" },
-            { icon:'school', title: 'Facultati', component: "Facultati" },
-            { icon:'map', title: 'Harta Campusului', component: "Googlemaps" },
-            { icon:'log-in', title: 'Autentificare', component: "Login" },
-            { icon:'log-in', title: 'Iesire', component: "Logout" },
+            { icon:'home', title: 'Home', component: "WelcomeAfterLogin" },
+            { icon:'contact', title: 'My profile', component: "AccountManagement" },
+            // { icon:'school', title: 'Facultati', component: "Facultati" },
+            // { icon:'map', title: 'Harta Campusului', component: "Googlemaps" },
+            { icon:'log-in', title: 'Log in', component: "Login" },
+            { icon:'log-in', title: 'Log out', component: "Logout" },
           ];
       }  else  if( this.dataUser.success == true && this.dataUser.right == 1 ){///daca e guest
-          this.rootPage = 'AdminAfterLogin';
+          this.rootPage = 'WelcomeAfterLogin';
           this.pages = [
-            { icon:'home', title: 'Home', component: "HomePage" },
-            { icon:'contact', title: 'Profilul meu', component: "Profile" },
-            { icon:'school', title: 'Facultati', component: "Facultati" },     
-            { icon:'map', title: 'Harta Campusului', component: "Googlemaps" },
-            { icon:'log-in', title: 'Autentificare', component: "Login" },
-            { icon:'log-out', title: 'Iesire', component: "Logout" },
+           { icon:'home', title: 'Home', component: "WelcomeAfterLogin" },
+            { icon:'contact', title: 'My profile', component: "AccountManagement" },
+            // { icon:'school', title: 'Facultati', component: "Facultati" },
+            // { icon:'map', title: 'Harta Campusului', component: "Googlemaps" },
+            { icon:'log-in', title: 'Log in', component: "Login" },
+            { icon:'log-in', title: 'Log out', component: "Logout" },
           ];
       }
        this.pages = [
-            { icon:'home', title: 'Home', component: "HomePage" },
-            { icon:'contact', title: 'Profilul meu', component: "Profile" },
-            { icon:'school', title: 'Facultati', component: "Facultati" },
-            { icon:'map', title: 'Harta Campusului', component: "Googlemaps" },
-            { icon:'log-in', title: 'Autentificare', component: "Login" },
-            { icon:'log-in', title: 'Iesire', component: "Logout" },
+           { icon:'home', title: 'Home', component: "WelcomeAfterLogin" },
+            { icon:'contact', title: 'My profile', component: "AccountManagement" },
+            // { icon:'school', title: 'Facultati', component: "Facultati" },
+            // { icon:'map', title: 'Harta Campusului', component: "Googlemaps" },
+            { icon:'log-in', title: 'Log in', component: "Login" },
+            { icon:'log-in', title: 'Log out', component: "Logout" },
           ];
     })
 
@@ -102,12 +102,12 @@ export class MyApp {
 
     
   this.pages = [
-            { icon:'home', title: 'Home', component: "HomePage" },
-            { icon:'contact', title: 'Profilul meu', component: "Profile" },
-            { icon:'school', title: 'Facultati', component: "Facultati" },
-            { icon:'map', title: 'Harta Campusului', component: "Googlemaps" },
-            { icon:'log-in', title: 'Autentificare', component: "Login" },
-            { icon:'log-in', title: 'Iesire', component: "Logout" },
+           { icon:'home', title: 'Home', component: "WelcomeAfterLogin" },
+            { icon:'contact', title: 'My profile', component: "AccountManagement" },
+            // { icon:'school', title: 'Facultati', component: "Facultati" },
+            // { icon:'map', title: 'Harta Campusului', component: "Googlemaps" },
+            { icon:'log-in', title: 'Log in', component: "Login" },
+            { icon:'log-in', title: 'Log out', component: "Logout" },
           ];
 
   }

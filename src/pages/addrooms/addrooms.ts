@@ -3,7 +3,7 @@ import { NavParams } from 'ionic-angular';
 import { IonicPage, NavController, MenuController, Platform, ToastController, LoadingController } from 'ionic-angular';
 import { FormBuilder } from '@angular/forms';
 import { Http, Headers, RequestOptions } from '@angular/http';
-
+import { RoomTypesService } from "../../providers/room_types_service";
 import 'rxjs/add/operator/map';
 
 @IonicPage()
@@ -16,7 +16,10 @@ export class Addrooms {
   public newTypeForm: any;
   public existingTypeForm: any;
   public typeData: any;
+  public insertRoomData: any;
   right: number;
+   public roomTypeData: any = [];
+  public userData: any;
   public newTypeButtonClicked: boolean = false; //Whatever you want to initialise it as
   public existingTypeButtonClicked: boolean = false; 
 
@@ -25,6 +28,7 @@ export class Addrooms {
               public menuCtrl: MenuController,
               public navParams: NavParams,  
               public http: Http,
+              private roomtypesservice: RoomTypesService,
               private formBuilder: FormBuilder) {
                 console.log(JSON.parse(localStorage.getItem('hotel')))
      this.newTypeForm = this.formBuilder.group({
@@ -36,22 +40,25 @@ export class Addrooms {
         max_occupancy: [0],
         room_number:[0]
     });
-
+ 
 this.existingTypeForm = this.formBuilder.group({
 
-          name: [''],
-          surname: [''],
-          address: ['']
+          roomType: [''],
+          numar: [''],
         });
 
     this.right = navParams.get("right");
     console.log(this.right);
-  }
+     this.http.get('http://hainedefirmasj.com/placesforme/create_room_types.php?user='+localStorage.getItem('user')).map(res => res.json()).subscribe(data => {
 
+        this.userData = data; // tipuri camere
+        console.log(this.userData);
+         });
+              }
   public registerForm() {
 
     let registerFail = this.toastCtrl.create({
-      message: 'Failed',
+      message: 'Room type already exists',
       duration: 2500,
       position: 'top'
     });
@@ -72,9 +79,9 @@ this.existingTypeForm = this.formBuilder.group({
 
      }
       //loader.present();
-       this.http.post('http://192.168.43.95/room_type_sendData.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
+       this.http.post('http://hainedefirmasj.com/placesforme/room_type_sendData.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
       this.typeData = data;
-       console.log(this.typeData)
+      
       
       if(this.typeData.success)
        { 
@@ -92,12 +99,24 @@ this.existingTypeForm = this.formBuilder.group({
 
  onNewTypeButtonClick() {
 
-        this.newTypeButtonClicked = !this.newTypeButtonClicked;
+        //this.newTypeButtonClicked = !this.newTypeButtonClicked;
+
+        if(this.newTypeButtonClicked)
+          { 
+              this.newTypeButtonClicked=false;
+             this.existingTypeButtonClicked=false;
+           }
+        else if(this.newTypeButtonClicked==false)
+        {
+            this.newTypeButtonClicked=true;
+              this.existingTypeButtonClicked=false;
+        }
     }
 
  onExistingTypeButtonClick() {
 
         this.existingTypeButtonClicked = !this.existingTypeButtonClicked;
+        this.newTypeButtonClicked=false;
     }
 
   ionViewDidLoad() { }
@@ -107,5 +126,29 @@ this.existingTypeForm = this.formBuilder.group({
     this.menuCtrl.enable(true);
 
   }
- 
+
+   retrieveRoomTypesData(){
+   console.log(this.existingTypeForm._value)
+  }
+ registerFormExisting() {
+    let headers = new Headers();
+    headers.append("Accept",'application/json');
+    headers.append('Content-Type','application/json');
+    let options = new RequestOptions({headers:headers});
+
+     let postParams = {
+       hotel_id: this.existingTypeForm._value.roomType.id_hotel,
+       room_type: this.existingTypeForm._value.roomType.short_name,
+       room_number:this.existingTypeForm._value.numar,
+      // user: localStorage.getItem('user')
+
+     }
+
+   console.log(this.existingTypeForm._value)
+    this.http.post('http://hainedefirmasj.com/placesforme/insert_rooms.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data => {
+
+        this.insertRoomData = data; // tipuri camere
+      alert(this.insertRoomData);
+         });
+              }
 }

@@ -24,7 +24,7 @@ export class GoogleMaps {
     this.mapElement = mapElement;
     this.pleaseConnect = pleaseConnect;
 
-    return this.loadGoogleMaps();
+   return this.loadGoogleMaps();
 
   }
 
@@ -67,7 +67,7 @@ export class GoogleMaps {
           this.enableMap();
         }
         else {
-          this.disableMap();
+       //   this.disableMap();
         }
 
         resolve(true);
@@ -93,8 +93,12 @@ export class GoogleMaps {
 
     this.map = new google.maps.Map(this.mapElement, mapOptions);
     return new Promise((resolve) => {
-
-      this.geolocation.getCurrentPosition().then((position) => {
+    let options = {
+          frequency: 3000, 
+          enableHighAccuracy: true,
+          timeout: 1000
+        };
+      this.geolocation.getCurrentPosition(options).then((position) => {
         this.positionMap = position;
         console.log(this.positionMap)
         let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -106,11 +110,19 @@ export class GoogleMaps {
         }
 
         this.map = new google.maps.Map(this.mapElement, mapOptions);
-        resolve(true);
+       resolve(true);
 
       }).catch((err) => {
-          alert('Nu s-a putut face locatia')
-          resolve(false)
+     
+        let mapOptions = {
+          center: new google.maps.LatLng('45.748507', '21.239703'),
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+       
+
+        this.map = new google.maps.Map(this.mapElement, mapOptions);
+       resolve(true);
       });
 
     });
