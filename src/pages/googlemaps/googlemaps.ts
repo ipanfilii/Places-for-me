@@ -7,7 +7,7 @@ import { Getlocation } from '../../providers/getlocation';
 import { Http } from '@angular/http';
 import { PopoverController } from 'ionic-angular';
 
-import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
+// import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 declare var google;
 
 @IonicPage()
@@ -57,7 +57,8 @@ export class Googlemaps {
                 public getlocation: Getlocation,
                 public popoverCtrl: PopoverController,
                 public viewCtrl: ViewController,
-                private launchNavigator:LaunchNavigator) {
+              //  private launchNavigator:LaunchNavigator
+                ) {
 
         this.getlocation.startTracking();
         this.autocompleteItems = [];
@@ -114,7 +115,8 @@ export class Googlemaps {
             this.placesService = new google.maps.places.PlacesService(this.maps.map);
             this.searchDisabled = false;
             this.routeDisabled = false;
-            this.setMap();
+
+            //this.setMap();
         }); 
            
     }
@@ -155,14 +157,16 @@ export class Googlemaps {
             
             function callback(results, status) {
                 console.log(results.length)
-                if(status === google.maps.places.PlacesServiceStatus.OK) {
-                    for(let i = 0; i < results.length; i++) {
-                        let serviceDetails = new google.maps.places.PlacesService(me.map);
-                        serviceDetails.getDetails({
-                          placeId: results[i].place_id
-                        },createMarker);
-                    }
-                 }
+                if(results.length !== null)  {
+                    if(status === google.maps.places.PlacesServiceStatus.OK) {
+                      for(let i = 0; i < results.length; i++) {
+                          let serviceDetails = new google.maps.places.PlacesService(me.map);
+                          serviceDetails.getDetails({
+                            placeId: results[i].place_id
+                          },createMarker);
+                      }
+                  }
+                }
             }
 
           
@@ -197,10 +201,15 @@ export class Googlemaps {
                         // `<strong> Open now:</strong> `+place.opening_hours.open_now+ `<br>
                         // <strong> Rating: </strong>` +place.rating;
                         google.maps.event.addListener(marker, 'click', function() {
-                        me.infoWindow.setContent(contentString);
+                    //    me.infoWindow.setContent(contentString);
                         me.googlePopUp(place);
+<<<<<<< HEAD
                        // me.infoWindow.open(me.map, this);
                         me.calculateAndDisplayRoute(me.directionDisplay, me.directionService, me.infoWindow, me.map, pointA, pointB);
+=======
+                        me.infoWindow.open(me.map, this);
+                      //  me.calculateAndDisplayRoute(me.directionDisplay, me.directionService, me.infoWindow, me.map, pointA, pointB);
+>>>>>>> de692448885d4b101836b7eec36ce16ee650e56f
                     
                         // this.http.get('http://atestate-inf.tk/ghidtest/date.php?user='+
                         //  localStorage.getItem('user')+'&lat='+position.coords.latitude
@@ -214,7 +223,7 @@ export class Googlemaps {
                         me.marker.setMap(null)
                         me.marker = new google.maps.Marker({map: me.map, position:myLocation})
                         me.saveDisabled = false;
-                        me.calculateAndDisplayRoute(me.directionDisplay, me.directionService, me.infoWindow, me.map, pointA, pointB);
+                      //  me.calculateAndDisplayRoute(me.directionDisplay, me.directionService, me.infoWindow, me.map, pointA, pointB);
                         me.dataPlace = place;
                         })
                 }    
@@ -410,6 +419,7 @@ export class Googlemaps {
     alert.addButton({
       text: 'OK',
       handler: data => {
+<<<<<<< HEAD
 this.setMap()
         this.maps.init(this.mapElement.nativeElement, this.pleaseConnect.nativeElement).then(() => {
            // this.infoWindow =  new google.maps.InfoWindow;
@@ -419,17 +429,30 @@ this.setMap()
             this.searchDisabled = false;
             this.routeDisabled = false;
                 //this.typeOfPlace = false;
+=======
+
+>>>>>>> de692448885d4b101836b7eec36ce16ee650e56f
         this.typeOfPlace = data;
+        //  for(let i = 0; i < this.markerArray.length; i++) {
+        //   this.markerArray[i].setMap(null);
+        // }
+             //   this.typeOfPlace = false;
+        this.setMap()
+             
         console.log(data);
+<<<<<<< HEAD
         // for(let i = 0; i < this.markerArray.length; i++) {
         //   this.markerArray[i].setMap(null);
         // }
      //   this.directionsDisplay.setDirections(null);
         //this.marker.setMap(null);
         this.setMap()
+=======
+      
+     //   this.directionsDisplay.setDirections(null);
+>>>>>>> de692448885d4b101836b7eec36ce16ee650e56f
         console.log(this.typeOfPlace)
            
-        }); 
       //  this.saveRoute = true;
     this.setMap()
       }
