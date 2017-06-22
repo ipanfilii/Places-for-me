@@ -111,7 +111,7 @@ export class Googlemaps {
             this.placesService = new google.maps.places.PlacesService(this.maps.map);
             this.searchDisabled = false;
             this.routeDisabled = false;
-           
+            this.setMap()
         }); 
            
     }
@@ -415,14 +415,15 @@ export class Googlemaps {
             this.placesService = new google.maps.places.PlacesService(this.maps.map);
             this.searchDisabled = false;
             this.routeDisabled = false;
-                this.typeOfPlace = false;
+             //   this.typeOfPlace = false;
+        this.setMap()
+             
         this.typeOfPlace = data;
         console.log(data);
-        for(let i = 0; i < this.markerArray.length; i++) {
-          this.markerArray[i].setMap(null);
-        }
+        // for(let i = 0; i < this.markerArray.length; i++) {
+        //   this.markerArray[i].setMap(null);
+        // }
      //   this.directionsDisplay.setDirections(null);
-        this.marker.setMap(null);
         this.setMap()
         console.log(this.typeOfPlace)
            
