@@ -45,12 +45,13 @@ export class Statistics {
        console.log(this.reservationsNumber);
         this.barChart = new Chart(this.barCanvas.nativeElement, {
  
-            type: 'bar',
+            type: 'polarArea',
             data: {
                 labels: this.roomNameData,
                 datasets: [{
                     label: 'number of rooms',
-                    data: this.reservationsNumber ,
+                   // data: this.reservationsNumber ,
+                   data:[1,5,5,7,9,10,12,6,7,8,7,12],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',

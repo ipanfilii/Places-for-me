@@ -30,13 +30,14 @@ import { InAppBrowser } from 'ionic-native';
 import { OneSignal } from '@ionic-native/onesignal';
 import { RoomTypesService } from "../providers/room_types_service";
  
-import { CalendarModule } from "ion2-calendar";
+
 import { HotelsListService } from "../providers/hotels_list_service";
 import { RoomNumberService } from "../providers/room_number_service";
 import { RoomReservationService } from "../providers/reservations_service";
 import { InsertReservationService } from "../providers/insert_reservation_service";
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
-
+import { IonicImageViewerModule } from 'ionic-img-viewer';
+ 
 @NgModule({
   declarations: [
     MyApp,
@@ -45,7 +46,7 @@ import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-na
   imports: [
     BrowserModule,
     HttpModule,
-    CalendarModule,
+    IonicImageViewerModule,
     IonicModule.forRoot(MyApp, {
       backButtonText: 'back',
       iconMode: 'ios',
