@@ -49,6 +49,13 @@ chooseRegisterType() {
       
     });
 
+     alert.addInput({
+      type: 'radio',
+      label: 'Institutional user',
+      value: 'institutional',
+      
+    });
+
     alert.addButton('Cancel');
     alert.addButton({
       text: 'Okay',
@@ -63,6 +70,11 @@ chooseRegisterType() {
             {
               console.log(data);
               this.navCtrl.push("RegisterPage", {right:1});
+            }
+             else if(data=='institutional')
+            {
+              console.log(data);
+              this.navCtrl.push("RegisterPage", {right:2});
             }
        // this.testCheckboxOpen = false;
         //this.testCheckboxResult = data;
