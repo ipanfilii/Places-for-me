@@ -1,7 +1,7 @@
 <button *ngIf="place.website !== 'undefined'" text-capitalize full (click)="goToWebsite(place.website)" ion-button color="primary"> Go to website </button>
-<button text-capitalize full (click)="goToReservationsPage(place)" ion-button color="primary"> Make reservation </button>
-<button text-capitalize full (click)="followPlace(place)" ion-button color="primary"> Follow </button>
-<button text-capitalize full (click)="launchGoogleNavigator(place)" ion-button color="primary"> Launch NAvigator </button>
+<button text-capitalize *ngIf="place.types[0] == 'lodging'" full (click)="goToReservationsPage(place)" ion-button color="primary"> Make reservation </button>
+<button text-capitalize *ngIf="place.types[0] != 'lodging'" full (click)="followPlace(place)" ion-button color="primary"> Follow </button>
+<button text-capitalize full (click)="launchGoogleNavigator(place)" ion-button color="primary"> Launch Navigator </button>
 
 
 <ion-list>
@@ -24,8 +24,5 @@
     </ion-item>
     <ion-item *ngIf="place.rating">
         <p text-wrap style="white-space: normal;"> <strong> Rating:</strong> {{place.rating}} </p>
-    </ion-item>
-    <ion-item *ngIf="place.website">
-        <p text-wrap style="white-space: normal;"> <strong> Website:</strong> {{place.website}} </p>
     </ion-item>
 </ion-list>

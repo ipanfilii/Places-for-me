@@ -24,7 +24,9 @@ export class Googlepopover {
               public oneSignal: OneSignal) {
     console.log(navParams.get('place'))
     this.place = navParams.get('place')
+
     this.myLocation = navParams.get('myLocation');
+    console.log(this.myLocation)
 //    this.location = new google.maps.LatLng(this.place.geometry.location.lat(), this.place.geometry.location.lng())
   }
 
@@ -39,7 +41,7 @@ export class Googlepopover {
 
   public goToWebsite(placeWebsite: any) {
     //alert(this.place.website)
-     const browser = this.iab.create(placeWebsite,"location=no");
+     const browser = this.iab.create(placeWebsite, "location=no");
      browser.show();
   }
 
@@ -49,7 +51,7 @@ export class Googlepopover {
 
   launchGoogleNavigator(place) {
     let options: LaunchNavigatorOptions = {
-      start:  this.myLocation,
+      start: this.myLocation,
     };
 
 this.launchNavigator.navigate([this.place.geometry.location.lat(),this.place.geometry.location.lng()], options)

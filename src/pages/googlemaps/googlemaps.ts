@@ -177,30 +177,17 @@ export class Googlemaps {
                         //   console.log( place);
                         let pointB = new google.maps.LatLng(place.geometry.location.lat(), place.geometry.location.lng());
                         let pointA = new google.maps.LatLng(me.getlocation.lat, me.getlocation.lng);
-                        let marker = new google.maps.Marker({
-                            map:me.map,
-                            position: place.geometry.location,
-                            zIndex:99999999
-                        });
-                        me.markerArray.push(marker);
-                        //  console.log(place)
-                          console.log(place.website)
-                         
-                                 let contentString:string = `<img style="width:24px;height:24px;" src =`+place.icon+` /><br>
-                                <strong> Info : </strong> `+place.name+`<br>
-                                <strong> Address : </strong>`+place.vicinity+`<br>`+`
-                                <strong> Website : </strong> <a href=`+place.website +`> Link to website _  `+place.website +` </a> 
-                                
-                               <input type="button"  onClick=dothat(place.website) />
-                               
-                               `;
-
-             
-                        
-                        // <strong> Photos: <img src=`+ place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100})+`><br>`+
-                        // `<strong> Open now:</strong> `+place.opening_hours.open_now+ `<br>
-                        // <strong> Rating: </strong>` +place.rating;
-                        google.maps.event.addListener(marker, 'click', function() {
+                            let marker;
+                            if(place.rating !== undefined) {
+                                if(place.rating > 4 ) {
+                                  let marker = new google.maps.Marker({
+                                    map:me.map,
+                                    position: place.geometry.location,
+                                    zIndex:99999999,
+                                    icon:'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+                                  });
+                                  me.markerArray.push(marker);
+                                  google.maps.event.addListener(marker, 'click', function() {
                     //    me.infoWindow.setContent(contentString);
                         me.googlePopUp(place);
                     
@@ -219,6 +206,111 @@ export class Googlemaps {
                       //  me.calculateAndDisplayRoute(me.directionDisplay, me.directionService, me.infoWindow, me.map, pointA, pointB);
                         me.dataPlace = place;
                         })
+                                } else if(place.rating < 4 &&  place.rating  > 2 ) {
+                                      let marker = new google.maps.Marker({
+                                        map:me.map,
+                                        position: place.geometry.location,
+                                        zIndex:99999999,
+                                        icon:'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
+                                      });
+                                      me.markerArray.push(marker);
+                                      google.maps.event.addListener(marker, 'click', function() {
+                    //    me.infoWindow.setContent(contentString);
+                        me.googlePopUp(place);
+                    
+                        // this.http.get('http://atestate-inf.tk/ghidtest/date.php?user='+
+                        //  localStorage.getItem('user')+'&lat='+position.coords.latitude
+                        //  +'&lng='+position.coords.longitude
+                        //  +'&speed='+ position.coords.speed).map(res => res.json()).subscribe(data => { });
+                            // Run update inside of Angular's zone
+                            // 	this.zone.run(() => {
+                                // this.lat = position.coords.latitude;
+                            // 	this.lng = position.coords.longitude;
+                            // });
+                        me.marker.setMap(null)
+                        me.marker = new google.maps.Marker({map: me.map, position:myLocation})
+                        me.saveDisabled = false;
+                      //  me.calculateAndDisplayRoute(me.directionDisplay, me.directionService, me.infoWindow, me.map, pointA, pointB);
+                        me.dataPlace = place;
+                        })
+                                } else if(place.rating < 4 &&  place.rating  > 2 ) {
+                                      let marker = new google.maps.Marker({
+                                        map:me.map,
+                                        position: place.geometry.location,
+                                        zIndex:99999999,
+                                        icon:'http://maps.google.com/mapfiles/ms/icons/purple-dot.png'
+                                      });
+                                      me.markerArray.push(marker);
+                                      google.maps.event.addListener(marker, 'click', function() {
+                    //    me.infoWindow.setContent(contentString);
+                        me.googlePopUp(place);
+                    
+                        // this.http.get('http://atestate-inf.tk/ghidtest/date.php?user='+
+                        //  localStorage.getItem('user')+'&lat='+position.coords.latitude
+                        //  +'&lng='+position.coords.longitude
+                        //  +'&speed='+ position.coords.speed).map(res => res.json()).subscribe(data => { });
+                            // Run update inside of Angular's zone
+                            // 	this.zone.run(() => {
+                                // this.lat = position.coords.latitude;
+                            // 	this.lng = position.coords.longitude;
+                            // });
+                        me.marker.setMap(null)
+                        me.marker = new google.maps.Marker({map: me.map, position:myLocation})
+                        me.saveDisabled = false;
+                      //  me.calculateAndDisplayRoute(me.directionDisplay, me.directionService, me.infoWindow, me.map, pointA, pointB);
+                        me.dataPlace = place;
+                        })
+                                }
+                            } else {
+                               let marker = new google.maps.Marker({
+                                    map:me.map,
+                                    position: place.geometry.location,
+                                    zIndex:99999999,
+                                    icon:'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+                                  });
+                                  me.markerArray.push(marker);
+                                  google.maps.event.addListener(marker, 'click', function() {
+                    //    me.infoWindow.setContent(contentString);
+                        me.googlePopUp(place);
+                    
+                        // this.http.get('http://atestate-inf.tk/ghidtest/date.php?user='+
+                        //  localStorage.getItem('user')+'&lat='+position.coords.latitude
+                        //  +'&lng='+position.coords.longitude
+                        //  +'&speed='+ position.coords.speed).map(res => res.json()).subscribe(data => { });
+                            // Run update inside of Angular's zone
+                            // 	this.zone.run(() => {
+                                // this.lat = position.coords.latitude;
+                            // 	this.lng = position.coords.longitude;
+                            // });
+                        me.marker.setMap(null)
+                        me.marker = new google.maps.Marker({map: me.map, position:myLocation})
+                        me.saveDisabled = false;
+                      //  me.calculateAndDisplayRoute(me.directionDisplay, me.directionService, me.infoWindow, me.map, pointA, pointB);
+                        me.dataPlace = place;
+                        })
+                            }
+                      
+                        
+                        
+
+                        //  console.log(place)
+                          console.log(place.website)
+                         
+                                 let contentString:string = `<img style="width:24px;height:24px;" src =`+place.icon+` /><br>
+                                <strong> Info : </strong> `+place.name+`<br>
+                                <strong> Address : </strong>`+place.vicinity+`<br>`+`
+                                <strong> Website : </strong> <a href=`+place.website +`> Link to website _  `+place.website +` </a> 
+                                
+                               <input type="button"  onClick=dothat(place.website) />
+                               
+                               `;
+
+             
+                        
+                        // <strong> Photos: <img src=`+ place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100})+`><br>`+
+                        // `<strong> Open now:</strong> `+place.opening_hours.open_now+ `<br>
+                        // <strong> Rating: </strong>` +place.rating;
+                        
                 }    
        
             }
@@ -228,7 +320,7 @@ export class Googlemaps {
     }
 
     public googlePopUp(place) {
-        let popover = this.popoverCtrl.create('Googlepopover',{ place:place, myLocation:new google.maps.LatLng(this.getlocation.lat, this.getlocation.lng)  });
+        let popover = this.popoverCtrl.create('Googlepopover',{ place:place, myLocation:[this.getlocation.lat, this.getlocation.lng]  });
         popover.present();
     }
 
@@ -412,13 +504,11 @@ export class Googlemaps {
     alert.addButton({
       text: 'OK',
       handler: data => {
-
                 //this.typeOfPlace = false;
-
         this.typeOfPlace = data;
-        //  for(let i = 0; i < this.markerArray.length; i++) {
-        //   this.markerArray[i].setMap(null);
-        // }
+         for(let i = 0; i < this.markerArray.length; i++) {
+          this.markerArray[i].setMap(null);
+        }
              //   this.typeOfPlace = false;
         this.setMap()
              
@@ -427,7 +517,7 @@ export class Googlemaps {
         //   this.markerArray[i].setMap(null);
         // }
      //   this.directionsDisplay.setDirections(null);
-        //this.marker.setMap(null);
+        this.marker.setMap(null);
       
         console.log(this.typeOfPlace)
            
