@@ -11,9 +11,9 @@
 
 <ion-header>
     <ion-navbar style="height:40px !important;" color="primary">
-        <!--<ion-buttons right>
+        <ion-buttons right>
             <button ion-button (click)="changeTypeOfPlace()">Choose place</button>
-        </ion-buttons>-->
+        </ion-buttons>
         <ion-buttons right>
             <button ion-button (click)="getlocation.startTracking()" (click)="setMap()">Show reviews</button>
         </ion-buttons>
@@ -38,9 +38,9 @@
 </ion-header>
 
 <ion-content>
-<div *ngIf="showReviews">
-   <img style="margin-top:30%;" align-center src="http://www.broddickchiropractic.com/wp-content/uploads/2014/02/Broddick-Chiro-Google-Review.jpg"> 
-</div>
+    <div *ngIf="showReviews">
+        <img style="margin-top:30%;" align-center src="http://www.broddickchiropractic.com/wp-content/uploads/2014/02/Broddick-Chiro-Google-Review.jpg">
+    </div>
     <div #pleaseConnect id="please-connect">
         <p>Please connect to the Internet...</p>
     </div>
@@ -49,17 +49,32 @@
         <ion-spinner></ion-spinner>
     </div>
     <ion-list *ngFor="let place of listPlaces">
-        <ion-card>
+        <ion-card *ngIf="place.date.name != 'Timisoara'">
 
             <ion-card-header>
                 {{place.date.name}}
             </ion-card-header>
 
             <ion-card-content>
+                <ion-slides *ngIf="place.date.photos">
+                    <ion-slide *ngFor="let photo of place.date.photos">
+                        <img src="{{photo.getUrl({  maxWidth : 320})}}">
+                    </ion-slide>
+                </ion-slides>
+                <!--<ion-grid>
+                            <ion-row>
+                                <div *ngFor="let photo of place.date.photos">
+                                    <ion-col col-4>
+                                        <img src="{{photo.getUrl({  maxWidth : 100})}}">
+                                    </ion-col>
+                                </div>
+                            </ion-row>
+                        </ion-grid>-->
+                <p *ngFor="let review of place.cuvinte"><b>Autor:</b> {{review}}</p>
                 <ion-list *ngFor="let review of place.date.reviews">
                     <ion-item>
                         <p><b>Autor:</b> {{review.author_name}}</p>
-                        <p><b>Review:</b> {{review.text}}</p>
+                        <p text-wrap style="white-space: normal;"><b>Review:</b> {{review.text}}</p>
                     </ion-item>
                 </ion-list>
                 <!-- Add card content here! -->
