@@ -173,6 +173,7 @@ export class Googlemaps {
 
             function createMarker(place, status) {
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
+                  console.log(place)
                     let service = new google.maps.places.PlacesService(me.map);
                         //   console.log( place);
                         let pointB = new google.maps.LatLng(place.geometry.location.lat(), place.geometry.location.lng());

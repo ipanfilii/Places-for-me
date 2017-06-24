@@ -51,6 +51,9 @@ export class Reviews {
     public dataPlace: any = [];
     public directionDisplay: any;
     public directionService: any;
+    public mySlideOptions = {
+                              pager:true
+                            };    
     public showReviews: boolean = true;
     constructor(public navCtrl: NavController,
                 public alertCtrl: AlertController, 
@@ -63,6 +66,7 @@ export class Reviews {
                 public geolocation: Geolocation, 
                 public getlocation: Getlocation,
                 public popoverCtrl: PopoverController,
+                
                 public viewCtrl: ViewController) {
              let     sentence = "President Obama woke up Monday facing a Congressional defeat that many in both parties believed could hobble his presidency."
  
@@ -217,7 +221,7 @@ let extraction_result = keyword_extractor.extract(sentence,{
                         // `<strong> Open now:</strong> `+place.opening_hours.open_now+ `<br>
                         // <strong> Rating: </strong>` +place.rating;
                         console.log(place)
-                        me.listPlaces.push({date:place,cuvinte:keyword_extractor.extract('asdasd asda',{
+                        me.listPlaces.push({date:place,cuvinte:keyword_extractor.extract(place.reviews[0].text,{
                                                                 language:"english",
                                                                 remove_digits: true,
                                                                 return_changed_case:true,
