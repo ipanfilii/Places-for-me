@@ -55,36 +55,26 @@ export class Getlocation {
       let options = {
       frequency: 3000, 
       enableHighAccuracy: true,
-      timeout: 1000
+      timeout: 5000
     };
     this.geolocation.getCurrentPosition(options).then((position) => {
-     //   this.lat = position.coords.latitude;
-        //this.lng = position.coords.longitude;
+       this.lat = position.coords.latitude;
+        this.lng = position.coords.longitude;
     }).catch((error) => {
       this.lat = 45.748507;
       this.lng = 21.239703;
         console.log('Eroare: ' + error);
     });
 
-    // this.watch = this.geolocation.watchPosition(options).filter((p: any) => p.coords !== undefined).subscribe((position: Geoposition) => {
-    
-<<<<<<< HEAD
-    //   console.log(position);
-    //   // Run update inside of Angular's zone
-    //   this.zone.run(() => {
-    //     this.lat = position.coords.latitude;
-    //     this.lng = position.coords.longitude;
-    //   });
-=======
-      console.log(position);
+    this.watch = this.geolocation.watchPosition(options).filter((p: any) => p.coords !== undefined).subscribe((position: Geoposition) => {
+
       // Run update inside of Angular's zone
       this.zone.run(() => {
         this.lat = position.coords.latitude;
          this.lng = position.coords.longitude;
       });
->>>>>>> de692448885d4b101836b7eec36ce16ee650e56f
     
-    // });
+    });
  })
 
  
@@ -94,13 +84,7 @@ public stopTracking() {
  
   // alert('stopTracking');
  
-<<<<<<< HEAD
-  this.backgroundGeolocation.finish();
- // this.watch.unsubscribe();
-=======
-  // this.backgroundGeolocation.finish();
-  // this.watch.unsubscribe();
->>>>>>> de692448885d4b101836b7eec36ce16ee650e56f
+
  
 }
 

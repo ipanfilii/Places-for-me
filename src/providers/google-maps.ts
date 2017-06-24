@@ -96,7 +96,7 @@ export class GoogleMaps {
     let options = {
           frequency: 3000, 
           enableHighAccuracy: true,
-          timeout: 1000
+          timeout: 5000
         };
       this.geolocation.getCurrentPosition(options).then((position) => {
         this.positionMap = position;

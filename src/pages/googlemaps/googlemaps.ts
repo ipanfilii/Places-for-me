@@ -203,13 +203,6 @@ export class Googlemaps {
                         google.maps.event.addListener(marker, 'click', function() {
                     //    me.infoWindow.setContent(contentString);
                         me.googlePopUp(place);
-<<<<<<< HEAD
-                       // me.infoWindow.open(me.map, this);
-                        me.calculateAndDisplayRoute(me.directionDisplay, me.directionService, me.infoWindow, me.map, pointA, pointB);
-=======
-                        me.infoWindow.open(me.map, this);
-                      //  me.calculateAndDisplayRoute(me.directionDisplay, me.directionService, me.infoWindow, me.map, pointA, pointB);
->>>>>>> de692448885d4b101836b7eec36ce16ee650e56f
                     
                         // this.http.get('http://atestate-inf.tk/ghidtest/date.php?user='+
                         //  localStorage.getItem('user')+'&lat='+position.coords.latitude
@@ -235,7 +228,7 @@ export class Googlemaps {
     }
 
     public googlePopUp(place) {
-        let popover = this.popoverCtrl.create('Googlepopover',{ place:place });
+        let popover = this.popoverCtrl.create('Googlepopover',{ place:place, myLocation:new google.maps.LatLng(this.getlocation.lat, this.getlocation.lng)  });
         popover.present();
     }
 
@@ -419,19 +412,9 @@ export class Googlemaps {
     alert.addButton({
       text: 'OK',
       handler: data => {
-<<<<<<< HEAD
-this.setMap()
-        this.maps.init(this.mapElement.nativeElement, this.pleaseConnect.nativeElement).then(() => {
-           // this.infoWindow =  new google.maps.InfoWindow;
-            this.service = new google.maps.places.AutocompleteService();
-            this.autocompleteService = new google.maps.places.AutocompleteService();
-            this.placesService = new google.maps.places.PlacesService(this.maps.map);
-            this.searchDisabled = false;
-            this.routeDisabled = false;
-                //this.typeOfPlace = false;
-=======
 
->>>>>>> de692448885d4b101836b7eec36ce16ee650e56f
+                //this.typeOfPlace = false;
+
         this.typeOfPlace = data;
         //  for(let i = 0; i < this.markerArray.length; i++) {
         //   this.markerArray[i].setMap(null);
@@ -440,21 +423,15 @@ this.setMap()
         this.setMap()
              
         console.log(data);
-<<<<<<< HEAD
         // for(let i = 0; i < this.markerArray.length; i++) {
         //   this.markerArray[i].setMap(null);
         // }
      //   this.directionsDisplay.setDirections(null);
         //this.marker.setMap(null);
-        this.setMap()
-=======
       
-     //   this.directionsDisplay.setDirections(null);
->>>>>>> de692448885d4b101836b7eec36ce16ee650e56f
         console.log(this.typeOfPlace)
            
       //  this.saveRoute = true;
-    this.setMap()
       }
     });
     alert.present();

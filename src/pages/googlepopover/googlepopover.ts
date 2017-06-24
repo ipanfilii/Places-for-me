@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Http } from '@angular/http';
 import { OneSignal } from '@ionic-native/onesignal';
+import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 @IonicPage()
 @Component({
   selector: 'page-googlepopover',
@@ -12,14 +13,19 @@ import { OneSignal } from '@ionic-native/onesignal';
 export class Googlepopover {
   public place : any = [];
   public booli: boolean = false;
+  public myLocation: any;
   public userId: any = '';
+  public location: any;
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private iab: InAppBrowser,   
               public http: Http,
+              private launchNavigator: LaunchNavigator,
               public oneSignal: OneSignal) {
     console.log(navParams.get('place'))
     this.place = navParams.get('place')
+    this.myLocation = navParams.get('myLocation');
+//    this.location = new google.maps.LatLng(this.place.geometry.location.lat(), this.place.geometry.location.lng())
   }
 
   ionViewDidLoad() {
@@ -39,6 +45,18 @@ export class Googlepopover {
 
   goToReservationsPage(placeForReservation){
     this.navCtrl.push("Reservations", {place:placeForReservation});
+  }
+
+  launchGoogleNavigator(place) {
+    let options: LaunchNavigatorOptions = {
+      start:  this.myLocation,
+    };
+
+this.launchNavigator.navigate([this.place.geometry.location.lat(),this.place.geometry.location.lng()], options)
+  .then(
+    success => console.log('Launched navigator'),
+    error => alert('Error launching navigator' + error)
+  );
   }
 
   followPlace(place) {

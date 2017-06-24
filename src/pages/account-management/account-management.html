@@ -10,22 +10,22 @@
 
 <ion-content no-padding fullscreen>
     <ion-row  *ngIf="userData.right == 0" class="header">
-        <ion-col style="max-width: 200px; max-height: 10px;" width-40>
+        <ion-col style="width: 130px; height: 130px;">
             <div *ngIf="userData.photo == null">
                 <img src="http://atestate-inf.tk/ghidtest/profilelogo.png" />
             </div>
             <div *ngIf="userData.photo">
-                <img style="max-width: 220px; max-height: 150px; margin-left:20px; margin-top:140px !important;" src="http://hainedefirmasj.com/placesforme//uploadphoto/{{userData.photo}}.jpg" />
+                <img style="width: 130px; height: 125px; margin-left:20px; margin-top:5px; " src="http://hainedefirmasj.com/placesforme//uploadphoto/{{userData.photo}}.jpg" />
             </div>
         </ion-col>
         <ion-col width-60 class="button-container">
-            <button full round icon-only ion-button icon-left (click)="changeEmail($event)">
+            <button full  icon-only ion-button icon-left (click)="changeEmail($event)">
             <ion-icon name="mail"></ion-icon>
         </button>
-            <button full round icon-only ion-button icon-right (click)="changePassword($event)">
+            <button full  icon-only ion-button icon-right (click)="changePassword($event)">
           <ion-icon name="key"></ion-icon>
         </button>
-            <button full round icon-only ion-button icon-left (click)="changePhotoProfile($event)">
+            <button full  icon-only ion-button icon-left (click)="changePhotoProfile($event)">
           <ion-icon name="cog"></ion-icon>
         </button>
         </ion-col>
