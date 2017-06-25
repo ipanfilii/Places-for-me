@@ -37,8 +37,13 @@ import { RoomReservationService } from "../providers/reservations_service";
 import { InsertReservationService } from "../providers/insert_reservation_service";
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
+
 import { CalendarModule } from "ion2-calendar";
  
+
+ import { PhotoViewer } from '@ionic-native/photo-viewer';
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -47,15 +52,19 @@ import { CalendarModule } from "ion2-calendar";
   imports: [
     BrowserModule,
     HttpModule,
+
     CalendarModule,
     IonicImageViewerModule,
+
     IonicModule.forRoot(MyApp, {
       backButtonText: 'back',
       iconMode: 'ios',
       tabsPlacement: 'bottom',
       pageTransition: 'wp-transition'
     }),
-    SuperTabsModule.forRoot()
+    SuperTabsModule.forRoot(),
+    IonicImageViewerModule
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -86,6 +95,7 @@ import { CalendarModule } from "ion2-calendar";
     RoomReservationService,
     InsertReservationService,
     GoogleMaps,
+    PhotoViewer,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -7,6 +7,8 @@ import { Getlocation } from '../../providers/getlocation';
 import { Http } from '@angular/http';
 import { PopoverController } from 'ionic-angular';
 import  keyword_extractor  from 'keyword-extractor';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
+
 declare var google;
 /**
  * Generated class for the Reviews page.
@@ -56,6 +58,7 @@ export class Reviews {
                             };    
     public showReviews: boolean = true;
     constructor(public navCtrl: NavController,
+    private photoViewer: PhotoViewer,
                 public alertCtrl: AlertController, 
                 public toastCtrl: ToastController,
                 private diagnostic: Diagnostic,
@@ -144,7 +147,9 @@ let extraction_result = keyword_extractor.extract(sentence,{
     public ionViewWillUnload(): void {
       this.getlocation.stopTracking();
     }
-
+    public showPhoto(src) {
+      //this.photoViewer.show(src);
+    }
     public setMap() {
          this.getlocation.startTracking();
       this.showReviews=false;
