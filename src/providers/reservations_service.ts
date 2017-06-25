@@ -13,16 +13,15 @@ export class RoomReservationService
 
    retrieve_reservation_details(hotelid: any, roomtypeid: any, checkin: any, checkout: any)
     {
-      console.log('dadad')
-      console.log(hotelid)
+      console.log(hotelid);
       
      let headers = new Headers();
  
  return new Promise((resolve) => {
-        this.http.get('http://hainedefirmasj.com/placesforme//reservations_request_data.php?hotelid='+hotelid+"&roomtypeid="+roomtypeid+"&checkin="+checkin+"&checkout="+checkout).map(result => result.json()).subscribe(data => {
+        this.http.get('http://hainedefirmasj.com/placesforme//reservations_request_data.php?hotelid='+hotelid+"&roomtypeid="+roomtypeid+"&checkin="+checkin+"&checkout="+checkout)
+        .map(result => result.json()).subscribe(data => {
         this.reservationData = data;
         resolve(this.reservationData);
-        //console.log(this.roomsTypeData);
         })
       });
     }

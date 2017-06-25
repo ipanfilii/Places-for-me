@@ -37,7 +37,12 @@ import { RoomReservationService } from "../providers/reservations_service";
 import { InsertReservationService } from "../providers/insert_reservation_service";
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
+
+import { CalendarModule } from "ion2-calendar";
+ 
+
  import { PhotoViewer } from '@ionic-native/photo-viewer';
+
 
 @NgModule({
   declarations: [
@@ -47,6 +52,10 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
   imports: [
     BrowserModule,
     HttpModule,
+
+    CalendarModule,
+    IonicImageViewerModule,
+
     IonicModule.forRoot(MyApp, {
       backButtonText: 'back',
       iconMode: 'ios',
