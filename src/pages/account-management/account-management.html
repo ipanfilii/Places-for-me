@@ -147,7 +147,7 @@
                         <ion-avatar item-left>
                             <img src="http://placehold.it/200x200" imageViewer />
                         </ion-avatar>
-                        <h2 style="white-space: pre-line;" text-wrap> {{post.facultate}}</h2>
+                        <h2 style="white-space: pre-line;" text-wrap> {{post.place}}</h2>
                         <p>{{post.data}} </p>
                     </ion-item>
                     <ion-card-content>
@@ -159,26 +159,7 @@
                         <p padding-horizontal text-justify style="white-space: pre-line;" text-wrap [innerHTML]="post.text">
                         </p>
                     </ion-card-content>
-                    <!--<ion-row >
-                                    <ion-col tappable *ngIf="info.facultate == dataTabs.message.note && info.right == 1" (click)="presentProfileModal(post)"  width-50 text-left>
-                                    <button  ion-button outline full clear icon-left text-capitalize>
-                                    <ion-icon name='create'></ion-icon>
-                                    Edit 
-                                    </button>
-                                    </ion-col>
-                                    <ion-col tappable *ngIf="info.facultate == dataTabs.message.note && info.right == 1" (click)="deleteProfil(post.id)" width-50  text-center>
-                                    <button ion-button  outline full clear icon-left text-capitalize>
-                                    <ion-icon  name="close-circle"></ion-icon>
-                                    Remove 
-                                    </button>
-                                    </ion-col>
-                                    <ion-col tappable *ngIf="info.facultate == dataTabs.message.note && info.right == 0" text-center>
-                                    <button text-capitalize ion-button clear small color="secondary" icon-left>
-                                    <ion-icon name='share-alt' ></ion-icon>
-                                    Share
-                                    </button>
-                                    </ion-col>
-                            </ion-row>-->
+
                 </ion-card>
             </ion-list>
         </ion-list>

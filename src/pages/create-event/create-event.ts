@@ -24,7 +24,7 @@ export class CreateEvent {
   iddd:any;
   id:Array<{title: string, text: string, icon: string,id:string}>=[{title:'',text:'',icon:'',id:''}];
   idd:any; //parametru inserare 
-  facultate:any; // parametru trasnmis de la viewac pt inserare
+  place:any; // parametru trasnmis de la viewac pt inserare
   public tabBar:any;
   constructor(
     public camera: Camera,
@@ -61,7 +61,7 @@ export class CreateEvent {
       }
       console.log(this.id[0].title)
       this.idd = navParams.get('idd');
-      this.facultate = navParams.get('facultate'); // replace with placeid
+      this.place = navParams.get('facultate'); // replace with placeid
   }
  
   logForm() {
@@ -76,7 +76,7 @@ export class CreateEvent {
         inserttitle:this.myForm._value.title,
         inserttext:this.myForm._value.text,
         insertimage:localStorage.getItem('upt'),
-        facultate:localStorage.getItem('user') // place id 
+        place:localStorage.getItem('user') // place id 
       }
       this.http.post('http://hainedefirmasj.com/placesforme//insert.php',JSON.stringify(postParams),options).map(res => res.json())
       .subscribe(data=>{
