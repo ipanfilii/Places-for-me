@@ -16,6 +16,7 @@ export class Googlepopover {
   public myLocation: any;
   public userId: any = '';
   public location: any;
+  public register: boolean = false;
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private iab: InAppBrowser,   
@@ -24,7 +25,7 @@ export class Googlepopover {
               public oneSignal: OneSignal) {
     console.log(navParams.get('place'))
     this.place = navParams.get('place')
-
+    this.register = navParams.get('register');
     this.myLocation = navParams.get('myLocation');
     console.log(this.myLocation)
 //    this.location = new google.maps.LatLng(this.place.geometry.location.lat(), this.place.geometry.location.lng())
@@ -60,7 +61,9 @@ this.launchNavigator.navigate([this.place.geometry.location.lat(),this.place.geo
     error => alert('Error launching navigator' + error)
   );
   }
-
+ goToRegister(place) {
+   this.navCtrl.push('RegisterPage',{place:place, right:1 })
+ }
   followPlace(place) {
     console.log(place);
       this.oneSignal.getIds().then((ids)=>{

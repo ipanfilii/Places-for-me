@@ -1,0 +1,46 @@
+<!--
+  Generated template for the Googleregister page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+<ion-header>
+    <ion-navbar style="height:40px !important;" color="primary">
+        <ion-buttons right>
+            <button ion-button (click)="changeTypeOfPlace()">Choose place</button>
+        </ion-buttons>
+        <ion-buttons right>
+            <button ion-button (click)="getlocation.startTracking()" (click)="setMap()">Show reviews</button>
+        </ion-buttons>
+        <!--<ion-buttons right>
+            <button [disabled]="saveDisabled" ion-button (click)="save()">Save</button>
+        </ion-buttons>-->
+    </ion-navbar>
+
+    <!--<ion-toolbar>
+        <ion-searchbar [(ngModel)]="query" (ionInput)="searchPlace()"></ion-searchbar>
+    </ion-toolbar>-->
+    <!--<ion-card style= "">
+    <ion-card-content>
+        
+    </ion-card-content>
+</ion-card>-->
+
+    <ion-list>
+        <ion-item *ngFor="let place of places" (touchstart)="selectPlace(place)">{{place.description}}</ion-item>
+    </ion-list>
+
+</ion-header>
+
+<ion-content>
+
+    <div #pleaseConnect id="please-connect">
+        <p>Please connect to the Internet...</p>
+    </div>
+
+    <div style="height: 100% -150px; " #map id="map">
+        <ion-spinner></ion-spinner>
+    </div>
+</ion-content>
