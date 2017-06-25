@@ -58,7 +58,7 @@ export class Reviews {
                             };    
     public showReviews: boolean = true;
     constructor(public navCtrl: NavController,
-    private photoViewer: PhotoViewer,
+ //   private photoViewer: PhotoViewer,
                 public alertCtrl: AlertController, 
                 public toastCtrl: ToastController,
                 private diagnostic: Diagnostic,

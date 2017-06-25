@@ -41,7 +41,7 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { CalendarModule } from "ion2-calendar";
  
 
- import { PhotoViewer } from '@ionic-native/photo-viewer';
+ //import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 
 @NgModule({
@@ -95,7 +95,7 @@ import { CalendarModule } from "ion2-calendar";
     RoomReservationService,
     InsertReservationService,
     GoogleMaps,
-    PhotoViewer,
+//    PhotoViewer,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

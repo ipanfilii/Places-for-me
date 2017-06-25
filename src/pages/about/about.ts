@@ -15,20 +15,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class About {
   slides = [
     {
-      title: "Welcome to the Docs!",
-      description: "The <b>Ionic Component Documentation</b> showcases a number of useful components that are included out of the box with Ionic.",
-      image: "https://raw.githubusercontent.com/ionic-team/ionic-preview-app/master/src/assets/img/ica-slidebox-img-1.png",
+      title: "Welcome to Places for me",
+      description: "The <b>Places for me </b>app is the best solution for using your time eficiently .",
+      image: "assets/icon.png",
     },
     {
-      title: "What is Ionic?",
-      description: "<b>Ionic Framework</b> is an open source SDK that enables developers to build high quality mobile apps with web technologies like HTML, CSS, and JavaScript.",
-      image: "https://raw.githubusercontent.com/ionic-team/ionic-preview-app/master/src/assets/img/ica-slidebox-img-2.png",
+      title: "What is Places for me?",
+      description: "<b>Places for me</b> is the best solution if you are in your city or even you are traveling. <br>It helps you to decide where to stay, eat, work and entertain. <br>So it's your virtual best friend. ",
+      image: "assets/icon.png",
     },
-    {
-      title: "What is Ionic Cloud?",
-      description: "The <b>Ionic Cloud</b> is a cloud platform for managing and scaling Ionic apps with integrated services like push notifications, native builds, user auth, and live updating.",
-      image: "https://raw.githubusercontent.com/ionic-team/ionic-preview-app/master/src/assets/img/ica-slidebox-img-3.png",
-    }
+   
   ];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
