@@ -19,7 +19,7 @@
           </ion-item>
 
           <ion-item >
-              <ion-label fixed>Room type ooo</ion-label>
+              <ion-label fixed>Room type</ion-label>
                   <ion-select interface="popover"  formControlName="roomType" multiple="false" (ionChange)="retrieveRoomNumberData($event)"  >
                   <ion-option *ngFor="let type of roomTypeData" [value]=type.short_name>{{type.name}}</ion-option>
               </ion-select>
