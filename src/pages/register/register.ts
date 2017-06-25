@@ -80,21 +80,27 @@ export class RegisterPage {
       this.http.post('http://hainedefirmasj.com/placesforme/register.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
       this.dataUser = data;
       console.log(this.dataUser)
-          this.http.get("http://hainedefirmasj.com/placesforme/mailsend.php?user="+this.myForm._value.username+'&email='+this.myForm._value.email).map(result => result.json()).subscribe(data => {
         //console.log(this.roomsTypeData);
-        })      
       
       if(this.dataUser.success == true)
         { 
           confirm.present();
+          
+          this.http.get("http://hainedefirmasj.com/placesforme/mailsend.php?user="+this.myForm._value.username+'&email='+this.myForm._value.email).map(result => result.json()).subscribe(data => {
+      this.navCtrl.setRoot('WelcomeBeforeLogin');
+      
+      })      
+          
         }
       else if(this.dataUser.success == false)
         {
           registerFail.present(); // if login fail show a message error
+          this.navCtrl.setRoot('WelcomeBeforeLogin');
         } 
         else 
         {
 registerFailed.present()
+this.navCtrl.setRoot('WelcomeBeforeLogin');
         }
     },error=>{
       console.log(error);

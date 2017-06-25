@@ -40,7 +40,8 @@ export class Addrooms {
         max_occupancy: [0],
         room_number:[0]
     });
- 
+  
+    
 this.existingTypeForm = this.formBuilder.group({
 
           roomType: [''],
@@ -78,14 +79,23 @@ this.existingTypeForm = this.formBuilder.group({
        user: localStorage.getItem('user')
 
      }
+ 
       //loader.present();
        this.http.post('http://hainedefirmasj.com/placesforme/room_type_sendData.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data=>{
       this.typeData = data;
       
-      
+      let loginFail = this.toastCtrl.create({
+      message: 'room type added with success',
+      duration: 2500,
+    });
       if(this.typeData.success)
        { 
-           this.navCtrl.setRoot('RoomsManagement');
+         loginFail.present()
+             this.http.get('http://hainedefirmasj.com/placesforme/create_room_types.php?user='+localStorage.getItem('user')).map(res => res.json()).subscribe(data => {
+
+        this.userData = data; // tipuri camere
+        console.log(this.userData);
+         });
         }
        else
         {
@@ -135,7 +145,11 @@ this.existingTypeForm = this.formBuilder.group({
     headers.append("Accept",'application/json');
     headers.append('Content-Type','application/json');
     let options = new RequestOptions({headers:headers});
-
+ let successok = this.toastCtrl.create({
+      message: 'Room added!',
+      duration: 2500,
+      position: 'top'
+    });
      let postParams = {
        hotel_id: this.existingTypeForm._value.roomType.id_hotel,
        room_type: this.existingTypeForm._value.roomType.short_name,
@@ -148,7 +162,8 @@ this.existingTypeForm = this.formBuilder.group({
     this.http.post('http://hainedefirmasj.com/placesforme/insert_rooms.php',JSON.stringify(postParams),options).map(res => res.json()).subscribe(data => {
 
         this.insertRoomData = data; // tipuri camere
-      alert(this.insertRoomData);
+        successok.present();
          });
+         
               }
 }
