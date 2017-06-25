@@ -9,7 +9,7 @@
 </ion-header>
 
 <ion-content no-padding fullscreen>
-    <ion-row *ngIf="userData.right == 0 || userData.right == 2" class="header">
+    <ion-row *ngIf="userData.right == 0 " class="header">
         <ion-col style="width: 130px; height: 130px;">
             <div *ngIf="userData.photo == null">
                 <img src="http://atestate-inf.tk/ghidtest/profilelogo.png" />
@@ -54,6 +54,31 @@
                 <ion-icon name="construct"></ion-icon>
           <!--<ion-icon name="cog"></ion-icon>-->
         </button>
+        </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="userData.right == 2" class="header">
+        <ion-col style="width: 150px; height: 170px;">
+            <div *ngIf="userData.photo == ''">
+                <img src="http://atestate-inf.tk/ghidtest/profilelogo.png" />
+            </div>
+            <div *ngIf="userData.photo">
+                <img style="width: 150px; height: 155px; margin-left:15px; margin-top:5px; " src="http://hainedefirmasj.com/placesforme//uploadphoto/{{userData.photo}}.jpg" imageViewer />
+            </div>
+        </ion-col>
+        <ion-col width-60 class="button-container">
+            <button full icon-only ion-button icon-left (click)="changeEmail($event)">
+            <ion-icon name="mail"></ion-icon>
+        </button>
+            <button full icon-only ion-button icon-right (click)="changePassword($event)">
+          <ion-icon name="key"></ion-icon>
+        </button>
+            <button full icon-only ion-button icon-left (click)="changePhotoProfile($event)">
+          <ion-icon name="camera"></ion-icon>
+        </button>
+            <!--<button full icon-only ion-button icon-left (click)="administration($event)">
+                <ion-icon name="construct"></ion-icon>
+        </button>-->
         </ion-col>
     </ion-row>
     <div *ngIf="userData.right == 0" style="font-size:12 px;" text-capitalize>

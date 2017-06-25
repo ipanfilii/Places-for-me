@@ -438,7 +438,6 @@ export class Googlemaps {
       type: 'radio',
       label: 'Store',
       value: 'store',
-      checked:true
     });
 
     alert.addInput({
@@ -513,7 +512,6 @@ export class Googlemaps {
              //   this.typeOfPlace = false;
         this.setMap()
              
-        console.log(data);
         // for(let i = 0; i < this.markerArray.length; i++) {
         //   this.markerArray[i].setMap(null);
         // }
