@@ -26,6 +26,7 @@ export class Reviews {
     @ViewChild('map') mapElement: ElementRef;
     @ViewChild('pleaseConnect') pleaseConnect: ElementRef;
     @ViewChild('directionsPanel') directionsPanel: ElementRef;
+    public positionKeyword: number;
     public service;
     public latitude: number;
     public longitude: number;
@@ -57,6 +58,7 @@ export class Reviews {
                               pager:true
                             };    
     public showReviews: boolean = true;
+    public reviewArray: any = [];
     constructor(public navCtrl: NavController,
  //   private photoViewer: PhotoViewer,
                 public alertCtrl: AlertController, 
@@ -151,7 +153,7 @@ let extraction_result = keyword_extractor.extract(sentence,{
       //this.photoViewer.show(src);
     }
     public setMap() {
-         this.getlocation.startTracking();
+      this.getlocation.startTracking();
       this.showReviews=false;
       function  dothat(data) {
               alert(data)
@@ -225,19 +227,50 @@ let extraction_result = keyword_extractor.extract(sentence,{
                         // <strong> Photos: <img src=`+ place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100})+`><br>`+
                         // `<strong> Open now:</strong> `+place.opening_hours.open_now+ `<br>
                         // <strong> Rating: </strong>` +place.rating;
-                        console.log(place)
-                        me.listPlaces.push({date:place,cuvinte:keyword_extractor.extract(place.reviews[0].text,{
+                        let oneText = 0;
+                        let oneNoText = 0;
+                        try {
+                          
+                        for( let i = 0; i < place.reviews.length; i++) {
+                            if(place.reviews[i].language == "en" && oneText == 0  ) {
+                                 me.listPlaces.push({date:place,cuvinte:keyword_extractor.extract(place.reviews[i].text,{
                                                                 language:"english",
                                                                 remove_digits: true,
                                                                 return_changed_case:true,
-                                                                remove_duplicates: false
+                                                                remove_duplicates: true
  
-                                                           })})
-                        google.maps.event.addListener(marker, 'click', function() {
-                        me.infoWindow.setContent(contentString);
-                        me.googlePopUp(place);
+                                                           })});
+                                                           oneText = 1;
+                                                           oneNoText = 1;
+                            } else if(place.reviews[i].language == "ro" && oneNoText == 0 ) {
+                                me.listPlaces.push({date:place,cuvinte:keyword_extractor.extract('no keyword',{
+                                                                language:"english",
+                                                                remove_digits: true,
+                                                                return_changed_case:true,
+                                                                remove_duplicates: true
+ 
+                                                           })});
+                                                           oneNoText = 1;
+                            }
+                        }
+                       
+                        
+                        }
+                        catch(e) {
+                          
+                            me.listPlaces.push({date:place,cuvinte:keyword_extractor.extract('',{
+                                                                language:"english",
+                                                                remove_digits: true,
+                                                                return_chained_words:true,
+                                                                return_changed_case:true,
+                                                                remove_duplicates: true
+ 
+                                                           })});
+                       // go//ogle.maps.event.addListener(marker, 'click', function() {
+                        //me.infoWindow.setContent(contentString);
+                      //  me.googlePopUp(place);
                         me.infoWindow.open(me.map, this);
-                        me.calculateAndDisplayRoute(me.directionDisplay, me.directionService, me.infoWindow, me.map, pointA, pointB);
+                     //   me.calculateAndDisplayRoute(me.directionDisplay, me.directionService, me.infoWindow, me.map, pointA, pointB);
                     
                         // this.http.get('http://atestate-inf.tk/ghidtest/date.php?user='+
                         //  localStorage.getItem('user')+'&lat='+position.coords.latitude
@@ -251,9 +284,11 @@ let extraction_result = keyword_extractor.extract(sentence,{
                         me.marker.setMap(null)
                         me.marker = new google.maps.Marker({map: me.map, position:myLocation})
                         me.saveDisabled = false;
-                        me.calculateAndDisplayRoute(me.directionDisplay, me.directionService, me.infoWindow, me.map, pointA, pointB);
+                      //  me.calculateAndDisplayRoute(me.directionDisplay, me.directionService, me.infoWindow, me.map, pointA, pointB);
                         me.dataPlace = place;
-                        })
+
+                      }
+                     //s   this.reviewArray = [];
                 }    
        
             }

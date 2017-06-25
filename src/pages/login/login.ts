@@ -73,7 +73,7 @@ export class Login {
       this.dataUser = data;
 
       console.log(this.dataUser.username)
-      alert(this.dataUser)
+   //   alert(this.dataUser)
       console.log(this.dataUser.data)
 
       if(this.dataUser.success && this.dataUser.right == 0){ 
@@ -86,7 +86,7 @@ export class Login {
      //,{ logedUser: this.dataUser.username });
        
       }
-      else  if(this.dataUser.success && this.dataUser.right == 1){
+      else  if(this.dataUser.success &&( this.dataUser.right == 1 || this.dataUser.right == 2 )){
          loader.dismiss();
         localStorage.setItem('user',this.dataUser.username)
         localStorage.setItem('hotel', JSON.stringify(this.dataUser))
