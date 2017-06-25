@@ -27,7 +27,7 @@ export class WelcomeBeforeLogin {
   this.chooseRegisterType();
   }
 goToAboutapp(){
-  this.navCtrl.push('Aboutapp');
+  this.navCtrl.push('About');
 }
 
 chooseRegisterType() {

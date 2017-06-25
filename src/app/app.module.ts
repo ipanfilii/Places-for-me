@@ -37,7 +37,8 @@ import { RoomReservationService } from "../providers/reservations_service";
 import { InsertReservationService } from "../providers/insert_reservation_service";
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
- 
+ import { PhotoViewer } from '@ionic-native/photo-viewer';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -46,14 +47,15 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
   imports: [
     BrowserModule,
     HttpModule,
-    IonicImageViewerModule,
     IonicModule.forRoot(MyApp, {
       backButtonText: 'back',
       iconMode: 'ios',
       tabsPlacement: 'bottom',
       pageTransition: 'wp-transition'
     }),
-    SuperTabsModule.forRoot()
+    SuperTabsModule.forRoot(),
+    IonicImageViewerModule
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -84,6 +86,7 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
     RoomReservationService,
     InsertReservationService,
     GoogleMaps,
+    PhotoViewer,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
