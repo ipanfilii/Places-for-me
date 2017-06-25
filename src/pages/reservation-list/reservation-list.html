@@ -15,9 +15,15 @@
 
 <ion-content >
  <ion-list *ngFor="let item of freeRooms">
-    <ion-item >
+  <ion-card>  <ion-item >
     Room number :  {{item.number}}
-      <button ion-button color="primary" item-right  (click)="reserveRoom(item)" >Reserve</button>
+      <button ion-button color="primary"  item-right  (click)="reserveRoom(item)" >Reserve</button>
     </ion-item>
+    <ion-item>
+        Price : 200 $
+     <button ion-button color="primary" item-right >Discuss</button>
+    </ion-item>
+    <img style="width:100%;"  src="http://hotelsavoytimisoara.ro/wp-content/uploads/2016/09/camera-hotel-savoy-timisoara.jpg">
+  </ion-card>
  </ion-list>
 </ion-content>

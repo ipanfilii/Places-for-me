@@ -34,5 +34,8 @@ export class ReservationList {
   }
 
   public reserveRoom(item) {
-      this.insertreservationservice.retrieve_reservation_info(this.reservationForm.user,this.hotelID,item.id,this.reservationForm.startDate,this.reservationForm.endDate,this.reservationForm.roomType) }
+      this.insertreservationservice.retrieve_reservation_info(this.reservationForm.user,this.hotelID,item.id,this.reservationForm.startDate,this.reservationForm.endDate,this.reservationForm.roomType)
+      alert("Room is reserved");
+    this.navCtrl.setRoot('WelcomeAfterLogin');
+   }
 }

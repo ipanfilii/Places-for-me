@@ -47,11 +47,12 @@ export class Statistics {
  
             type: 'polarArea',
             data: {
-                labels: this.roomNameData,
+                //labels: this.roomNameData,
+                labels: ["Single","Double","Triple","Luxury"],
                 datasets: [{
                     label: 'number of rooms',
                    // data: this.reservationsNumber ,
-                   data:[1,5,5,7,9,10,12,6,7,8,7,12],
+                   data:[50,20,13,8],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -134,75 +135,5 @@ export class Statistics {
 
   }
 
-launch() {
-     const browser = this.iab.create('https://www.google.ro/?gws_rd=cr,ssl&ei=EQUcWcv3LOTI6ASxp71A',"location=no");
-     browser.show();
-}
 
-// testRoomTypes()
-// {
-//  this.roomtypesservice.retrieve_room_types().then((data)=>{
-//       this.roomTypeData = data;
-//        console.log(this.roomTypeData);  
-    
-//  });
- 
-// }
-
-// goToReservationsPage(){
-//   this.navCtrl.push('Reservations');
-// }
-//   ionViewDidLoad() {
-//     console.log('ionViewDidLoad Statistics');
-//    // this.testRoomTypes();
-//   }
-
-//   showRooms(type) {
-//         console.log('1');
-//     let _daysConfig = [
-//       {
-//         date:new Date(2017,0,1),
-//         subTitle:'New Year\'s',
-//         marked:true
-//       },
-//       {
-//         date:new Date(2017,1,14),
-//         subTitle:'Valentine\'s',
-//         disable:true
-//       },
-//       {
-//         date:new Date(2017,3,1),
-//         subTitle:'April Fools',
-//         marked:true
-//       },
-//       {
-//         date:new Date(2017,3,7),
-//         subTitle:'World Health',
-//         marked:true
-//       },
-//       {
-//         date:new Date(2017,4,31),
-//         subTitle:'No-Smoking',
-//         marked:true
-//       },
-//       {
-//         date:new Date(2017,5,1),
-//         subTitle:'Children\'s',
-//         marked:true
-//       }
-//     ];
-
-//     //_daysConfig.push(...this.days);
-
- 
-//     this.showDetailsDouble = true;
-//     this.showDetailsSingle = false;
-//     console.log('2');
-//       this.calendarCtrl.openCalendar({
-//         from: new Date(2017,0,1),
-//         to  : new Date(2017,11.1),
-//         daysConfig:_daysConfig
-//     })
-//     .then( res => { alert(res) } );
-//   }
 }
