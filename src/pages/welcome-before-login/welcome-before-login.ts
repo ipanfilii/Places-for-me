@@ -69,12 +69,12 @@ chooseRegisterType() {
           else if(data=='corporate')
             {
               console.log(data);
-              this.navCtrl.push("RegisterPage", {right:1});
+              this.navCtrl.push("Googleregister", {right:1});
             }
              else if(data=='institutional')
             {
               console.log(data);
-              this.navCtrl.push("RegisterPage", {right:2});
+              this.navCtrl.push("Googleregister", {right:2});
             }
        // this.testCheckboxOpen = false;
         //this.testCheckboxResult = data;

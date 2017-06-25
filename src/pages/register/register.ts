@@ -16,7 +16,7 @@ export class RegisterPage {
   public myForm:any;
   public dataUser: any;
   right: number;
-
+  public place: any = [];
   constructor(public navCtrl: NavController, 
               public toastCtrl: ToastController,
               public menuCtrl: MenuController,
@@ -33,7 +33,8 @@ export class RegisterPage {
         hotel_address: ['']
     });
     this.right = navParams.get("right");
-    console.log(this.right);
+    this.place = navParams.get('place');
+    console.log(this.place);
   }
 
   public registerForm() {
@@ -54,6 +55,7 @@ export class RegisterPage {
     let options = new RequestOptions({headers:headers});
 
     let postParams = {
+      id:this.place.id,
       user:this.myForm._value.username,
       pwd:this.myForm._value.password,
       email:this.myForm._value.email,
