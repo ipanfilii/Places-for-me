@@ -12,7 +12,7 @@ import { AlertController } from 'ionic-angular';
 export class WelcomeBeforeLogin {
 
   constructor(public navCtrl: NavController, public menuCtrl: MenuController ,public navParams: NavParams, public alertCtrl: AlertController) {
-       this.menuCtrl.enable(false);
+       this.menuCtrl.enable(true);
   }
 
   ionViewDidLoad() {

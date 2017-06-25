@@ -25,7 +25,7 @@ export class Login {
               public formBuilder: FormBuilder, 
               public http: Http,) {
 
-              this.menuCtrl.enable(false);
+              this.menuCtrl.enable(true);
                
               if( localStorage.getItem('user') ) {
                 this.toastCtrl.create({
